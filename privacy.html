@@ -3,86 +3,406 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cheery Privacy Policy</title>
+<title>Privacy Policy · Cheery</title>
+<meta name="description" content="How Cheery handles your photos and information. Your photos never leave your phone.">
+<meta name="theme-color" content="#FFF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#140D0F" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #fffaf6; --ink: #2b2220; --muted: #6f625d; --line: #eadfd8; --accent: #c8384f; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #1c1716; --ink: #f3ebe7; --muted: #b5a8a2; --line: #3a302d; --accent: #f07186; }
+  /* Cheery · Cherry Milk tokens */
+  :root {
+    --canvas: #FFF7F2;
+    --card: #FFFFFF;
+    --inset: #F6EBE6;
+    --ink: #241417;
+    --ink-muted: #6E5559;
+    --on-ink: #FFF7F2;
+    --keep: #C8223C;
+    --keep-soft: #FFE3E6;
+    --brand: #C8223C;
+    --butter: #FFE6A1;
+    --blush: #FFD3DB;
+    --lilac: #E5DCFF;
+    --on-sticker: #241417;
+    --hairline: #2414172E;
+    --shadow-card: 0 1px 2px rgba(36,20,23,0.06), 0 10px 30px rgba(36,20,23,0.08);
+
+    --radius-well: 14px;
+    --radius-card: 24px;
+    --radius-hero: 32px;
+    --radius-pill: 999px;
+
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+    --space-5: 20px; --space-6: 24px;
+
+    --display: Literata, Georgia, serif;
+    --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light dark;
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas: #140D0F;
+      --card: #201719;
+      --inset: #2D2225;
+      --ink: #FBF0EB;
+      --ink-muted: #C4AEB2;
+      --on-ink: #140D0F;
+      --keep: #FF6479;
+      --keep-soft: #3D1D24;
+      --brand: #FBF0EB;
+      --butter: #F3D58B;
+      --blush: #F5B9C5;
+      --lilac: #CDBFF7;
+      --on-sticker: #1A0F11;
+      --hairline: #FBF0EB33;
+      --shadow-card: none;
+    }
+  }
+
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink);
-         font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
-  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; }
-  h2 { font-size: 20px; margin: 36px 0 8px; padding-top: 20px; border-top: 1px solid var(--line); }
-  .date { color: var(--muted); margin: 0 0 24px; }
-  .summary { border-left: 4px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
-  ul { padding-left: 22px; }
-  li { margin: 6px 0; }
-  a { color: var(--accent); }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font: 400 16px/1.5 var(--sans);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: currentColor; }
+  :focus-visible { outline: 2px solid var(--keep); outline-offset: 3px; border-radius: 6px; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 var(--space-6); }
+
+  /* Header */
+  header.top { padding: var(--space-6) 0 0; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--brand); }
+  .brand .symbol { width: 22px; height: 26px; }
+  .brand .wordmark { width: 92px; height: 40px; }
+  .crumb { font: 500 14px/1.45 var(--sans); color: var(--ink-muted); }
+
+  /* Hero */
+  .hero { padding: 56px 0 var(--space-6); }
+  .kicker { font: italic 400 16px/1.3 var(--display); color: var(--ink-muted); margin: 0 0 10px; }
+  h1 {
+    font: 500 clamp(34px, 7vw, 46px)/1.08 var(--display);
+    letter-spacing: -0.8px; margin: 0 0 var(--space-3);
+  }
+  .meta { font: 500 14px/1.45 var(--sans); color: var(--ink-muted); margin: 0; font-variant-numeric: tabular-nums; }
+
+  /* Promise card: the one hero surface */
+  .promise {
+    position: relative;
+    background: var(--card);
+    border-radius: var(--radius-hero);
+    box-shadow: var(--shadow-card);
+    padding: 28px var(--space-6) var(--space-6);
+    margin: var(--space-6) 0 var(--space-3);
+  }
+  .promise .row { display: flex; gap: var(--space-4); align-items: flex-start; }
+  .promise .well { background: var(--keep-soft); color: var(--keep); }
+  .promise h2 { font: 500 24px/1.15 var(--display); letter-spacing: -0.4px; margin: 2px 0 6px; }
+  .promise p { margin: 0; color: var(--ink-muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--inset); color: var(--ink);
+    border-radius: var(--radius-pill);
+    padding: 8px 14px; font: 600 14px/1.2 var(--sans);
+  }
+  .chip svg { width: 16px; height: 16px; }
+  .sticker {
+    position: absolute; top: -14px; right: 22px;
+    background: var(--butter); color: var(--on-sticker);
+    border-radius: var(--radius-pill);
+    padding: 6px 14px; font: italic 400 15px/1.2 var(--display);
+    transform: rotate(4deg);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Contents */
+  .toc { background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: var(--space-2); margin: var(--space-3) 0 0; }
+  .toc ol { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .toc a {
+    display: flex; align-items: center; gap: var(--space-3);
+    min-height: 48px; padding: 10px 12px; border-radius: 16px;
+    text-decoration: none; font: 600 16px/1.3 var(--sans);
+  }
+  .toc a:hover { background: var(--inset); }
+  .toc .n { font: 500 14px/1 var(--sans); color: var(--ink-muted); width: 22px; font-variant-numeric: tabular-nums; }
+  .toc .chev { margin-left: auto; width: 18px; height: 18px; color: var(--ink-muted); }
+
+  .group-label { font: italic 400 16px/1.3 var(--display); color: var(--ink-muted); margin: 40px 4px var(--space-3); }
+
+  /* Sections */
+  section.block {
+    background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+    padding: var(--space-6); margin: 0 0 var(--space-3);
+    scroll-margin-top: var(--space-6);
+  }
+  .block-head { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-4); }
+  .well {
+    flex: none; width: 40px; height: 40px; border-radius: var(--radius-well);
+    background: var(--inset); color: var(--ink);
+    display: grid; place-items: center;
+  }
+  .well svg { width: 22px; height: 22px; }
+  section.block h2 { font: 500 24px/1.15 var(--display); letter-spacing: -0.4px; margin: 0; }
+  section.block p { margin: 0 0 var(--space-3); }
+  section.block p:last-child { margin-bottom: 0; }
+  .muted { color: var(--ink-muted); }
+
+  .items { list-style: none; margin: var(--space-2) 0 0; padding: 0; }
+  .items li { padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .items li:first-child { border-top: 0; padding-top: 4px; }
+  .items li:last-child { padding-bottom: 0; }
+  .items strong { display: block; font: 600 16px/1.3 var(--sans); margin-bottom: 4px; }
+  .items span { display: block; color: var(--ink-muted); }
+
+  .note {
+    background: var(--inset); border-radius: 16px;
+    padding: 14px var(--space-4); margin-top: var(--space-4);
+    font: 500 14px/1.45 var(--sans); color: var(--ink-muted);
+  }
+
+  /* Contact */
+  .contact { text-align: center; padding: 32px var(--space-6) 28px; }
+  .contact .well { margin: 0 auto var(--space-4); }
+  .contact h2 { margin-bottom: 8px !important; }
+  .contact p { color: var(--ink-muted); }
+  .button {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+    height: 56px; padding: 0 28px; margin-top: var(--space-5);
+    background: var(--ink); color: var(--on-ink);
+    border-radius: var(--radius-pill);
+    font: 700 16px/1.2 var(--sans); letter-spacing: -0.1px; text-decoration: none;
+    transition: transform 160ms cubic-bezier(.34,1.56,.64,1);
+  }
+  .button:active { transform: scale(.96); }
+  .email { display: block; margin-top: var(--space-3); font: 500 14px/1.45 var(--sans); color: var(--ink-muted); word-break: break-all; }
+
+  /* Footer */
+  footer { padding: 40px 0 48px; text-align: center; }
+  footer .wordmark { width: 104px; height: 45px; color: var(--brand); }
+  footer .kicker { margin: 6px 0 4px; }
+  footer small { font: 500 13px/1.45 var(--sans); color: var(--ink-muted); }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 var(--space-4); }
+    .hero { padding-top: 40px; }
+    section.block, .promise { padding-left: var(--space-5); padding-right: var(--space-5); }
+    .sticker { right: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .button { transition: none; } }
 </style>
 </head>
 <body>
-<main>
-<h1>Cheery Privacy Policy</h1>
-<p class="date">Effective date: October 28, 2026</p>
 
-<p>This Privacy Policy explains how the Cheery app ("Cheery", "the app", "we", "us") handles your information when you use it on your device. Cheery helps you review, organize and clean up the photos and videos on your phone.</p>
+<!-- Icon set: Lucide (ISC licence) at stroke 1.75, plus Cheery's own heart and cherry -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-images" viewBox="0 0 24 24"><path d="m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16"/><path d="M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2"/><circle cx="13" cy="7" r="1" fill="currentColor"/><rect x="8" y="2" width="14" height="14" rx="2"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/><path d="M16 17h.01"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  </defs>
+</svg>
 
-<div class="summary">
-<p><strong>In short:</strong> Cheery works on your device. There is no account and no sign-in, and your photos and videos are never uploaded to us or to any server. We do not sell your data.</p>
-</div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Cheery">
+      <!-- Silk Swipe symbol -->
+      <svg class="symbol" viewBox="410 208 440 530" aria-hidden="true" fill="currentColor">
+        <path d="M538 465 C495 448 422 440 425 373 C428 307 562 232 683 215 C766 204 827 234 840 283 C856 346 829 425 784 439 C712 463 616 385 534 373 C494 367 470 380 470 399 C467 430 516 446 538 465 Z"/>
+        <path d="M725 477 C775 489 837 506 840 563 C843 637 724 697 609 724 C530 743 464 731 434 688 C402 643 412 580 438 543 C468 498 516 482 562 494 C626 506 704 568 757 568 C791 568 805 554 792 531 C781 510 747 492 725 477 Z"/>
+      </svg>
+      <!-- Personal Note wordmark -->
+      <svg class="wordmark" viewBox="0 0 150 65" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 29 17 C 34 2 18 9 11 20 C 3 32 2 49 12 50 Q 20 51 29 43"/>
+        <path d="M 44 9 L 38 48 C 46 28 57 26 55 38 Q 53 50 60 47"/>
+        <path d="M 67 38 C 90 36 81 20 73 31 C 59 50 77 53 85 44"/>
+        <path d="M 91 38 C 114 36 105 20 97 31 C 83 50 101 53 109 44"/>
+        <path d="M 117 31 L 114 48 C 117 38 121 31 128 31"/>
+        <path d="M 134 31 C 131 44 142 49 147 31 L 142 57 C 140 63 134 63 132 59"/>
+      </svg>
+    </a>
+    <span class="crumb">Privacy Policy</span>
+  </div>
+</header>
 
-<h2>1. Information the app accesses</h2>
-<p>With your permission, Cheery accesses the following on your device only:</p>
-<ul>
-  <li><strong>Photos and videos.</strong> Cheery reads your photo and video library so you can view, sort and delete items. You can grant access to your full library or to selected photos only, and you can change this at any time in your device settings or in Cheery under <em>Settings → Data &amp; privacy</em>.</li>
-  <li><strong>Photo location data.</strong> If your photos contain location information (for example, where a picture was taken), Cheery reads it to group your photos by place in Memories. This location data is read from your photos on your device. Cheery does not track your current location.</li>
-  <li><strong>Notifications.</strong> If you turn on the daily reminder, Cheery asks for permission to show notifications. The reminder is scheduled on your device and requires no server.</li>
-</ul>
+<main class="wrap" id="top">
 
-<h2>2. On-device processing</h2>
-<p>To find similar photos, recognize what a photo contains, and organize your memories, Cheery uses Google ML Kit image labeling and face detection. This analysis runs entirely on your device. Your photos are not sent anywhere for this processing. Face detection only finds whether and where faces appear in a photo. It does not identify who a person is, and Cheery does not create or store facial recognition templates.</p>
+  <div class="hero">
+    <p class="kicker">keep what you love, privately</p>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective October 28, 2026</p>
+  </div>
 
-<h2>3. Information stored on your device</h2>
-<p>Cheery saves a small amount of information locally on your device so the app works as expected, including:</p>
-<ul>
-  <li>Your settings, such as language, reminder time and preferences;</li>
-  <li>Your cleaning streak, Journal and cleanup history;</li>
-  <li>The list of items you chose to remove (the Trash list);</li>
-  <li>Your Cheery Pro status, if you have purchased it.</li>
-</ul>
-<p>This information stays on your device. We cannot see it. You can erase it at any time in <em>Settings → Data &amp; privacy → Erase app data</em>, or by uninstalling the app. Erasing app data never deletes your photos.</p>
+  <div class="promise">
+    <span class="sticker" aria-hidden="true">on-device</span>
+    <div class="row">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-shield"/></svg></span>
+      <div>
+        <h2>Your photos never leave this phone</h2>
+        <p>Cheery sorts everything on your device. There is no account and no sign-in, and your photos and videos are never uploaded to us or to any server. We do not sell your data.</p>
+      </div>
+    </div>
+    <div class="chips" aria-label="At a glance">
+      <span class="chip"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"/></svg>No account</span>
+      <span class="chip"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"/></svg>No cloud</span>
+      <span class="chip"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"/></svg>No uploads</span>
+    </div>
+  </div>
 
-<h2>4. Deleting photos</h2>
-<p>Cheery deletes photos and videos only when you ask it to and confirm. Depending on your device, deleted items may be moved to your device's own trash or recycle bin, where you may be able to recover them for a limited time.</p>
+  <p class="group-label">in this policy</p>
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#access"><span class="n">1</span>What Cheery accesses<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#on-device"><span class="n">2</span>On-device processing<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#stored"><span class="n">3</span>What stays on your phone<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#deleting"><span class="n">4</span>Deleting photos<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#third-party"><span class="n">5</span>Third-party services<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#sharing"><span class="n">6</span>Sharing and selling<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#children"><span class="n">7</span>Children's privacy<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#choices"><span class="n">8</span>Your choices<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#changes"><span class="n">9</span>Changes to this policy<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+      <li><a href="#contact"><span class="n">10</span>Contact us<svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>
+    </ol>
+  </nav>
 
-<h2>5. Third-party services</h2>
-<ul>
-  <li><strong>Google ML Kit.</strong> ML Kit processes your images on your device, as described above. To keep its features working, ML Kit may send Google limited technical information, such as device and app details, performance metrics and diagnostics. Your photos are not included. See <a href="https://developers.google.com/ml-kit/terms">Google ML Kit Terms</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</li>
-  <li><strong>Google Play Billing.</strong> If you buy Cheery Pro, the payment is processed by Google Play. We never receive or see your payment card details. Google Play only tells the app whether a purchase succeeded. Google's handling of your payment information is covered by the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and the <a href="https://play.google.com/about/play-terms/">Google Play Terms of Service</a>.</li>
-</ul>
-<p>Cheery does not use third-party analytics or advertising tracking. If this changes in a future version, we will update this policy before the change takes effect.</p>
+  <p class="group-label">the details</p>
 
-<h2>6. Data sharing and selling</h2>
-<p>We do not sell, rent or share your personal information. We do not collect your photos, videos or personal data on our servers, because Cheery does not have servers that store user data.</p>
+  <section class="block" id="access">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-images"/></svg></span>
+      <h2>1. What Cheery accesses</h2>
+    </div>
+    <p>This Privacy Policy explains how the Cheery app ("Cheery", "the app", "we", "us") handles your information. With your permission, Cheery accesses the following, on your device only:</p>
+    <ul class="items">
+      <li><strong>Photos and videos</strong><span>Cheery reads your photo and video library so you can view, sort and delete items. You can give access to your full library or to selected photos only, and change it at any time in your phone's settings or in Cheery under Settings, Data &amp; privacy.</span></li>
+      <li><strong>Photo location</strong><span>If your photos contain location information (where a picture was taken), Cheery reads it to group your photos by place in Memories. Cheery does not track your current location.</span></li>
+      <li><strong>Notifications</strong><span>If you turn on the daily reminder, Cheery asks to show notifications. The reminder is scheduled by your phone itself, with no server.</span></li>
+    </ul>
+  </section>
 
-<h2>7. Children's privacy</h2>
-<p>Cheery is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
+  <section class="block" id="on-device">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-scan"/></svg></span>
+      <h2>2. On-device processing</h2>
+    </div>
+    <p>To find similar photos, recognise what a photo shows and organise your memories, Cheery uses Google ML Kit image labelling and face detection. This analysis runs entirely on your device, and your photos are not sent anywhere for it.</p>
+    <p class="muted">Face detection only finds whether and where faces appear in a photo. It does not identify who a person is, and Cheery does not create or store facial recognition data.</p>
+  </section>
 
-<h2>8. Your choices</h2>
-<ul>
-  <li>You can allow, limit or turn off photo access at any time in your device settings.</li>
-  <li>You can turn the daily reminder on or off in the app or in your device's notification settings.</li>
-  <li>You can erase all of Cheery's app data in <em>Settings → Data &amp; privacy</em>.</li>
-  <li>You can stop all use of your information by uninstalling the app.</li>
-</ul>
+  <section class="block" id="stored">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-calendar"/></svg></span>
+      <h2>3. What stays on your phone</h2>
+    </div>
+    <p>Cheery saves a small amount of information on your device so the app works as expected:</p>
+    <ul class="items">
+      <li><strong>Settings</strong><span>Language, reminder time and other preferences.</span></li>
+      <li><strong>Streak and Journal</strong><span>Your tidy streak and cleanup history.</span></li>
+      <li><strong>Trash list</strong><span>Just a list of the items you chose to remove.</span></li>
+      <li><strong>Cheery Pro status</strong><span>Whether you have Pro, if you bought it.</span></li>
+    </ul>
+    <div class="note">This information stays on your device and we cannot see it. You can erase it at any time in Settings, Data &amp; privacy, Erase app data, or by uninstalling the app. Erasing app data never deletes your photos.</div>
+  </section>
 
-<h2>9. Changes to this policy</h2>
-<p>We may update this Privacy Policy from time to time. When we do, we will post the new version on this page and update the effective date above. We encourage you to review this page periodically.</p>
+  <section class="block" id="deleting">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-trash"/></svg></span>
+      <h2>4. Deleting photos</h2>
+    </div>
+    <p>Letting a photo go only puts it in Review. Cheery deletes photos and videos only when you tap Delete in Review and then confirm in your phone's own delete dialog.</p>
+    <p class="muted">Depending on your phone, deleted items may be kept for a while in your system's Trash or Recently deleted folder. This is managed by your phone, not by Cheery.</p>
+  </section>
 
-<h2>10. Contact us</h2>
-<p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:thanhphamsilent@gmail.com">thanhphamsilent@gmail.com</a>.</p>
+  <section class="block" id="third-party">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layout"/></svg></span>
+      <h2>5. Third-party services</h2>
+    </div>
+    <ul class="items">
+      <li><strong>Google ML Kit</strong><span>Processes your images on your device, as described above. To keep its features working, ML Kit may send Google limited technical information, such as device and app details, performance metrics and diagnostics. Your photos are never included. See the <a href="https://developers.google.com/ml-kit/terms">Google ML Kit Terms</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</span></li>
+      <li><strong>Google Play Billing</strong><span>If you buy Cheery Pro, the payment is processed by Google Play. We never receive or see your payment card details; Google Play only tells the app whether a purchase went through. See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and the <a href="https://play.google.com/about/play-terms/">Google Play Terms of Service</a>.</span></li>
+    </ul>
+    <div class="note">Cheery does not use third-party analytics or advertising tracking. If this changes in a future version, we will update this policy before the change takes effect.</div>
+  </section>
+
+  <section class="block" id="sharing">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-x"/></svg></span>
+      <h2>6. Sharing and selling</h2>
+    </div>
+    <p>We do not sell, rent or share your personal information. We do not collect your photos, videos or personal data on any server, because Cheery has no servers that store user data.</p>
+  </section>
+
+  <section class="block" id="children">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-user"/></svg></span>
+      <h2>7. Children's privacy</h2>
+    </div>
+    <p>Cheery is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
+  </section>
+
+  <section class="block" id="choices">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-sliders"/></svg></span>
+      <h2>8. Your choices</h2>
+    </div>
+    <ul class="items">
+      <li><strong>Photo access</strong><span>Allow, limit or turn off photo access at any time in your phone's settings.</span></li>
+      <li><strong>Reminders</strong><span>Turn the daily reminder on or off in Cheery or in your phone's notification settings.</span></li>
+      <li><strong>App data</strong><span>Erase all of Cheery's data in Settings, Data &amp; privacy.</span></li>
+      <li><strong>Uninstall</strong><span>Uninstalling the app stops all use of your information.</span></li>
+    </ul>
+  </section>
+
+  <section class="block" id="changes">
+    <div class="block-head">
+      <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-refresh"/></svg></span>
+      <h2>9. Changes to this policy</h2>
+    </div>
+    <p>We may update this Privacy Policy from time to time. When we do, we will post the new version on this page and update the effective date at the top.</p>
+  </section>
+
+  <section class="block contact" id="contact">
+    <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-info"/></svg></span>
+    <h2>10. Contact us</h2>
+    <p>Questions about this policy or your privacy? We would love to hear from you.</p>
+    <a class="button" href="mailto:thanhphamsilent@gmail.com?subject=Cheery%20privacy">Email us</a>
+    <span class="email">thanhphamsilent@gmail.com</span>
+  </section>
+
 </main>
+
+<footer>
+  <svg class="wordmark" viewBox="0 0 150 65" role="img" aria-label="Cheery" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 29 17 C 34 2 18 9 11 20 C 3 32 2 49 12 50 Q 20 51 29 43"/>
+    <path d="M 44 9 L 38 48 C 46 28 57 26 55 38 Q 53 50 60 47"/>
+    <path d="M 67 38 C 90 36 81 20 73 31 C 59 50 77 53 85 44"/>
+    <path d="M 91 38 C 114 36 105 20 97 31 C 83 50 101 53 109 44"/>
+    <path d="M 117 31 L 114 48 C 117 38 121 31 128 31"/>
+    <path d="M 134 31 C 131 44 142 49 147 31 L 142 57 C 140 63 134 63 132 59"/>
+  </svg>
+  <p class="kicker">Keep what you love.</p>
+  <small>&copy; 2026 Cheery</small>
+</footer>
+
 </body>
 </html>
