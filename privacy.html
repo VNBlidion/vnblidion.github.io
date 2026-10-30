@@ -120,6 +120,24 @@
   .group-label { font: italic 400 16px/1.3 var(--display); color: var(--ink-muted); margin: 32px 4px var(--space-3); }
   html:lang(zh) .group-label, html:lang(ja) .group-label, html:lang(ko) .group-label { font-style: normal; font-size: 14px; font-weight: 600; }
 
+  /* Everything that leaves your phone */
+  .glance {
+    background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+    padding: var(--space-5); margin: var(--space-3) 0 0;
+  }
+  @media (min-width: 560px) { .glance { padding: var(--space-6); } }
+  .glance h2 { font: 500 22px/1.2 var(--display); letter-spacing: -0.3px; margin: 0; text-wrap: balance; }
+  html:lang(zh) .glance h2, html:lang(ja) .glance h2, html:lang(ko) .glance h2 { font-size: 20px; }
+  .glance > p { margin: 0 0 var(--space-4); }
+  .glance-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .glance-rows li { background: var(--inset); border-radius: var(--radius-media); padding: 14px var(--space-4); }
+  .glance-rows strong { display: block; font: 600 16px/1.3 var(--sans); margin-bottom: 8px; }
+  .glance-rows dl { margin: 0; display: grid; gap: 6px; }
+  .glance-rows dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: var(--space-3); }
+  .glance-rows dt { font: 500 13px/1.45 var(--sans); color: var(--ink-muted); }
+  .glance-rows dd { margin: 0; font: 400 14px/1.45 var(--sans); }
+  @media (max-width: 359px) { .glance-rows dl > div { grid-template-columns: 1fr; gap: 0; } }
+
   /* Contents */
   .toc { background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 6px; }
   .toc ol { list-style: none; margin: 0; padding: 0; }
@@ -210,13 +228,13 @@
     width: 100%; min-height: 56px; display: flex; align-items: center; gap: var(--space-3);
     padding: 8px 14px; border: 0; border-radius: 18px; background: none; cursor: pointer; text-align: left;
   }
-  .langs button[aria-pressed="true"] { background: var(--inset); }
+  .langs button[aria-checked="true"] { background: var(--inset); }
   @media (hover: hover) { .langs button:hover { background: var(--inset); } }
   .langs .names { flex: 1; min-width: 0; }
   .langs .native { display: block; font: 600 16px/1.3 var(--sans); }
   .langs .eng { display: block; font: 500 14px/1.4 "DM Sans", system-ui, sans-serif; color: var(--ink-muted); }
   .langs .tick { width: 20px; height: 20px; flex: none; visibility: hidden; }
-  .langs button[aria-pressed="true"] .tick { visibility: visible; }
+  .langs button[aria-checked="true"] .tick { visibility: visible; }
   html.locked, html.locked body { overflow: hidden; }
   body.sheet-open .scrim { opacity: 1; }
   body.sheet-open .sheet { transform: translateY(0); }
@@ -253,6 +271,9 @@
     <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></symbol>
     <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
     <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
     <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
@@ -282,20 +303,26 @@
 <main class="wrap" id="content">
   <div class="hero">
     <h1>Privacy Policy</h1>
-    <p class="meta">Effective October 29, 2026</p>
+    <p class="meta">Effective October 30, 2026</p>
     
   </div>
 
   <div class="promise">
     <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shield"></use></svg></span>
     <h2>Your photos never leave this phone</h2>
-    <p>Cheery sorts everything on your device. There is no account and no sign-in, and your photos and videos are never uploaded to us or to any server. We do not sell your data.</p>
+    <p>Cheery sorts your photos on your device. There is no account and no sign-in, and your photos and videos are never uploaded to us or to anyone else. We never sell your photos or personal information.</p>
     <div class="chips"><span class="chip"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg>No account</span><span class="chip"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg>No cloud</span><span class="chip"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg>No photo uploads</span></div>
   </div>
 
+  <section class="glance" id="glance" aria-labelledby="glanceTitle">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-upload"></use></svg></span><h2 id="glanceTitle">Everything that leaves your phone</h2></div>
+    <p class="muted">Your photos and videos stay on your phone. This is the complete list of what Cheery sends, who receives it and how you control it.</p>
+    <ul class="glance-rows"><li><strong>Crash reports</strong><dl><div><dt>Sent to</dt><dd>Google Firebase</dd></div><div><dt>Why</dt><dd>To find and fix crashes</dd></div><div><dt>Your control</dt><dd>On by default. Turn off in Settings › Data &amp; privacy</dd></div></dl></li><li><strong>Usage stats</strong><dl><div><dt>Sent to</dt><dd>Google Firebase</dd></div><div><dt>Why</dt><dd>To learn which features help people</dd></div><div><dt>Your control</dt><dd>Off unless you agree. Turn off anytime</dd></div></dl></li><li><strong>ML Kit diagnostics</strong><dl><div><dt>Sent to</dt><dd>Google</dd></div><div><dt>Why</dt><dd>To keep on-device photo analysis working</dd></div><div><dt>Your control</dt><dd>Cannot be turned off. Never includes photos</dd></div></dl></li><li><strong>Ad data (free version only)</strong><dl><div><dt>Sent to</dt><dd>Google AdMob</dd></div><div><dt>Why</dt><dd>To show and measure ads, and to personalize them only if you agree</dd></div><div><dt>Your control</dt><dd>Buy Cheery Pro to remove ads. Control personalization in your phone’s ad settings</dd></div></dl></li><li><strong>Purchase confirmation</strong><dl><div><dt>Sent to</dt><dd>Google Play</dd></div><div><dt>Why</dt><dd>To process Cheery Pro payments</dd></div><div><dt>Your control</dt><dd>Only when you buy</dd></div></dl></li></ul>
+  </section>
+
   <p class="group-label">in this policy</p>
   <nav class="toc" aria-label="in this policy">
-    <ol><li><a href="#access"><span class="n">1</span><span>What Cheery accesses</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#on-device"><span class="n">2</span><span>On-device processing</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#telemetry"><span class="n">3</span><span>Crash reports and usage stats</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#stored"><span class="n">4</span><span>What stays on your phone</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#deleting"><span class="n">5</span><span>Deleting photos</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#third-party"><span class="n">6</span><span>Third-party services</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#sharing"><span class="n">7</span><span>Sharing and selling</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#children"><span class="n">8</span><span>Children’s privacy</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#choices"><span class="n">9</span><span>Your choices</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#changes"><span class="n">10</span><span>Changes to this policy</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#contact"><span class="n">11</span><span>Contact us</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li></ol>
+    <ol><li><a href="#access"><span class="n">1</span><span>What Cheery accesses</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#on-device"><span class="n">2</span><span>On-device processing</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#telemetry"><span class="n">3</span><span>Crash reports and usage stats</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#ads"><span class="n">4</span><span>Ads in the free version</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#pro"><span class="n">5</span><span>Cheery Pro and payments</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#stored"><span class="n">6</span><span>What stays on your phone</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#deleting"><span class="n">7</span><span>Deleting photos</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#third-party"><span class="n">8</span><span>Third-party services</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#sharing"><span class="n">9</span><span>Sharing and selling</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#children"><span class="n">10</span><span>Children’s privacy</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#choices"><span class="n">11</span><span>Your choices</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#changes"><span class="n">12</span><span>Changes to this policy</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#contact"><span class="n">13</span><span>Contact us</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li></ol>
   </nav>
 
   <p class="group-label">the details</p>
@@ -310,40 +337,48 @@
   </section>
   <section class="block" id="telemetry">
     <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chart"></use></svg></span><h2>3. Crash reports and usage stats</h2></div>
-    <p>Cheery uses Google Firebase to receive anonymous crash reports and, only if you agree, usage stats. Neither ever includes your photos or videos.</p><ul class="items"><li><strong>Crash reports</strong><span>On by default. When the app crashes or hits an error, it sends the error type, a technical trace of the code, your device model, Android version, app version, app language, whether Pro is on, a rough library size (for example “1k–10k items”), the screen that was open and a random installation ID. File paths and file names are removed before anything is sent. Turn this off in <b>Settings › Data &amp; privacy › Share crash reports</b>.</span></li><li><strong>Usage stats</strong><span>Off until you agree. Cheery asks once, when you first set it up. If you say yes, it sends counts and fixed names only: which tools you open, how many photos you kept, let go and deleted, how much space was freed, which kinds of memories you open, your streak length, when the Pro screen is shown and when a purchase is made, and the names of screens. Firebase also records basic details such as a random app instance ID, device model, app version and your approximate country or region. Turn this off in <b>Settings › Data &amp; privacy › Share usage stats</b>; turning it off also resets the stats gathered on your phone.</span></li><li><strong>Never sent</strong><span>Photos, videos, thumbnails, file names, file paths, albums, places, photo dates, image labels and face data are never sent, in crash reports or in usage stats.</span></li></ul><div class="note">Cheery does not collect your advertising ID and does not use this data for advertising. Firebase keeps crash reports for up to 90 days and usage stats for a limited period. Google processes this data on our behalf, and it may be stored on servers outside your country.</div>
+    <p>Cheery uses Google Firebase to receive anonymous crash reports and, only if you agree, usage stats. Neither ever includes your photos or videos.</p><ul class="items"><li><strong>Crash reports</strong><span>On by default. When the app crashes or hits an error, it sends the error type, a technical trace of the code, your device model, Android version, app version, app language, whether Pro is on, a rough library size (for example “1k–10k items”), the screen that was open and a random installation ID. File paths and file names are removed before anything is sent. Turn this off in <b>Settings › Data &amp; privacy › Share crash reports</b>.</span></li><li><strong>Usage stats</strong><span>Off until you agree. Cheery asks once, when you first set it up. If you say yes, it sends counts and fixed names only: which tools you open, how many photos you kept, let go and deleted, how much space was freed, which kinds of memories you open, your streak length, when the Pro screen is shown and when a purchase is made, and the names of screens. Firebase also records basic details such as a random app instance ID, device model, app version and your approximate country or region. Turn this off in <b>Settings › Data &amp; privacy › Share usage stats</b>; turning it off also resets the stats gathered on your phone.</span></li><li><strong>Never sent</strong><span>Photos, videos, thumbnails, file names, file paths, albums, places, photo dates, image labels and face data are never sent, in crash reports or in usage stats.</span></li></ul><div class="note">Crash reports and usage stats never include your advertising ID and are never used for advertising. Firebase keeps crash reports for up to 90 days and usage stats for a limited period. Google processes this data on our behalf, and it may be stored on servers outside your country.</div>
+  </section>
+  <section class="block" id="ads">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-megaphone"></use></svg></span><h2>4. Ads in the free version</h2></div>
+    <p>The free version of Cheery shows ads served by Google AdMob. Cheery Pro removes all ads.</p><ul class="items"><li><strong>Where ads appear</strong><span>One full-screen ad may appear after you finish a pile of photos, at most once every few minutes. Ads never appear while you are swiping, when you open Cheery or when you close it.</span></li><li><strong>What AdMob receives</strong><span>Your device’s advertising ID, your IP address (which Google uses to estimate your approximate location, such as your city or country), basic device and app information, and how you interact with ads, such as views and taps. AdMob never receives your photos, videos, file names or the locations stored in your photos.</span></li><li><strong>How Google uses it</strong><span>To show ads, limit how often you see them, measure them, prevent fraud and, only if you agree, personalize them. Google uses this data under its own privacy policy, so under Google Play’s rules this counts as sharing data with a third party.</span></li><li><strong>Your consent</strong><span>In the European Economic Area, the United Kingdom and Switzerland, Cheery shows Google’s consent form before any personalized ads, and you can change your answer later from Cheery’s settings. Everywhere, you can reset or delete your advertising ID, or opt out of personalized ads, in your phone’s settings under <b>Google › Ads</b>.</span></li></ul><div class="note">We do not pick individual ads, and we never receive your advertising ID or your location. Ads in Cheery are not directed at children.</div>
+  </section>
+  <section class="block" id="pro">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-card"></use></svg></span><h2>5. Cheery Pro and payments</h2></div>
+    <ul class="items"><li><strong>Payments</strong><span>Cheery Pro is sold through Google Play, which processes the payment. We never see your card or bank details. We only receive confirmation that a purchase went through and which plan it was.</span></li><li><strong>Subscriptions</strong><span>Cheery Pro is available as a yearly, monthly or weekly subscription, or as a one-month pass. Subscriptions renew automatically until you cancel; the one-month pass is paid once and does not renew. New subscribers to the yearly plan get a 3-day free trial: you are charged when the trial ends unless you cancel before then, and if notifications are on, Cheery reminds you on your phone one day before the trial ends. Prices are shown in the app and on Google Play before you buy. You can cancel anytime in <b>Google Play › Payments &amp; subscriptions</b>. Refunds follow Google Play’s refund policy.</span></li><li><strong>On your phone</strong><span>Your Pro status is saved on your phone and checked with Google Play, for example when you restore a purchase on a new phone.</span></li><li><strong>Usage stats</strong><span>If you agreed to share usage stats, Cheery also records when the Pro screen is shown and when a purchase is started or completed, by plan name only.</span></li></ul>
   </section>
   <section class="block" id="stored">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"></use></svg></span><h2>4. What stays on your phone</h2></div>
-    <p>Cheery saves a small amount of information on your device so the app works as expected:</p><ul class="items"><li><strong>Settings</strong><span>Language, reminder time and other preferences.</span></li><li><strong>Streak and Journal</strong><span>Your streak and your cleanup history.</span></li><li><strong>Trash</strong><span>Just a list of what you removed.</span></li><li><strong>Cheery Pro</strong><span>Whether you have Pro, if you bought it.</span></li><li><strong>Privacy choices</strong><span>Whether you share crash reports and usage stats.</span></li></ul><div class="note">This information stays on your device and we cannot see it. You can erase it at any time in <b>Settings › Data &amp; privacy › Erase app data</b>, or by uninstalling the app. Erasing app data never deletes your photos.</div>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"></use></svg></span><h2>6. What stays on your phone</h2></div>
+    <p>Cheery saves a small amount of information on your device so the app works as expected:</p><ul class="items"><li><strong>Settings</strong><span>Language, reminder time and other preferences.</span></li><li><strong>Streak and Journal</strong><span>Your streak and your cleanup history.</span></li><li><strong>Trash</strong><span>Just a list of what you removed.</span></li><li><strong>Cheery Pro</strong><span>Whether you have Pro, if you bought it.</span></li><li><strong>Privacy choices</strong><span>Whether you share crash reports and usage stats.</span></li><li><strong>Ad consent</strong><span>Your answer to the ads consent form, saved on your phone by Google’s consent tool.</span></li></ul><div class="note">This information stays on your device and we cannot see it. You can erase it at any time in <b>Settings › Data &amp; privacy › Erase app data</b>, or by uninstalling the app. Erasing app data never deletes your photos.</div>
   </section>
   <section class="block" id="deleting">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trash"></use></svg></span><h2>5. Deleting photos</h2></div>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trash"></use></svg></span><h2>7. Deleting photos</h2></div>
     <p><b>Let go</b> only adds a photo to Cheery’s <b>Trash</b> list. Nothing is deleted until you tap <b>Delete</b> there and confirm in your phone’s own delete dialog.</p><p class="muted">Depending on your phone, deleted items may be kept for a while in your system’s own trash or Recently deleted folder. This is managed by your phone, not by Cheery.</p>
   </section>
   <section class="block" id="third-party">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-layout"></use></svg></span><h2>6. Third-party services</h2></div>
-    <ul class="items"><li><strong>Google ML Kit</strong><span>Processes your images on your device, as described above. To keep its features working, ML Kit may send Google limited technical information, such as device and app details, performance metrics and diagnostics. Your photos are never included. See the <a href="https://developers.google.com/ml-kit/terms">Google ML Kit Terms</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</span></li><li><strong>Google Play Billing</strong><span>If you buy Cheery Pro, the payment is processed by Google Play. We never receive or see your payment card details; Google Play only tells the app whether a purchase went through. See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and the <a href="https://play.google.com/about/play-terms/">Google Play Terms of Service</a>.</span></li><li><strong>Google Firebase</strong><span>Receives the crash reports and usage stats described above. See <a href="https://firebase.google.com/support/privacy">Firebase privacy information</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</span></li></ul><div class="note">Cheery does not show ads and does not use advertising tracking. If this changes in a future version, we will update this policy before the change takes effect.</div>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-layout"></use></svg></span><h2>8. Third-party services</h2></div>
+    <ul class="items"><li><strong>Google ML Kit</strong><span>Processes your images on your device, as described above. To keep its features working, ML Kit may send Google limited technical information, such as device and app details, performance metrics and diagnostics. Your photos are never included. See the <a href="https://developers.google.com/ml-kit/terms">Google ML Kit Terms</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</span></li><li><strong>Google Play Billing</strong><span>If you buy Cheery Pro, the payment is processed by Google Play. We never receive or see your payment card details; Google Play only tells the app whether a purchase went through. See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and the <a href="https://play.google.com/about/play-terms/">Google Play Terms of Service</a>.</span></li><li><strong>Google Firebase</strong><span>Receives the crash reports and usage stats described above. See <a href="https://firebase.google.com/support/privacy">Firebase privacy information</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</span></li><li><strong>Google AdMob</strong><span>Shows ads in the free version, as described in section 4. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses information from apps that use its services</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</span></li></ul><div class="note">Cheery uses no other analytics, advertising or tracking services. If this changes in a future version, we will update this policy before the change takes effect.</div>
   </section>
   <section class="block" id="sharing">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-x"></use></svg></span><h2>7. Sharing and selling</h2></div>
-    <p>We do not sell or rent your personal information. Cheery has no servers of its own: crash reports and usage stats go to Google Firebase, which processes them for us, and we use them only to fix problems and improve Cheery. Your photos and videos are never collected.</p>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-x"></use></svg></span><h2>9. Sharing and selling</h2></div>
+    <p>We never sell your photos or personal information. Crash reports and usage stats go to Google Firebase, which processes them only on our behalf. In the free version, Google AdMob receives the ad data described in section 4 and uses it under Google’s own policies. That is the only data Cheery shares with a third party, and buying Cheery Pro stops it. Your photos and videos are never collected or shared.</p>
   </section>
   <section class="block" id="children">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-user"></use></svg></span><h2>8. Children’s privacy</h2></div>
-    <p>Cheery is not directed at children under the age of 13, and we do not knowingly collect personal information from children.</p>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-user"></use></svg></span><h2>10. Children’s privacy</h2></div>
+    <p>Cheery is not directed at children under the age of 13, and we do not knowingly collect personal information from children. Ads in Cheery are not directed at children.</p>
   </section>
   <section class="block" id="choices">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-sliders"></use></svg></span><h2>9. Your choices</h2></div>
-    <ul class="items"><li><strong>Photo access</strong><span>Allow, limit or turn off photo access at any time in your phone’s settings.</span></li><li><strong>Share crash reports</strong><span>Turn them on or off in <b>Settings › Data &amp; privacy</b>.</span></li><li><strong>Share usage stats</strong><span>Turn them on or off in <b>Settings › Data &amp; privacy</b>. They stay off unless you agree.</span></li><li><strong>Daily reminder</strong><span>Turn it on or off in Cheery or in your phone’s notification settings.</span></li><li><strong>App data</strong><span>Erase all of Cheery’s data in <b>Settings › Data &amp; privacy</b>.</span></li><li><strong>Uninstall</strong><span>Uninstalling the app stops all use of your information.</span></li></ul>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-sliders"></use></svg></span><h2>11. Your choices</h2></div>
+    <ul class="items"><li><strong>Photo access</strong><span>Allow, limit or turn off photo access at any time in your phone’s settings.</span></li><li><strong>Share crash reports</strong><span>Turn them on or off in <b>Settings › Data &amp; privacy</b>.</span></li><li><strong>Share usage stats</strong><span>Turn them on or off in <b>Settings › Data &amp; privacy</b>. They stay off unless you agree.</span></li><li><strong>Ad personalization</strong><span>Change your consent from Cheery’s settings, or reset or delete your advertising ID and opt out of personalized ads in your phone’s settings under <b>Google › Ads</b>.</span></li><li><strong>Remove ads</strong><span>Buy Cheery Pro to stop all ads and the ad data that comes with them.</span></li><li><strong>Delete your data</strong><span>Email us and we will delete the crash reports and usage stats linked to your installation within 30 days. Ad data is held by Google: use your phone’s ad settings or <a href="https://myadcenter.google.com/">Google’s ad controls</a>.</span></li><li><strong>Daily reminder</strong><span>Turn it on or off in Cheery or in your phone’s notification settings.</span></li><li><strong>App data</strong><span>Erase all of Cheery’s data in <b>Settings › Data &amp; privacy</b>.</span></li><li><strong>Uninstall</strong><span>Uninstalling the app stops all use of your information.</span></li></ul>
   </section>
   <section class="block" id="changes">
-    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-refresh"></use></svg></span><h2>10. Changes to this policy</h2></div>
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-refresh"></use></svg></span><h2>12. Changes to this policy</h2></div>
     <p>We may update this Privacy Policy from time to time. When we do, we will post the new version on this page and update the effective date at the top.</p>
   </section>
 
   <section class="block contact" id="contact">
     <span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-info"></use></svg></span>
-    <h2>11. Contact us</h2>
+    <h2>13. Contact us</h2>
     <p>Questions about this policy or your privacy? We would love to hear from you.</p>
     <a class="button" href="mailto:thanhphamsilent@gmail.com?subject=Cheery%20privacy">Email us</a>
     <span class="email">thanhphamsilent@gmail.com</span>
@@ -372,19 +407,21 @@ const LINKS = {
   "mlkit": "https://developers.google.com/ml-kit/terms",
   "gp": "https://policies.google.com/privacy",
   "play": "https://play.google.com/about/play-terms/",
-  "fb": "https://firebase.google.com/support/privacy"
+  "fb": "https://firebase.google.com/support/privacy",
+  "ads": "https://policies.google.com/technologies/partner-sites",
+  "myad": "https://myadcenter.google.com/"
 };
-const ICONS = ["i-images","i-scan","i-chart","i-calendar","i-trash","i-layout","i-x","i-user","i-sliders","i-refresh"];
-const IDS = ["access","on-device","telemetry","stored","deleting","third-party","sharing","children","choices","changes"];
+const ICONS = ["i-images","i-scan","i-chart","i-megaphone","i-card","i-calendar","i-trash","i-layout","i-x","i-user","i-sliders","i-refresh"];
+const IDS = ["access","on-device","telemetry","ads","pro","stored","deleting","third-party","sharing","children","choices","changes"];
 
 const L = {
  "en": {
   "native": "English",
   "english": "English",
   "title": "Privacy Policy",
-  "effective": "Effective October 29, 2026",
+  "effective": "Effective October 30, 2026",
   "promiseTitle": "Your photos never leave this phone",
-  "promiseBody": "Cheery sorts everything on your device. There is no account and no sign-in, and your photos and videos are never uploaded to us or to any server. We do not sell your data.",
+  "promiseBody": "Cheery sorts your photos on your device. There is no account and no sign-in, and your photos and videos are never uploaded to us or to anyone else. We never sell your photos or personal information.",
   "chips": [
    "No account",
    "No cloud",
@@ -455,7 +492,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery does not collect your advertising ID and does not use this data for advertising. Firebase keeps crash reports for up to 90 days and usage stats for a limited period. Google processes this data on our behalf, and it may be stored on servers outside your country."
+      "n": "Crash reports and usage stats never include your advertising ID and are never used for advertising. Firebase keeps crash reports for up to 90 days and usage stats for a limited period. Google processes this data on our behalf, and it may be stored on servers outside your country."
+     }
+    ]
+   ],
+   [
+    "Ads in the free version",
+    [
+     {
+      "p": "The free version of Cheery shows ads served by Google AdMob. Cheery Pro removes all ads."
+     },
+     {
+      "items": [
+       [
+        "Where ads appear",
+        "One full-screen ad may appear after you finish a pile of photos, at most once every few minutes. Ads never appear while you are swiping, when you open Cheery or when you close it."
+       ],
+       [
+        "What AdMob receives",
+        "Your device’s advertising ID, your IP address (which Google uses to estimate your approximate location, such as your city or country), basic device and app information, and how you interact with ads, such as views and taps. AdMob never receives your photos, videos, file names or the locations stored in your photos."
+       ],
+       [
+        "How Google uses it",
+        "To show ads, limit how often you see them, measure them, prevent fraud and, only if you agree, personalize them. Google uses this data under its own privacy policy, so under Google Play’s rules this counts as sharing data with a third party."
+       ],
+       [
+        "Your consent",
+        "In the European Economic Area, the United Kingdom and Switzerland, Cheery shows Google’s consent form before any personalized ads, and you can change your answer later from Cheery’s settings. Everywhere, you can reset or delete your advertising ID, or opt out of personalized ads, in your phone’s settings under <b>Google › Ads</b>."
+       ]
+      ]
+     },
+     {
+      "n": "We do not pick individual ads, and we never receive your advertising ID or your location. Ads in Cheery are not directed at children."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro and payments",
+    [
+     {
+      "items": [
+       [
+        "Payments",
+        "Cheery Pro is sold through Google Play, which processes the payment. We never see your card or bank details. We only receive confirmation that a purchase went through and which plan it was."
+       ],
+       [
+        "Subscriptions",
+        "Cheery Pro is available as a yearly, monthly or weekly subscription, or as a one-month pass. Subscriptions renew automatically until you cancel; the one-month pass is paid once and does not renew. New subscribers to the yearly plan get a 3-day free trial: you are charged when the trial ends unless you cancel before then, and if notifications are on, Cheery reminds you on your phone one day before the trial ends. Prices are shown in the app and on Google Play before you buy. You can cancel anytime in <b>Google Play › Payments &amp; subscriptions</b>. Refunds follow Google Play’s refund policy."
+       ],
+       [
+        "On your phone",
+        "Your Pro status is saved on your phone and checked with Google Play, for example when you restore a purchase on a new phone."
+       ],
+       [
+        "Usage stats",
+        "If you agreed to share usage stats, Cheery also records when the Pro screen is shown and when a purchase is started or completed, by plan name only."
+       ]
+      ]
      }
     ]
    ],
@@ -486,6 +579,10 @@ const L = {
        [
         "Privacy choices",
         "Whether you share crash reports and usage stats."
+       ],
+       [
+        "Ad consent",
+        "Your answer to the ads consent form, saved on your phone by Google’s consent tool."
        ]
       ]
      },
@@ -521,11 +618,15 @@ const L = {
        [
         "Google Firebase",
         "Receives the crash reports and usage stats described above. See <a href=\"{fb}\">Firebase privacy information</a> and the <a href=\"{gp}\">Google Privacy Policy</a>."
+       ],
+       [
+        "Google AdMob",
+        "Shows ads in the free version, as described in section 4. See <a href=\"{ads}\">how Google uses information from apps that use its services</a> and the <a href=\"{gp}\">Google Privacy Policy</a>."
        ]
       ]
      },
      {
-      "n": "Cheery does not show ads and does not use advertising tracking. If this changes in a future version, we will update this policy before the change takes effect."
+      "n": "Cheery uses no other analytics, advertising or tracking services. If this changes in a future version, we will update this policy before the change takes effect."
      }
     ]
    ],
@@ -533,7 +634,7 @@ const L = {
     "Sharing and selling",
     [
      {
-      "p": "We do not sell or rent your personal information. Cheery has no servers of its own: crash reports and usage stats go to Google Firebase, which processes them for us, and we use them only to fix problems and improve Cheery. Your photos and videos are never collected."
+      "p": "We never sell your photos or personal information. Crash reports and usage stats go to Google Firebase, which processes them only on our behalf. In the free version, Google AdMob receives the ad data described in section 4 and uses it under Google’s own policies. That is the only data Cheery shares with a third party, and buying Cheery Pro stops it. Your photos and videos are never collected or shared."
      }
     ]
    ],
@@ -541,7 +642,7 @@ const L = {
     "Children’s privacy",
     [
      {
-      "p": "Cheery is not directed at children under the age of 13, and we do not knowingly collect personal information from children."
+      "p": "Cheery is not directed at children under the age of 13, and we do not knowingly collect personal information from children. Ads in Cheery are not directed at children."
      }
     ]
    ],
@@ -561,6 +662,18 @@ const L = {
        [
         "Share usage stats",
         "Turn them on or off in <b>Settings › Data &amp; privacy</b>. They stay off unless you agree."
+       ],
+       [
+        "Ad personalization",
+        "Change your consent from Cheery’s settings, or reset or delete your advertising ID and opt out of personalized ads in your phone’s settings under <b>Google › Ads</b>."
+       ],
+       [
+        "Remove ads",
+        "Buy Cheery Pro to stop all ads and the ad data that comes with them."
+       ],
+       [
+        "Delete your data",
+        "Email us and we will delete the crash reports and usage stats linked to your installation within 30 days. Ad data is held by Google: use your phone’s ad settings or <a href=\"{myad}\">Google’s ad controls</a>."
        ],
        [
         "Daily reminder",
@@ -589,15 +702,56 @@ const L = {
   ],
   "contactTitle": "Contact us",
   "contactBody": "Questions about this policy or your privacy? We would love to hear from you.",
-  "contactButton": "Email us"
+  "contactButton": "Email us",
+  "glance": {
+   "title": "Everything that leaves your phone",
+   "intro": "Your photos and videos stay on your phone. This is the complete list of what Cheery sends, who receives it and how you control it.",
+   "labels": [
+    "Sent to",
+    "Why",
+    "Your control"
+   ],
+   "rows": [
+    [
+     "Crash reports",
+     "Google Firebase",
+     "To find and fix crashes",
+     "On by default. Turn off in Settings › Data &amp; privacy"
+    ],
+    [
+     "Usage stats",
+     "Google Firebase",
+     "To learn which features help people",
+     "Off unless you agree. Turn off anytime"
+    ],
+    [
+     "ML Kit diagnostics",
+     "Google",
+     "To keep on-device photo analysis working",
+     "Cannot be turned off. Never includes photos"
+    ],
+    [
+     "Ad data (free version only)",
+     "Google AdMob",
+     "To show and measure ads, and to personalize them only if you agree",
+     "Buy Cheery Pro to remove ads. Control personalization in your phone’s ad settings"
+    ],
+    [
+     "Purchase confirmation",
+     "Google Play",
+     "To process Cheery Pro payments",
+     "Only when you buy"
+    ]
+   ]
+  }
  },
  "vi": {
   "native": "Tiếng Việt",
   "english": "Vietnamese",
   "title": "Chính sách quyền riêng tư",
-  "effective": "Có hiệu lực từ ngày 29 tháng 10 năm 2026",
+  "effective": "Có hiệu lực từ ngày 30 tháng 10 năm 2026",
   "promiseTitle": "Ảnh của bạn không bao giờ rời khỏi điện thoại này",
-  "promiseBody": "Cheery xử lý mọi thứ ngay trên máy. Không cần tài khoản hay đăng nhập, và ảnh, video của bạn không bao giờ được tải lên chúng tôi hay bất kỳ máy chủ nào. Chúng tôi không bán dữ liệu của bạn.",
+  "promiseBody": "Cheery xử lý ảnh ngay trên máy của bạn. Không cần tài khoản hay đăng nhập, và ảnh, video của bạn không bao giờ được tải lên chúng tôi hay bất kỳ ai khác. Chúng tôi không bao giờ bán ảnh hay thông tin cá nhân của bạn.",
   "chips": [
    "Không tài khoản",
    "Không đám mây",
@@ -668,7 +822,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery không thu thập mã quảng cáo (Advertising ID) và không dùng dữ liệu này cho quảng cáo. Firebase lưu báo cáo lỗi tối đa 90 ngày và thống kê sử dụng trong một thời gian giới hạn. Dữ liệu này do Google xử lý thay cho chúng tôi và có thể được lưu trên máy chủ ở ngoài quốc gia của bạn."
+      "n": "Báo cáo lỗi và thống kê sử dụng không bao giờ chứa mã quảng cáo và không bao giờ được dùng cho quảng cáo. Firebase lưu báo cáo lỗi tối đa 90 ngày và thống kê sử dụng trong một thời gian giới hạn. Dữ liệu này do Google xử lý thay cho chúng tôi và có thể được lưu trên máy chủ ở ngoài quốc gia của bạn."
+     }
+    ]
+   ],
+   [
+    "Quảng cáo trong bản miễn phí",
+    [
+     {
+      "p": "Bản miễn phí của Cheery hiển thị quảng cáo do Google AdMob cung cấp. Cheery Pro bỏ toàn bộ quảng cáo."
+     },
+     {
+      "items": [
+       [
+        "Quảng cáo xuất hiện ở đâu",
+        "Một quảng cáo toàn màn hình có thể xuất hiện sau khi bạn xem xong một chồng ảnh, tối đa một lần trong vài phút. Quảng cáo không bao giờ xuất hiện khi bạn đang vuốt ảnh, khi bạn mở Cheery hoặc khi bạn thoát ứng dụng."
+       ],
+       [
+        "AdMob nhận những gì",
+        "Mã quảng cáo (Advertising ID) của thiết bị, địa chỉ IP (Google dùng để ước đoán vị trí gần đúng như thành phố hoặc quốc gia), thông tin cơ bản về thiết bị và ứng dụng, và cách bạn tương tác với quảng cáo như lượt xem và lượt chạm. AdMob không bao giờ nhận ảnh, video, tên file hay vị trí lưu trong ảnh của bạn."
+       ],
+       [
+        "Google dùng dữ liệu này thế nào",
+        "Để hiển thị quảng cáo, giới hạn số lần bạn thấy, đo lường, chống gian lận và, chỉ khi bạn đồng ý, cá nhân hóa quảng cáo. Google dùng dữ liệu này theo chính sách quyền riêng tư của riêng họ, vì vậy theo quy định của Google Play, đây được tính là chia sẻ dữ liệu với bên thứ ba."
+       ],
+       [
+        "Sự đồng ý của bạn",
+        "Ở Khu vực Kinh tế Châu Âu, Vương quốc Anh và Thụy Sĩ, Cheery hiển thị biểu mẫu đồng ý của Google trước khi có bất kỳ quảng cáo cá nhân hóa nào, và bạn có thể đổi lựa chọn sau trong cài đặt của Cheery. Ở mọi nơi, bạn có thể đặt lại hoặc xóa mã quảng cáo, hoặc tắt quảng cáo cá nhân hóa, trong cài đặt điện thoại tại <b>Google › Quảng cáo</b>."
+       ]
+      ]
+     },
+     {
+      "n": "Chúng tôi không chọn từng quảng cáo, và không bao giờ nhận mã quảng cáo hay vị trí của bạn. Quảng cáo trong Cheery không nhắm đến trẻ em."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro và thanh toán",
+    [
+     {
+      "items": [
+       [
+        "Thanh toán",
+        "Cheery Pro được bán qua Google Play, nơi xử lý thanh toán. Chúng tôi không bao giờ thấy thông tin thẻ hay tài khoản ngân hàng của bạn. Chúng tôi chỉ nhận xác nhận rằng giao dịch đã thành công và đó là gói nào."
+       ],
+       [
+        "Gói thuê bao",
+        "Cheery Pro có các gói thuê bao theo năm, theo tháng, theo tuần, và gói một tháng trả trước. Gói thuê bao tự động gia hạn cho đến khi bạn hủy; gói một tháng chỉ thanh toán một lần và không tự gia hạn. Người đăng ký mới gói năm được dùng thử miễn phí 3 ngày: bạn sẽ bị tính phí khi hết thời gian dùng thử, trừ khi bạn hủy trước đó, và nếu bạn bật thông báo, Cheery sẽ nhắc bạn trên điện thoại một ngày trước khi hết dùng thử. Giá được hiển thị trong ứng dụng và trên Google Play trước khi bạn mua. Bạn có thể hủy bất cứ lúc nào trong <b>Google Play › Thanh toán và gói thuê bao</b>. Việc hoàn tiền tuân theo chính sách hoàn tiền của Google Play."
+       ],
+       [
+        "Trên điện thoại của bạn",
+        "Trạng thái Pro được lưu trên điện thoại và được kiểm tra với Google Play, ví dụ khi bạn khôi phục giao dịch trên điện thoại mới."
+       ],
+       [
+        "Thống kê sử dụng",
+        "Nếu bạn đồng ý gửi thống kê sử dụng, Cheery cũng ghi lại khi màn hình Pro hiện ra và khi một giao dịch bắt đầu hoặc hoàn tất, chỉ kèm tên gói."
+       ]
+      ]
      }
     ]
    ],
@@ -699,6 +909,10 @@ const L = {
        [
         "Lựa chọn quyền riêng tư",
         "Bạn có gửi báo cáo lỗi và thống kê sử dụng hay không."
+       ],
+       [
+        "Đồng ý quảng cáo",
+        "Câu trả lời của bạn cho biểu mẫu đồng ý quảng cáo, do công cụ của Google lưu trên điện thoại."
        ]
       ]
      },
@@ -734,11 +948,15 @@ const L = {
        [
         "Google Firebase",
         "Nhận báo cáo lỗi và thống kê sử dụng như mô tả ở trên. Xem <a href=\"{fb}\">thông tin quyền riêng tư của Firebase</a> và <a href=\"{gp}\">Chính sách quyền riêng tư của Google</a>."
+       ],
+       [
+        "Google AdMob",
+        "Hiển thị quảng cáo trong bản miễn phí như mô tả ở mục 4. Xem <a href=\"{ads}\">cách Google sử dụng thông tin từ các ứng dụng dùng dịch vụ của Google</a> và <a href=\"{gp}\">Chính sách quyền riêng tư của Google</a>."
        ]
       ]
      },
      {
-      "n": "Cheery không hiển thị quảng cáo và không theo dõi quảng cáo. Nếu điều này thay đổi ở phiên bản sau, chúng tôi sẽ cập nhật chính sách này trước khi thay đổi có hiệu lực."
+      "n": "Cheery không dùng dịch vụ phân tích, quảng cáo hay theo dõi nào khác. Nếu điều này thay đổi ở phiên bản sau, chúng tôi sẽ cập nhật chính sách này trước khi thay đổi có hiệu lực."
      }
     ]
    ],
@@ -746,7 +964,7 @@ const L = {
     "Chia sẻ và mua bán dữ liệu",
     [
      {
-      "p": "Chúng tôi không bán hay cho thuê thông tin cá nhân của bạn. Cheery không có máy chủ riêng: báo cáo lỗi và thống kê sử dụng được gửi đến Google Firebase, nơi xử lý dữ liệu thay cho chúng tôi, và chúng tôi chỉ dùng chúng để sửa lỗi và cải thiện Cheery. Ảnh và video của bạn không bao giờ bị thu thập."
+      "p": "Chúng tôi không bao giờ bán ảnh hay thông tin cá nhân của bạn. Báo cáo lỗi và thống kê sử dụng được gửi đến Google Firebase, nơi chỉ xử lý dữ liệu thay cho chúng tôi. Trong bản miễn phí, Google AdMob nhận dữ liệu quảng cáo như mô tả ở mục 4 và dùng theo chính sách của Google. Đó là dữ liệu duy nhất Cheery chia sẻ với bên thứ ba, và việc mua Cheery Pro sẽ chấm dứt điều này. Ảnh và video của bạn không bao giờ bị thu thập hay chia sẻ."
      }
     ]
    ],
@@ -754,7 +972,7 @@ const L = {
     "Quyền riêng tư của trẻ em",
     [
      {
-      "p": "Cheery không dành cho trẻ em dưới 13 tuổi, và chúng tôi không cố ý thu thập thông tin cá nhân của trẻ em."
+      "p": "Cheery không dành cho trẻ em dưới 13 tuổi, và chúng tôi không cố ý thu thập thông tin cá nhân của trẻ em. Quảng cáo trong Cheery không nhắm đến trẻ em."
      }
     ]
    ],
@@ -774,6 +992,18 @@ const L = {
        [
         "Gửi thống kê sử dụng",
         "Bật hoặc tắt tại <b>Cài đặt › Dữ liệu &amp; quyền riêng tư</b>. Mục này luôn tắt nếu bạn chưa đồng ý."
+       ],
+       [
+        "Cá nhân hóa quảng cáo",
+        "Đổi lựa chọn đồng ý trong cài đặt của Cheery, hoặc đặt lại, xóa mã quảng cáo và tắt quảng cáo cá nhân hóa trong cài đặt điện thoại tại <b>Google › Quảng cáo</b>."
+       ],
+       [
+        "Bỏ quảng cáo",
+        "Mua Cheery Pro để dừng mọi quảng cáo và dữ liệu quảng cáo đi kèm."
+       ],
+       [
+        "Xóa dữ liệu của bạn",
+        "Gửi email cho chúng tôi, chúng tôi sẽ xóa báo cáo lỗi và thống kê sử dụng gắn với lượt cài đặt của bạn trong vòng 30 ngày. Dữ liệu quảng cáo do Google lưu giữ: hãy dùng cài đặt quảng cáo của điện thoại hoặc <a href=\"{myad}\">công cụ kiểm soát quảng cáo của Google</a>."
        ],
        [
         "Nhắc hằng ngày",
@@ -802,15 +1032,56 @@ const L = {
   ],
   "contactTitle": "Liên hệ",
   "contactBody": "Bạn có câu hỏi về chính sách này hoặc về quyền riêng tư? Chúng tôi rất muốn được nghe từ bạn.",
-  "contactButton": "Gửi email"
+  "contactButton": "Gửi email",
+  "glance": {
+   "title": "Mọi thứ rời khỏi điện thoại của bạn",
+   "intro": "Ảnh và video của bạn luôn ở trên điện thoại. Đây là danh sách đầy đủ những gì Cheery gửi đi, ai nhận và cách bạn kiểm soát.",
+   "labels": [
+    "Gửi đến",
+    "Để làm gì",
+    "Bạn kiểm soát"
+   ],
+   "rows": [
+    [
+     "Báo cáo lỗi",
+     "Google Firebase",
+     "Tìm và sửa lỗi",
+     "Bật theo mặc định. Tắt tại Cài đặt › Dữ liệu &amp; quyền riêng tư"
+    ],
+    [
+     "Thống kê sử dụng",
+     "Google Firebase",
+     "Biết tính năng nào hữu ích với mọi người",
+     "Tắt nếu bạn chưa đồng ý. Tắt được bất cứ lúc nào"
+    ],
+    [
+     "Số liệu chẩn đoán ML Kit",
+     "Google",
+     "Giữ cho tính năng phân tích ảnh trên máy hoạt động",
+     "Không tắt được. Không bao giờ chứa ảnh"
+    ],
+    [
+     "Dữ liệu quảng cáo (chỉ bản miễn phí)",
+     "Google AdMob",
+     "Hiển thị và đo lường quảng cáo, chỉ cá nhân hóa khi bạn đồng ý",
+     "Mua Cheery Pro để bỏ quảng cáo. Kiểm soát cá nhân hóa trong cài đặt quảng cáo của điện thoại"
+    ],
+    [
+     "Xác nhận giao dịch",
+     "Google Play",
+     "Xử lý thanh toán Cheery Pro",
+     "Chỉ khi bạn mua"
+    ]
+   ]
+  }
  },
  "zh": {
   "native": "简体中文",
   "english": "Chinese",
   "title": "隐私政策",
-  "effective": "生效日期：2026年10月29日",
+  "effective": "生效日期：2026年10月30日",
   "promiseTitle": "你的照片永远不会离开这部手机",
-  "promiseBody": "Cheery 的一切处理都在手机上完成。无需账号，也无需登录，你的照片和视频绝不会上传给我们或任何服务器。我们不会出售你的数据。",
+  "promiseBody": "Cheery 在你的设备上整理照片。无需账号，也无需登录，你的照片和视频绝不会上传给我们或任何其他人。我们绝不出售你的照片或个人信息。",
   "chips": [
    "无需账号",
    "不用云端",
@@ -881,7 +1152,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery 不收集你的广告 ID，也不会将这些数据用于广告。Firebase 最多保留崩溃报告 90 天，使用统计也只保留有限的时间。这些数据由 Google 代表我们处理，可能存储在你所在国家或地区以外的服务器上。"
+      "n": "崩溃报告和使用统计绝不包含你的广告 ID，也绝不会用于广告。Firebase 最多保留崩溃报告 90 天，使用统计也只保留有限的时间。这些数据由 Google 代表我们处理，可能存储在你所在国家或地区以外的服务器上。"
+     }
+    ]
+   ],
+   [
+    "免费版中的广告",
+    [
+     {
+      "p": "Cheery 免费版会展示由 Google AdMob 提供的广告。Cheery Pro 会去除所有广告。"
+     },
+     {
+      "items": [
+       [
+        "广告出现的位置",
+        "在你整理完一组照片后，可能会出现一次全屏广告，且每隔几分钟最多出现一次。你滑动照片时、打开 Cheery 时或关闭 Cheery 时，绝不会出现广告。"
+       ],
+       [
+        "AdMob 接收的内容",
+        "设备的广告 ID、IP 地址（Google 用它来估算你的大致位置，例如城市或国家）、基本的设备和应用信息，以及你与广告的互动情况，例如展示和点按。AdMob 绝不会收到你的照片、视频、文件名或照片中保存的位置。"
+       ],
+       [
+        "Google 如何使用这些数据",
+        "用于展示广告、限制展示频率、衡量效果、防止欺诈，并且只有在你同意时才用于个性化广告。Google 依据其自身的隐私权政策使用这些数据，因此根据 Google Play 的规定，这属于与第三方共享数据。"
+       ],
+       [
+        "你的同意",
+        "在欧洲经济区、英国和瑞士，Cheery 会在展示任何个性化广告前显示 Google 的同意表单，你之后也可以在 Cheery 的设置中更改。在所有地区，你都可以在手机设置的<b>Google › 广告</b>中重置或删除广告 ID，或停用个性化广告。"
+       ]
+      ]
+     },
+     {
+      "n": "我们不会挑选具体广告，也绝不会收到你的广告 ID 或位置。Cheery 中的广告并非面向儿童。"
+     }
+    ]
+   ],
+   [
+    "Cheery Pro 与付款",
+    [
+     {
+      "items": [
+       [
+        "付款",
+        "Cheery Pro 通过 Google Play 销售，由 Google Play 处理付款。我们绝不会看到你的银行卡或银行信息，只会收到购买成功的确认以及所购方案。"
+       ],
+       [
+        "订阅",
+        "Cheery Pro 提供按年、按月、按周订阅，以及一个月的单次购买。订阅会自动续订，直到你取消；一个月的单次购买只付款一次，不会续订。首次订阅年度方案可享 3 天免费试用：除非你在试用结束前取消，否则试用结束时将会扣费；如果你开启了通知，Cheery 会在试用结束前一天在手机上提醒你。购买前，价格会显示在应用内和 Google Play 上。你可以随时在 <b>Google Play › 付款和订阅</b> 中取消。退款遵循 Google Play 的退款政策。"
+       ],
+       [
+        "在你的手机上",
+        "你的 Pro 状态保存在手机上，并会与 Google Play 核对，例如在新手机上恢复购买时。"
+       ],
+       [
+        "使用统计",
+        "如果你同意发送使用统计，Cheery 还会记录 Pro 页面何时显示，以及购买何时开始或完成，仅包含方案名称。"
+       ]
+      ]
      }
     ]
    ],
@@ -912,6 +1239,10 @@ const L = {
        [
         "隐私选项",
         "你是否发送崩溃报告和使用统计。"
+       ],
+       [
+        "广告同意",
+        "你对广告同意表单的回答，由 Google 的同意工具保存在手机上。"
        ]
       ]
      },
@@ -947,11 +1278,15 @@ const L = {
        [
         "Google Firebase",
         "按上文所述接收崩溃报告和使用统计。详见 <a href=\"{fb}\">Firebase 隐私信息</a>和 <a href=\"{gp}\">Google 隐私权政策</a>。"
+       ],
+       [
+        "Google AdMob",
+        "按第 4 节所述在免费版中展示广告。详见 <a href=\"{ads}\">Google 如何使用来自使用其服务的应用的信息</a>和 <a href=\"{gp}\">Google 隐私权政策</a>。"
        ]
       ]
      },
      {
-      "n": "Cheery 不显示广告，也不进行广告追踪。如果未来版本有所变化，我们会在变更生效前更新本政策。"
+      "n": "Cheery 不使用任何其他分析、广告或追踪服务。如果未来版本有所变化，我们会在变更生效前更新本政策。"
      }
     ]
    ],
@@ -959,7 +1294,7 @@ const L = {
     "共享与出售",
     [
      {
-      "p": "我们不会出售或出租你的个人信息。Cheery 没有自己的服务器：崩溃报告和使用统计会发送到代表我们处理数据的 Google Firebase，我们只用它们来修复问题和改进 Cheery。你的照片和视频绝不会被收集。"
+      "p": "我们绝不出售你的照片或个人信息。崩溃报告和使用统计会发送到 Google Firebase，它仅代表我们处理这些数据。在免费版中，Google AdMob 会接收第 4 节所述的广告数据，并依据 Google 自身的政策使用。这是 Cheery 与第三方共享的唯一数据，购买 Cheery Pro 即可停止。你的照片和视频绝不会被收集或共享。"
      }
     ]
    ],
@@ -967,7 +1302,7 @@ const L = {
     "儿童隐私",
     [
      {
-      "p": "Cheery 并非面向 13 岁以下的儿童，我们也不会在知情的情况下收集儿童的个人信息。"
+      "p": "Cheery 并非面向 13 岁以下的儿童，我们也不会在知情的情况下收集儿童的个人信息。Cheery 中的广告并非面向儿童。"
      }
     ]
    ],
@@ -987,6 +1322,18 @@ const L = {
        [
         "发送使用统计",
         "在<b>设置 › 数据与隐私</b>中开启或关闭。除非你同意，否则保持关闭。"
+       ],
+       [
+        "广告个性化",
+        "在 Cheery 的设置中更改你的同意，或在手机设置的<b>Google › 广告</b>中重置或删除广告 ID 并停用个性化广告。"
+       ],
+       [
+        "去除广告",
+        "购买 Cheery Pro，即可停止所有广告及随之而来的广告数据。"
+       ],
+       [
+        "删除你的数据",
+        "给我们发邮件，我们会在 30 天内删除与你的安装相关的崩溃报告和使用统计。广告数据由 Google 保存：请使用手机的广告设置或 <a href=\"{myad}\">Google 广告控制工具</a>。"
        ],
        [
         "每日提醒",
@@ -1015,15 +1362,56 @@ const L = {
   ],
   "contactTitle": "联系我们",
   "contactBody": "对本政策或你的隐私有任何疑问？欢迎随时来信。",
-  "contactButton": "发送邮件"
+  "contactButton": "发送邮件",
+  "glance": {
+   "title": "离开你手机的所有数据",
+   "intro": "你的照片和视频始终留在手机上。以下是 Cheery 发送的全部内容、接收方以及你的控制方式。",
+   "labels": [
+    "发送给",
+    "用途",
+    "你的控制"
+   ],
+   "rows": [
+    [
+     "崩溃报告",
+     "Google Firebase",
+     "查找并修复崩溃",
+     "默认开启。可在设置 › 数据与隐私中关闭"
+    ],
+    [
+     "使用统计",
+     "Google Firebase",
+     "了解哪些功能对大家有帮助",
+     "未经你同意不会开启。可随时关闭"
+    ],
+    [
+     "ML Kit 诊断数据",
+     "Google",
+     "保证设备端照片分析正常运行",
+     "无法关闭。绝不包含照片"
+    ],
+    [
+     "广告数据（仅免费版）",
+     "Google AdMob",
+     "展示和衡量广告，仅在你同意时进行个性化",
+     "购买 Cheery Pro 即可去除广告。可在手机的广告设置中控制个性化"
+    ],
+    [
+     "购买确认",
+     "Google Play",
+     "处理 Cheery Pro 付款",
+     "仅在你购买时"
+    ]
+   ]
+  }
  },
  "ja": {
   "native": "日本語",
   "english": "Japanese",
   "title": "プライバシーポリシー",
-  "effective": "施行日：2026年10月29日",
+  "effective": "施行日：2026年10月30日",
   "promiseTitle": "写真がこのスマホの外に出ることはありません",
-  "promiseBody": "Cheeryはすべて端末の中で処理します。アカウントもログインも不要で、写真や動画が私たちやサーバーにアップロードされることはありません。データを販売することもありません。",
+  "promiseBody": "Cheeryは端末の中で写真を整理します。アカウントもログインも不要で、写真や動画が私たちやほかの誰かにアップロードされることはありません。写真や個人情報を販売することは決してありません。",
   "chips": [
    "アカウント不要",
    "クラウドなし",
@@ -1094,7 +1482,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheeryは広告IDを収集せず、これらのデータを広告に使用しません。Firebaseはクラッシュレポートを最大90日間、利用状況を限られた期間だけ保存します。これらのデータは私たちに代わってGoogleが処理し、お住まいの国以外のサーバーに保存される場合があります。"
+      "n": "クラッシュレポートと利用状況に広告IDが含まれることはなく、広告に使われることもありません。Firebaseはクラッシュレポートを最大90日間、利用状況を限られた期間だけ保存します。これらのデータは私たちに代わってGoogleが処理し、お住まいの国以外のサーバーに保存される場合があります。"
+     }
+    ]
+   ],
+   [
+    "無料版の広告",
+    [
+     {
+      "p": "Cheeryの無料版では、Google AdMobが配信する広告が表示されます。Cheery Proではすべての広告がなくなります。"
+     },
+     {
+      "items": [
+       [
+        "広告が表示される場所",
+        "写真の山を一つ整理し終えた後に、全画面広告が表示されることがあります（数分に1回まで）。写真をスワイプしている間、Cheery を開いたとき、閉じるときには広告は表示されません。"
+       ],
+       [
+        "AdMobが受け取るもの",
+        "端末の広告ID、IPアドレス（Googleはこれを使って市区町村や国などのおおよその位置を推定します）、端末とアプリの基本情報、表示やタップなど広告とのやり取りです。写真、動画、ファイル名、写真に保存された位置情報をAdMobが受け取ることはありません。"
+       ],
+       [
+        "Googleによる利用",
+        "広告の表示、表示回数の制限、効果の測定、不正の防止、そして同意いただいた場合に限りパーソナライズに使われます。Googleはこのデータを独自のプライバシーポリシーに基づいて利用するため、Google Playのルールでは第三者とのデータ共有にあたります。"
+       ],
+       [
+        "お客様の同意",
+        "欧州経済領域、英国、スイスでは、パーソナライズ広告を表示する前にGoogleの同意フォームを表示し、あとからCheeryの設定で回答を変更できます。どの地域でも、スマホの設定の<b>Google › 広告</b>から、広告IDのリセットや削除、パーソナライズ広告の無効化ができます。"
+       ]
+      ]
+     },
+     {
+      "n": "私たちが個々の広告を選ぶことはなく、広告IDや位置情報を受け取ることもありません。Cheeryの広告は子ども向けではありません。"
+     }
+    ]
+   ],
+   [
+    "Cheery Proとお支払い",
+    [
+     {
+      "items": [
+       [
+        "お支払い",
+        "Cheery ProはGoogle Playで販売され、お支払いはGoogle Playが処理します。私たちがカードや口座の情報を見ることはありません。受け取るのは、購入が完了したこととプランの種類の確認だけです。"
+       ],
+       [
+        "定期購入",
+        "Cheery Pro には年額・月額・週額の定期購入と、1か月パス（買い切り）があります。定期購入は解約するまで自動更新されます。1か月パスは1回のお支払いで、自動更新されません。年額プランを初めて購入する方は3日間の無料トライアルをご利用いただけます。トライアル終了前に解約しない限り、終了時に課金されます。通知をオンにしている場合、Cheery はトライアル終了の1日前にスマートフォンでお知らせします。価格は購入前にアプリ内と Google Play に表示されます。解約は <b>Google Play › お支払いと定期購入</b> からいつでも可能です。返金は Google Play の返金ポリシーに従います。"
+       ],
+       [
+        "スマホの中",
+        "Proの状態はスマホに保存され、新しいスマホで購入を復元するときなどにGoogle Playで確認されます。"
+       ],
+       [
+        "利用状況",
+        "利用状況の送信に同意した場合、Pro画面が表示されたときや購入を開始・完了したときも、プラン名だけを記録します。"
+       ]
+      ]
      }
     ]
    ],
@@ -1125,6 +1569,10 @@ const L = {
        [
         "プライバシーの設定",
         "クラッシュレポートと利用状況を送信するかどうか。"
+       ],
+       [
+        "広告の同意",
+        "広告の同意フォームへの回答。Googleの同意ツールがスマホに保存します。"
        ]
       ]
      },
@@ -1160,11 +1608,15 @@ const L = {
        [
         "Google Firebase",
         "上記のクラッシュレポートと利用状況を受け取ります。詳しくは<a href=\"{fb}\">Firebaseのプライバシー情報</a>と<a href=\"{gp}\">Googleプライバシーポリシー</a>をご覧ください。"
+       ],
+       [
+        "Google AdMob",
+        "第4項のとおり、無料版で広告を表示します。詳しくは<a href=\"{ads}\">Googleのサービスを使用するアプリから収集した情報のGoogleによる使用</a>と<a href=\"{gp}\">Googleプライバシーポリシー</a>をご覧ください。"
        ]
       ]
      },
      {
-      "n": "Cheeryは広告を表示せず、広告トラッキングも行いません。今後のバージョンで変更する場合は、変更前にこのポリシーを更新します。"
+      "n": "Cheeryはこれ以外の分析、広告、トラッキングのサービスを使用していません。今後のバージョンで変更する場合は、変更前にこのポリシーを更新します。"
      }
     ]
    ],
@@ -1172,7 +1624,7 @@ const L = {
     "共有と販売",
     [
      {
-      "p": "私たちは個人情報を販売・貸与しません。Cheeryは独自のサーバーを持たず、クラッシュレポートと利用状況は、私たちに代わってデータを処理するGoogle Firebaseに送られます。これらは問題の修正とCheeryの改善にのみ使用します。写真や動画が収集されることはありません。"
+      "p": "私たちが写真や個人情報を販売することは決してありません。クラッシュレポートと利用状況は、私たちに代わってのみ処理を行うGoogle Firebaseに送られます。無料版では、第4項の広告データをGoogle AdMobが受け取り、Google独自のポリシーに基づいて利用します。Cheeryが第三者と共有するデータはこれだけで、Cheery Proを購入すると止まります。写真や動画が収集・共有されることはありません。"
      }
     ]
    ],
@@ -1180,7 +1632,7 @@ const L = {
     "子どものプライバシー",
     [
      {
-      "p": "Cheeryは13歳未満の子どもを対象としていません。また、子どもの個人情報を故意に収集することはありません。"
+      "p": "Cheeryは13歳未満の子どもを対象としていません。また、子どもの個人情報を故意に収集することはありません。Cheeryの広告は子ども向けではありません。"
      }
     ]
    ],
@@ -1200,6 +1652,18 @@ const L = {
        [
         "利用状況を送信",
         "<b>設定 › データとプライバシー</b>からオン・オフを切り替えられます。同意いただかない限りオフのままです。"
+       ],
+       [
+        "広告のパーソナライズ",
+        "Cheeryの設定で同意を変更するか、スマホの設定の<b>Google › 広告</b>で広告IDのリセットや削除、パーソナライズ広告の無効化ができます。"
+       ],
+       [
+        "広告をなくす",
+        "Cheery Proを購入すると、すべての広告と、それに伴う広告データの送信が止まります。"
+       ],
+       [
+        "データの削除",
+        "メールでご連絡いただければ、お使いのインストールに関連するクラッシュレポートと利用状況を30日以内に削除します。広告データはGoogleが保持しているため、スマホの広告設定または<a href=\"{myad}\">Googleの広告管理</a>をご利用ください。"
        ],
        [
         "毎日のリマインダー",
@@ -1228,15 +1692,56 @@ const L = {
   ],
   "contactTitle": "お問い合わせ",
   "contactBody": "このポリシーやプライバシーについてご質問があれば、お気軽にご連絡ください。",
-  "contactButton": "メールで問い合わせる"
+  "contactButton": "メールで問い合わせる",
+  "glance": {
+   "title": "スマホの外に送られるもの、すべて",
+   "intro": "写真と動画はスマホの中に残ります。Cheeryが送信するもの、受け取る相手、お客様が管理する方法を、すべてここにまとめました。",
+   "labels": [
+    "送信先",
+    "目的",
+    "お客様の管理"
+   ],
+   "rows": [
+    [
+     "クラッシュレポート",
+     "Google Firebase",
+     "クラッシュを見つけて直すため",
+     "初期設定でオン。設定 › データとプライバシーでオフにできます"
+    ],
+    [
+     "利用状況",
+     "Google Firebase",
+     "どの機能が役立っているかを知るため",
+     "同意がない限りオフ。いつでもオフにできます"
+    ],
+    [
+     "ML Kitの診断情報",
+     "Google",
+     "端末内の写真分析を正常に動かすため",
+     "オフにはできません。写真は含まれません"
+    ],
+    [
+     "広告データ（無料版のみ）",
+     "Google AdMob",
+     "広告の表示と測定のため。パーソナライズは同意した場合のみ",
+     "Cheery Proを購入すると広告がなくなります。パーソナライズはスマホの広告設定で管理できます"
+    ],
+    [
+     "購入の確認",
+     "Google Play",
+     "Cheery Proの支払い処理のため",
+     "購入したときのみ"
+    ]
+   ]
+  }
  },
  "ko": {
   "native": "한국어",
   "english": "Korean",
   "title": "개인정보처리방침",
-  "effective": "시행일: 2026년 10월 29일",
+  "effective": "시행일: 2026년 10월 30일",
   "promiseTitle": "사진은 이 휴대폰 밖으로 나가지 않아요",
-  "promiseBody": "Cheery는 모든 걸 기기 안에서 처리해요. 계정도 로그인도 필요 없고, 사진과 동영상은 저희나 어떤 서버에도 업로드되지 않아요. 저희는 사용자의 데이터를 판매하지 않아요.",
+  "promiseBody": "Cheery는 기기 안에서 사진을 정리해요. 계정도 로그인도 필요 없고, 사진과 동영상은 저희나 다른 누구에게도 업로드되지 않아요. 저희는 사진이나 개인정보를 절대 판매하지 않아요.",
   "chips": [
    "계정 없음",
    "클라우드 없음",
@@ -1307,7 +1812,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery는 광고 ID를 수집하지 않으며, 이 데이터를 광고에 쓰지 않아요. Firebase는 오류 보고서를 최대 90일, 사용 통계를 제한된 기간 동안만 보관해요. 이 데이터는 저희를 대신해 Google이 처리하며, 사용자의 국가 밖에 있는 서버에 저장될 수 있어요."
+      "n": "오류 보고서와 사용 통계에는 광고 ID가 절대 포함되지 않으며, 광고에 사용되지도 않아요. Firebase는 오류 보고서를 최대 90일, 사용 통계를 제한된 기간 동안만 보관해요. 이 데이터는 저희를 대신해 Google이 처리하며, 사용자의 국가 밖에 있는 서버에 저장될 수 있어요."
+     }
+    ]
+   ],
+   [
+    "무료 버전의 광고",
+    [
+     {
+      "p": "Cheery 무료 버전에는 Google AdMob이 제공하는 광고가 표시돼요. Cheery Pro는 모든 광고를 없애요."
+     },
+     {
+      "items": [
+       [
+        "광고가 나오는 곳",
+        "사진 한 묶음을 다 정리한 뒤 전체 화면 광고가 한 번 표시될 수 있으며, 몇 분에 한 번을 넘지 않습니다. 사진을 넘기는 동안, Cheery를 열 때, 닫을 때에는 광고가 절대 표시되지 않습니다."
+       ],
+       [
+        "AdMob이 받는 정보",
+        "기기의 광고 ID, IP 주소(Google이 도시나 국가 같은 대략적인 위치를 추정하는 데 사용), 기본적인 기기 및 앱 정보, 노출과 탭 같은 광고 반응이에요. AdMob은 사진, 동영상, 파일 이름, 사진에 저장된 위치를 절대 받지 않아요."
+       ],
+       [
+        "Google의 사용 방식",
+        "광고를 보여 주고, 노출 횟수를 제한하고, 효과를 측정하고, 부정 행위를 막고, 동의한 경우에만 맞춤 광고에 사용해요. Google은 이 데이터를 자체 개인정보처리방침에 따라 사용하므로, Google Play 규정상 제3자와의 데이터 공유에 해당해요."
+       ],
+       [
+        "사용자의 동의",
+        "유럽 경제 지역, 영국, 스위스에서는 맞춤 광고를 보여 주기 전에 Google의 동의 양식을 표시하며, 나중에 Cheery 설정에서 선택을 바꿀 수 있어요. 어디서든 휴대폰 설정의 <b>Google › 광고</b>에서 광고 ID를 재설정하거나 삭제하고, 맞춤 광고를 끌 수 있어요."
+       ]
+      ]
+     },
+     {
+      "n": "저희는 개별 광고를 고르지 않으며, 광고 ID나 위치를 받지 않아요. Cheery의 광고는 아동을 대상으로 하지 않아요."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro와 결제",
+    [
+     {
+      "items": [
+       [
+        "결제",
+        "Cheery Pro는 Google Play에서 판매되며 결제는 Google Play가 처리해요. 저희는 카드나 계좌 정보를 절대 볼 수 없고, 구매가 완료되었다는 확인과 플랜 종류만 받아요."
+       ],
+       [
+        "구독",
+        "Cheery Pro는 연간, 월간, 주간 구독과 1개월 이용권으로 제공됩니다. 구독은 해지할 때까지 자동으로 갱신되며, 1개월 이용권은 한 번만 결제되고 갱신되지 않습니다. 연간 플랜 신규 구독자는 3일 무료 체험을 받을 수 있습니다. 체험이 끝나기 전에 해지하지 않으면 체험 종료 시 요금이 청구되며, 알림을 켜 두었다면 Cheery가 체험 종료 하루 전에 휴대전화로 알려 드립니다. 가격은 구매 전에 앱과 Google Play에 표시됩니다. <b>Google Play › 결제 및 정기 결제</b>에서 언제든지 해지할 수 있습니다. 환불은 Google Play 환불 정책을 따릅니다."
+       ],
+       [
+        "휴대폰에",
+        "Pro 상태는 휴대폰에 저장되며, 새 휴대폰에서 구매를 복원할 때처럼 Google Play에서 확인해요."
+       ],
+       [
+        "사용 통계",
+        "사용 통계 보내기에 동의했다면, Pro 화면이 나타난 때와 구매를 시작하거나 완료한 때도 플랜 이름만 기록해요."
+       ]
+      ]
      }
     ]
    ],
@@ -1338,6 +1899,10 @@ const L = {
        [
         "개인정보 선택",
         "오류 보고서와 사용 통계를 보낼지 여부."
+       ],
+       [
+        "광고 동의",
+        "광고 동의 양식에 대한 답변으로, Google의 동의 도구가 휴대폰에 저장해요."
        ]
       ]
      },
@@ -1373,11 +1938,15 @@ const L = {
        [
         "Google Firebase",
         "위에서 설명한 오류 보고서와 사용 통계를 받아요. 자세한 내용은 <a href=\"{fb}\">Firebase 개인정보 안내</a>와 <a href=\"{gp}\">Google 개인정보처리방침</a>을 확인하세요."
+       ],
+       [
+        "Google AdMob",
+        "4번 항목에서 설명한 대로 무료 버전에 광고를 보여 줘요. 자세한 내용은 <a href=\"{ads}\">Google 서비스를 사용하는 앱의 정보를 Google이 사용하는 방법</a>과 <a href=\"{gp}\">Google 개인정보처리방침</a>을 확인하세요."
        ]
       ]
      },
      {
-      "n": "Cheery는 광고를 보여 주지 않고 광고 추적도 하지 않아요. 이후 버전에서 달라지면, 변경 사항이 적용되기 전에 이 방침을 업데이트할게요."
+      "n": "Cheery는 이 밖의 분석, 광고, 추적 서비스를 사용하지 않아요. 이후 버전에서 달라지면, 변경 사항이 적용되기 전에 이 방침을 업데이트할게요."
      }
     ]
    ],
@@ -1385,7 +1954,7 @@ const L = {
     "공유 및 판매",
     [
      {
-      "p": "저희는 개인정보를 판매하거나 대여하지 않아요. Cheery에는 자체 서버가 없어요. 오류 보고서와 사용 통계는 저희를 대신해 데이터를 처리하는 Google Firebase로 전송되며, 저희는 이를 문제 해결과 Cheery 개선에만 사용해요. 사진과 동영상은 절대 수집되지 않아요."
+      "p": "저희는 사진이나 개인정보를 절대 판매하지 않아요. 오류 보고서와 사용 통계는 저희를 대신해서만 처리하는 Google Firebase로 전송돼요. 무료 버전에서는 4번 항목의 광고 데이터를 Google AdMob이 받아 Google 자체 정책에 따라 사용해요. Cheery가 제3자와 공유하는 데이터는 이것뿐이며, Cheery Pro를 구매하면 멈춰요. 사진과 동영상은 절대 수집되거나 공유되지 않아요."
      }
     ]
    ],
@@ -1393,7 +1962,7 @@ const L = {
     "아동의 개인정보",
     [
      {
-      "p": "Cheery는 13세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않아요."
+      "p": "Cheery는 13세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않아요. Cheery의 광고는 아동을 대상으로 하지 않아요."
      }
     ]
    ],
@@ -1413,6 +1982,18 @@ const L = {
        [
         "사용 통계 보내기",
         "<b>설정 › 데이터 및 개인정보</b>에서 켜거나 끌 수 있어요. 동의하지 않으면 꺼진 상태로 유지돼요."
+       ],
+       [
+        "맞춤 광고",
+        "Cheery 설정에서 동의를 바꾸거나, 휴대폰 설정의 <b>Google › 광고</b>에서 광고 ID를 재설정·삭제하고 맞춤 광고를 끌 수 있어요."
+       ],
+       [
+        "광고 없애기",
+        "Cheery Pro를 구매하면 모든 광고와 그에 따른 광고 데이터 전송이 멈춰요."
+       ],
+       [
+        "데이터 삭제",
+        "이메일을 보내 주시면 사용자의 설치와 연결된 오류 보고서와 사용 통계를 30일 안에 삭제해요. 광고 데이터는 Google이 보관하므로 휴대폰의 광고 설정이나 <a href=\"{myad}\">Google 광고 관리</a>를 이용하세요."
        ],
        [
         "매일 알림",
@@ -1441,15 +2022,56 @@ const L = {
   ],
   "contactTitle": "문의하기",
   "contactBody": "이 방침이나 개인정보에 대해 궁금한 점이 있나요? 언제든 연락해 주세요.",
-  "contactButton": "이메일 보내기"
+  "contactButton": "이메일 보내기",
+  "glance": {
+   "title": "휴대폰 밖으로 나가는 모든 것",
+   "intro": "사진과 동영상은 휴대폰에 그대로 있어요. Cheery가 보내는 것, 받는 곳, 그리고 사용자가 관리하는 방법을 모두 정리했어요.",
+   "labels": [
+    "받는 곳",
+    "목적",
+    "사용자 관리"
+   ],
+   "rows": [
+    [
+     "오류 보고서",
+     "Google Firebase",
+     "오류를 찾아 고치기 위해",
+     "기본으로 켜짐. 설정 › 데이터 및 개인정보에서 끌 수 있어요"
+    ],
+    [
+     "사용 통계",
+     "Google Firebase",
+     "어떤 기능이 도움이 되는지 알기 위해",
+     "동의하지 않으면 꺼짐. 언제든 끌 수 있어요"
+    ],
+    [
+     "ML Kit 진단 정보",
+     "Google",
+     "기기 내 사진 분석이 잘 작동하도록",
+     "끌 수 없어요. 사진은 절대 포함되지 않아요"
+    ],
+    [
+     "광고 데이터(무료 버전만)",
+     "Google AdMob",
+     "광고를 보여 주고 측정하기 위해, 맞춤 설정은 동의한 경우에만",
+     "Cheery Pro를 구매하면 광고가 사라져요. 맞춤 광고는 휴대폰의 광고 설정에서 관리해요"
+    ],
+    [
+     "구매 확인",
+     "Google Play",
+     "Cheery Pro 결제를 처리하기 위해",
+     "구매할 때만"
+    ]
+   ]
+  }
  },
  "es": {
   "native": "Español",
   "english": "Spanish",
   "title": "Política de privacidad",
-  "effective": "Vigente desde el 29 de octubre de 2026",
+  "effective": "Vigente desde el 30 de octubre de 2026",
   "promiseTitle": "Tus fotos nunca salen de este móvil",
-  "promiseBody": "Cheery lo hace todo en tu móvil. No hay cuenta ni inicio de sesión, y tus fotos y vídeos nunca se suben a nuestros servidores ni a ningún otro. No vendemos tus datos.",
+  "promiseBody": "Cheery ordena tus fotos en tu dispositivo. No hay cuenta ni inicio de sesión, y tus fotos y vídeos nunca se suben a nuestros servidores ni a los de nadie más. Nunca vendemos tus fotos ni tu información personal.",
   "chips": [
    "Sin cuenta",
    "Sin nube",
@@ -1520,7 +2142,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery no recopila tu ID de publicidad ni usa estos datos para publicidad. Firebase conserva los informes de errores hasta 90 días y las estadísticas de uso durante un tiempo limitado. Google trata estos datos por cuenta nuestra y pueden almacenarse en servidores fuera de tu país."
+      "n": "Los informes de errores y las estadísticas de uso nunca incluyen tu ID de publicidad y nunca se usan para publicidad. Firebase conserva los informes de errores hasta 90 días y las estadísticas de uso durante un tiempo limitado. Google trata estos datos por cuenta nuestra y pueden almacenarse en servidores fuera de tu país."
+     }
+    ]
+   ],
+   [
+    "Anuncios en la versión gratuita",
+    [
+     {
+      "p": "La versión gratuita de Cheery muestra anuncios de Google AdMob. Cheery Pro elimina todos los anuncios."
+     },
+     {
+      "items": [
+       [
+        "Dónde aparecen",
+        "Puede aparecer un anuncio a pantalla completa cuando terminas un montón de fotos, como máximo una vez cada pocos minutos. Nunca aparecen anuncios mientras deslizas, al abrir Cheery ni al cerrarlo."
+       ],
+       [
+        "Qué recibe AdMob",
+        "El ID de publicidad de tu dispositivo, tu dirección IP (que Google usa para estimar tu ubicación aproximada, como tu ciudad o país), información básica del dispositivo y de la app, y cómo interactúas con los anuncios, como visualizaciones y toques. AdMob nunca recibe tus fotos, vídeos, nombres de archivo ni las ubicaciones guardadas en tus fotos."
+       ],
+       [
+        "Cómo lo usa Google",
+        "Para mostrar anuncios, limitar cuántas veces los ves, medirlos, prevenir fraudes y, solo si aceptas, personalizarlos. Google usa estos datos según su propia política de privacidad, por lo que, según las normas de Google Play, esto cuenta como compartir datos con un tercero."
+       ],
+       [
+        "Tu consentimiento",
+        "En el Espacio Económico Europeo, el Reino Unido y Suiza, Cheery muestra el formulario de consentimiento de Google antes de cualquier anuncio personalizado, y puedes cambiar tu respuesta más tarde desde los ajustes de Cheery. En cualquier lugar, puedes restablecer o eliminar tu ID de publicidad, o desactivar los anuncios personalizados, en los ajustes del móvil, en <b>Google › Anuncios</b>."
+       ]
+      ]
+     },
+     {
+      "n": "No elegimos anuncios concretos y nunca recibimos tu ID de publicidad ni tu ubicación. Los anuncios de Cheery no están dirigidos a menores."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro y pagos",
+    [
+     {
+      "items": [
+       [
+        "Pagos",
+        "Cheery Pro se vende a través de Google Play, que procesa el pago. Nunca vemos los datos de tu tarjeta ni de tu banco. Solo recibimos la confirmación de que la compra se completó y de qué plan es."
+       ],
+       [
+        "Suscripciones",
+        "Cheery Pro está disponible como suscripción anual, mensual o semanal, o como pase de un mes. Las suscripciones se renuevan automáticamente hasta que las canceles; el pase de un mes se paga una sola vez y no se renueva. Quienes se suscriben por primera vez al plan anual tienen una prueba gratuita de 3 días: se te cobra al terminar la prueba salvo que canceles antes y, si tienes las notificaciones activadas, Cheery te avisa en tu teléfono un día antes de que termine. Los precios se muestran en la app y en Google Play antes de comprar. Puedes cancelar cuando quieras en <b>Google Play › Pagos y suscripciones</b>. Los reembolsos siguen la política de reembolsos de Google Play."
+       ],
+       [
+        "En tu móvil",
+        "Tu estado Pro se guarda en tu móvil y se comprueba con Google Play, por ejemplo al restaurar una compra en un móvil nuevo."
+       ],
+       [
+        "Estadísticas de uso",
+        "Si aceptaste enviar estadísticas de uso, Cheery también registra cuándo se muestra la pantalla de Pro y cuándo se inicia o completa una compra, solo con el nombre del plan."
+       ]
+      ]
      }
     ]
    ],
@@ -1551,6 +2229,10 @@ const L = {
        [
         "Opciones de privacidad",
         "Si envías informes de errores y estadísticas de uso."
+       ],
+       [
+        "Consentimiento de anuncios",
+        "Tu respuesta al formulario de consentimiento de anuncios, guardada en tu móvil por la herramienta de consentimiento de Google."
        ]
       ]
      },
@@ -1586,11 +2268,15 @@ const L = {
        [
         "Google Firebase",
         "Recibe los informes de errores y las estadísticas de uso descritos arriba. Consulta la <a href=\"{fb}\">información de privacidad de Firebase</a> y la <a href=\"{gp}\">Política de privacidad de Google</a>."
+       ],
+       [
+        "Google AdMob",
+        "Muestra anuncios en la versión gratuita, como se describe en el apartado 4. Consulta <a href=\"{ads}\">cómo usa Google la información de las apps que utilizan sus servicios</a> y la <a href=\"{gp}\">Política de privacidad de Google</a>."
        ]
       ]
      },
      {
-      "n": "Cheery no muestra anuncios ni usa seguimiento publicitario. Si esto cambia en una versión futura, actualizaremos esta política antes de que el cambio entre en vigor."
+      "n": "Cheery no usa ningún otro servicio de análisis, publicidad ni seguimiento. Si esto cambia en una versión futura, actualizaremos esta política antes de que el cambio entre en vigor."
      }
     ]
    ],
@@ -1598,7 +2284,7 @@ const L = {
     "Compartir y vender datos",
     [
      {
-      "p": "No vendemos ni alquilamos tu información personal. Cheery no tiene servidores propios: los informes de errores y las estadísticas de uso van a Google Firebase, que los trata por cuenta nuestra, y solo los usamos para corregir problemas y mejorar Cheery. Tus fotos y vídeos nunca se recopilan."
+      "p": "Nunca vendemos tus fotos ni tu información personal. Los informes de errores y las estadísticas de uso van a Google Firebase, que los trata solo por cuenta nuestra. En la versión gratuita, Google AdMob recibe los datos de anuncios descritos en el apartado 4 y los usa según sus propias políticas. Son los únicos datos que Cheery comparte con un tercero, y comprar Cheery Pro lo detiene. Tus fotos y vídeos nunca se recopilan ni se comparten."
      }
     ]
    ],
@@ -1606,7 +2292,7 @@ const L = {
     "Privacidad de los menores",
     [
      {
-      "p": "Cheery no está dirigida a menores de 13 años y no recopilamos a sabiendas información personal de menores."
+      "p": "Cheery no está dirigida a menores de 13 años y no recopilamos a sabiendas información personal de menores. Los anuncios de Cheery no están dirigidos a menores."
      }
     ]
    ],
@@ -1626,6 +2312,18 @@ const L = {
        [
         "Enviar estadísticas de uso",
         "Actívalas o desactívalas en <b>Ajustes › Datos y privacidad</b>. Siguen desactivadas a menos que aceptes."
+       ],
+       [
+        "Personalización de anuncios",
+        "Cambia tu consentimiento desde los ajustes de Cheery, o restablece o elimina tu ID de publicidad y desactiva los anuncios personalizados en los ajustes del móvil, en <b>Google › Anuncios</b>."
+       ],
+       [
+        "Quitar anuncios",
+        "Compra Cheery Pro para que dejen de mostrarse anuncios y de enviarse los datos que conllevan."
+       ],
+       [
+        "Eliminar tus datos",
+        "Escríbenos y eliminaremos en un plazo de 30 días los informes de errores y las estadísticas de uso vinculados a tu instalación. Los datos de anuncios los guarda Google: usa los ajustes de anuncios del móvil o los <a href=\"{myad}\">controles de anuncios de Google</a>."
        ],
        [
         "Recordatorio diario",
@@ -1654,15 +2352,56 @@ const L = {
   ],
   "contactTitle": "Contacto",
   "contactBody": "¿Tienes preguntas sobre esta política o sobre tu privacidad? Nos encantará leerte.",
-  "contactButton": "Escríbenos"
+  "contactButton": "Escríbenos",
+  "glance": {
+   "title": "Todo lo que sale de tu móvil",
+   "intro": "Tus fotos y vídeos se quedan en tu móvil. Esta es la lista completa de lo que Cheery envía, quién lo recibe y cómo lo controlas.",
+   "labels": [
+    "Se envía a",
+    "Para qué",
+    "Tu control"
+   ],
+   "rows": [
+    [
+     "Informes de errores",
+     "Google Firebase",
+     "Encontrar y corregir errores",
+     "Activados de forma predeterminada. Desactívalos en Ajustes › Datos y privacidad"
+    ],
+    [
+     "Estadísticas de uso",
+     "Google Firebase",
+     "Saber qué funciones son útiles",
+     "Desactivadas salvo que aceptes. Desactívalas cuando quieras"
+    ],
+    [
+     "Diagnósticos de ML Kit",
+     "Google",
+     "Que el análisis de fotos en el dispositivo funcione",
+     "No se pueden desactivar. Nunca incluyen fotos"
+    ],
+    [
+     "Datos de anuncios (solo versión gratuita)",
+     "Google AdMob",
+     "Mostrar y medir anuncios, y personalizarlos solo si aceptas",
+     "Compra Cheery Pro para quitar los anuncios. Controla la personalización en los ajustes de anuncios del móvil"
+    ],
+    [
+     "Confirmación de compra",
+     "Google Play",
+     "Procesar los pagos de Cheery Pro",
+     "Solo cuando compras"
+    ]
+   ]
+  }
  },
  "fr": {
   "native": "Français",
   "english": "French",
   "title": "Politique de confidentialité",
-  "effective": "En vigueur depuis le 29 octobre 2026",
+  "effective": "En vigueur depuis le 30 octobre 2026",
   "promiseTitle": "Tes photos ne quittent jamais ce téléphone",
-  "promiseBody": "Cheery fait tout sur ton téléphone. Pas de compte ni de connexion, et tes photos et vidéos ne sont jamais envoyées chez nous ni sur aucun serveur. Nous ne vendons pas tes données.",
+  "promiseBody": "Cheery trie tes photos sur ton appareil. Pas de compte ni de connexion, et tes photos et vidéos ne sont jamais envoyées chez nous ni chez qui que ce soit. Nous ne vendons jamais tes photos ni tes informations personnelles.",
   "chips": [
    "Pas de compte",
    "Pas de cloud",
@@ -1733,7 +2472,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery ne collecte pas ton identifiant publicitaire et n’utilise pas ces données à des fins publicitaires. Firebase conserve les rapports de plantage jusqu’à 90 jours et les statistiques d’utilisation pendant une durée limitée. Ces données sont traitées par Google pour notre compte et peuvent être stockées sur des serveurs situés hors de ton pays."
+      "n": "Les rapports de plantage et les statistiques d’utilisation ne contiennent jamais ton identifiant publicitaire et ne servent jamais à la publicité. Firebase conserve les rapports de plantage jusqu’à 90 jours et les statistiques d’utilisation pendant une durée limitée. Ces données sont traitées par Google pour notre compte et peuvent être stockées sur des serveurs situés hors de ton pays."
+     }
+    ]
+   ],
+   [
+    "Les annonces dans la version gratuite",
+    [
+     {
+      "p": "La version gratuite de Cheery affiche des annonces diffusées par Google AdMob. Cheery Pro supprime toutes les annonces."
+     },
+     {
+      "items": [
+       [
+        "Où les annonces apparaissent",
+        "Une publicité plein écran peut s’afficher lorsque vous terminez une pile de photos, au plus une fois toutes les quelques minutes. Aucune publicité ne s’affiche pendant que vous faites glisser vos photos, à l’ouverture de Cheery ni à sa fermeture."
+       ],
+       [
+        "Ce que reçoit AdMob",
+        "L’identifiant publicitaire de ton appareil, ton adresse IP (que Google utilise pour estimer ta position approximative, comme ta ville ou ton pays), des informations de base sur l’appareil et l’appli, et tes interactions avec les annonces, comme les affichages et les touchers. AdMob ne reçoit jamais tes photos, vidéos, noms de fichiers ni les lieux enregistrés dans tes photos."
+       ],
+       [
+        "Comment Google l’utilise",
+        "Pour afficher les annonces, limiter leur fréquence, les mesurer, prévenir la fraude et, seulement si tu es d’accord, les personnaliser. Google utilise ces données selon ses propres règles de confidentialité : d’après les règles de Google Play, cela compte comme un partage de données avec un tiers."
+       ],
+       [
+        "Ton consentement",
+        "Dans l’Espace économique européen, au Royaume-Uni et en Suisse, Cheery affiche le formulaire de consentement de Google avant toute annonce personnalisée, et tu peux changer ta réponse plus tard dans les réglages de Cheery. Partout, tu peux réinitialiser ou supprimer ton identifiant publicitaire, ou désactiver les annonces personnalisées, dans les réglages du téléphone sous <b>Google › Annonces</b>."
+       ]
+      ]
+     },
+     {
+      "n": "Nous ne choisissons pas les annonces une par une, et nous ne recevons jamais ton identifiant publicitaire ni ta position. Les annonces de Cheery ne s’adressent pas aux enfants."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro et paiements",
+    [
+     {
+      "items": [
+       [
+        "Paiements",
+        "Cheery Pro est vendu via Google Play, qui traite le paiement. Nous ne voyons jamais les informations de ta carte ni de ta banque. Nous recevons seulement la confirmation que l’achat a réussi et le nom de la formule."
+       ],
+       [
+        "Abonnements",
+        "Cheery Pro est proposé en abonnement annuel, mensuel ou hebdomadaire, ou en pass d’un mois. Les abonnements se renouvellent automatiquement jusqu’à ce que vous les résiliiez ; le pass d’un mois est payé une seule fois et ne se renouvelle pas. Les nouveaux abonnés au forfait annuel bénéficient d’un essai gratuit de 3 jours : vous êtes débité à la fin de l’essai sauf si vous résiliez avant et, si les notifications sont activées, Cheery vous le rappelle sur votre téléphone un jour avant la fin de l’essai. Les prix sont affichés dans l’app et sur Google Play avant l’achat. Vous pouvez résilier à tout moment dans <b>Google Play › Paiements et abonnements</b>. Les remboursements suivent la politique de remboursement de Google Play."
+       ],
+       [
+        "Sur ton téléphone",
+        "Ton statut Pro est enregistré sur ton téléphone et vérifié auprès de Google Play, par exemple quand tu restaures un achat sur un nouveau téléphone."
+       ],
+       [
+        "Statistiques d’utilisation",
+        "Si tu as accepté d’envoyer des statistiques d’utilisation, Cheery enregistre aussi quand l’écran Pro s’affiche et quand un achat commence ou se termine, avec seulement le nom de la formule."
+       ]
+      ]
      }
     ]
    ],
@@ -1764,6 +2559,10 @@ const L = {
        [
         "Choix de confidentialité",
         "Si tu envoies ou non les rapports de plantage et les statistiques d’utilisation."
+       ],
+       [
+        "Consentement publicitaire",
+        "Ta réponse au formulaire de consentement publicitaire, enregistrée sur ton téléphone par l’outil de consentement de Google."
        ]
       ]
      },
@@ -1799,11 +2598,15 @@ const L = {
        [
         "Google Firebase",
         "Reçoit les rapports de plantage et les statistiques d’utilisation décrits plus haut. Voir les <a href=\"{fb}\">informations de confidentialité de Firebase</a> et les <a href=\"{gp}\">Règles de confidentialité de Google</a>."
+       ],
+       [
+        "Google AdMob",
+        "Affiche les annonces de la version gratuite, comme décrit à la section 4. Voir <a href=\"{ads}\">comment Google utilise les informations des applis qui utilisent ses services</a> et les <a href=\"{gp}\">Règles de confidentialité de Google</a>."
        ]
       ]
      },
      {
-      "n": "Cheery n’affiche pas de publicité et n’utilise aucun suivi publicitaire. Si cela change dans une future version, nous mettrons à jour cette politique avant que le changement ne s’applique."
+      "n": "Cheery n’utilise aucun autre service d’analyse, de publicité ou de suivi. Si cela change dans une future version, nous mettrons à jour cette politique avant que le changement ne s’applique."
      }
     ]
    ],
@@ -1811,7 +2614,7 @@ const L = {
     "Partage et vente",
     [
      {
-      "p": "Nous ne vendons ni ne louons tes informations personnelles. Cheery n’a pas de serveur à lui : les rapports de plantage et les statistiques d’utilisation sont envoyés à Google Firebase, qui les traite pour notre compte, et nous les utilisons uniquement pour corriger des problèmes et améliorer Cheery. Tes photos et vidéos ne sont jamais collectées."
+      "p": "Nous ne vendons jamais tes photos ni tes informations personnelles. Les rapports de plantage et les statistiques d’utilisation vont à Google Firebase, qui les traite uniquement pour notre compte. Dans la version gratuite, Google AdMob reçoit les données publicitaires décrites à la section 4 et les utilise selon ses propres règles. Ce sont les seules données que Cheery partage avec un tiers, et l’achat de Cheery Pro y met fin. Tes photos et vidéos ne sont jamais collectées ni partagées."
      }
     ]
    ],
@@ -1819,7 +2622,7 @@ const L = {
     "Confidentialité des enfants",
     [
      {
-      "p": "Cheery ne s’adresse pas aux enfants de moins de 13 ans, et nous ne collectons pas sciemment d’informations personnelles concernant des enfants."
+      "p": "Cheery ne s’adresse pas aux enfants de moins de 13 ans, et nous ne collectons pas sciemment d’informations personnelles concernant des enfants. Les annonces de Cheery ne s’adressent pas aux enfants."
      }
     ]
    ],
@@ -1839,6 +2642,18 @@ const L = {
        [
         "Envoyer les statistiques d’utilisation",
         "Active-les ou désactive-les dans <b>Réglages › Confidentialité</b>. Elles restent désactivées sans ton accord."
+       ],
+       [
+        "Personnalisation des annonces",
+        "Modifie ton consentement dans les réglages de Cheery, ou réinitialise ou supprime ton identifiant publicitaire et désactive les annonces personnalisées dans les réglages du téléphone sous <b>Google › Annonces</b>."
+       ],
+       [
+        "Retirer les annonces",
+        "Achète Cheery Pro pour arrêter toutes les annonces et les données publicitaires qui vont avec."
+       ],
+       [
+        "Supprimer tes données",
+        "Écris-nous et nous supprimerons sous 30 jours les rapports de plantage et les statistiques d’utilisation liés à ton installation. Les données publicitaires sont conservées par Google : utilise les réglages publicitaires du téléphone ou les <a href=\"{myad}\">outils de gestion des annonces de Google</a>."
        ],
        [
         "Rappel quotidien",
@@ -1867,15 +2682,56 @@ const L = {
   ],
   "contactTitle": "Nous contacter",
   "contactBody": "Une question sur cette politique ou sur ta vie privée ? Écris-nous, nous serons ravis de te lire.",
-  "contactButton": "Nous écrire"
+  "contactButton": "Nous écrire",
+  "glance": {
+   "title": "Tout ce qui quitte ton téléphone",
+   "intro": "Tes photos et vidéos restent sur ton téléphone. Voici la liste complète de ce que Cheery envoie, qui le reçoit et comment tu gardes la main.",
+   "labels": [
+    "Envoyé à",
+    "Pourquoi",
+    "Ton contrôle"
+   ],
+   "rows": [
+    [
+     "Rapports de plantage",
+     "Google Firebase",
+     "Trouver et corriger les plantages",
+     "Activés par défaut. À désactiver dans Réglages › Confidentialité"
+    ],
+    [
+     "Statistiques d’utilisation",
+     "Google Firebase",
+     "Savoir quelles fonctions sont utiles",
+     "Désactivées sans ton accord. Désactivables à tout moment"
+    ],
+    [
+     "Diagnostics ML Kit",
+     "Google",
+     "Faire fonctionner l’analyse des photos sur l’appareil",
+     "Impossible à désactiver. Jamais de photos"
+    ],
+    [
+     "Données publicitaires (version gratuite uniquement)",
+     "Google AdMob",
+     "Afficher et mesurer les annonces, et les personnaliser seulement si tu es d’accord",
+     "Achète Cheery Pro pour retirer les annonces. Gère la personnalisation dans les réglages publicitaires du téléphone"
+    ],
+    [
+     "Confirmation d’achat",
+     "Google Play",
+     "Traiter les paiements de Cheery Pro",
+     "Seulement quand tu achètes"
+    ]
+   ]
+  }
  },
  "de": {
   "native": "Deutsch",
   "english": "German",
   "title": "Datenschutzerklärung",
-  "effective": "Gültig ab 29. Oktober 2026",
+  "effective": "Gültig ab 30. Oktober 2026",
   "promiseTitle": "Deine Fotos verlassen nie dieses Handy",
-  "promiseBody": "Cheery erledigt alles direkt auf dem Gerät. Es gibt kein Konto und keine Anmeldung, und deine Fotos und Videos werden nie zu uns oder auf einen anderen Server hochgeladen. Wir verkaufen deine Daten nicht.",
+  "promiseBody": "Cheery sortiert deine Fotos direkt auf deinem Gerät. Es gibt kein Konto und keine Anmeldung, und deine Fotos und Videos werden nie zu uns oder zu jemand anderem hochgeladen. Wir verkaufen niemals deine Fotos oder persönlichen Daten.",
   "chips": [
    "Kein Konto",
    "Keine Cloud",
@@ -1946,7 +2802,63 @@ const L = {
       ]
      },
      {
-      "n": "Cheery erfasst deine Werbe-ID nicht und nutzt diese Daten nicht für Werbung. Firebase bewahrt Absturzberichte bis zu 90 Tage und Nutzungsstatistiken für einen begrenzten Zeitraum auf. Google verarbeitet diese Daten in unserem Auftrag, und sie können auf Servern außerhalb deines Landes gespeichert werden."
+      "n": "Absturzberichte und Nutzungsstatistiken enthalten nie deine Werbe-ID und werden nie für Werbung genutzt. Firebase bewahrt Absturzberichte bis zu 90 Tage und Nutzungsstatistiken für einen begrenzten Zeitraum auf. Google verarbeitet diese Daten in unserem Auftrag, und sie können auf Servern außerhalb deines Landes gespeichert werden."
+     }
+    ]
+   ],
+   [
+    "Werbung in der Gratisversion",
+    [
+     {
+      "p": "Die Gratisversion von Cheery zeigt Anzeigen von Google AdMob. Cheery Pro entfernt alle Anzeigen."
+     },
+     {
+      "items": [
+       [
+        "Wo Anzeigen erscheinen",
+        "Nachdem du einen Stapel Fotos fertig sortiert hast, kann eine Vollbildanzeige erscheinen, höchstens einmal alle paar Minuten. Während du wischst, beim Öffnen von Cheery und beim Schließen erscheinen nie Anzeigen."
+       ],
+       [
+        "Was AdMob erhält",
+        "Die Werbe-ID deines Geräts, deine IP-Adresse (mit der Google deinen ungefähren Standort wie Stadt oder Land schätzt), grundlegende Geräte- und App-Informationen sowie deine Interaktionen mit Anzeigen, etwa Aufrufe und Tippen. AdMob erhält nie deine Fotos, Videos, Dateinamen oder die in deinen Fotos gespeicherten Orte."
+       ],
+       [
+        "Wie Google sie nutzt",
+        "Um Anzeigen zu zeigen, ihre Häufigkeit zu begrenzen, sie zu messen, Betrug zu verhindern und sie nur mit deiner Zustimmung zu personalisieren. Google nutzt diese Daten nach seiner eigenen Datenschutzerklärung, daher gilt das nach den Regeln von Google Play als Weitergabe von Daten an Dritte."
+       ],
+       [
+        "Deine Zustimmung",
+        "Im Europäischen Wirtschaftsraum, im Vereinigten Königreich und in der Schweiz zeigt Cheery das Einwilligungsformular von Google, bevor personalisierte Anzeigen erscheinen, und du kannst deine Antwort später in den Einstellungen von Cheery ändern. Überall kannst du deine Werbe-ID zurücksetzen oder löschen oder personalisierte Anzeigen abschalten, in den Einstellungen deines Handys unter <b>Google › Anzeigen</b>."
+       ]
+      ]
+     },
+     {
+      "n": "Wir wählen keine einzelnen Anzeigen aus und erhalten nie deine Werbe-ID oder deinen Standort. Werbung in Cheery richtet sich nicht an Kinder."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro und Zahlungen",
+    [
+     {
+      "items": [
+       [
+        "Zahlungen",
+        "Cheery Pro wird über Google Play verkauft, das die Zahlung abwickelt. Wir sehen nie deine Karten- oder Bankdaten. Wir erhalten nur die Bestätigung, dass ein Kauf geklappt hat, und welches Abo es ist."
+       ],
+       [
+        "Abos",
+        "Cheery Pro gibt es als Jahres-, Monats- oder Wochenabo oder als Monatspass. Abos verlängern sich automatisch, bis du kündigst; der Monatspass wird einmal bezahlt und verlängert sich nicht. Neue Abonnenten des Jahresabos erhalten einen kostenlosen 3-Tage-Test: Am Ende des Tests wird abgebucht, sofern du nicht vorher kündigst, und wenn Benachrichtigungen aktiviert sind, erinnert dich Cheery einen Tag vor Testende auf deinem Handy. Die Preise werden vor dem Kauf in der App und bei Google Play angezeigt. Du kannst jederzeit unter <b>Google Play › Zahlungen und Abos</b> kündigen. Erstattungen richten sich nach der Erstattungsrichtlinie von Google Play."
+       ],
+       [
+        "Auf deinem Handy",
+        "Dein Pro-Status wird auf deinem Handy gespeichert und mit Google Play abgeglichen, etwa wenn du einen Kauf auf einem neuen Handy wiederherstellst."
+       ],
+       [
+        "Nutzungsstatistiken",
+        "Wenn du dem Senden von Nutzungsstatistiken zugestimmt hast, erfasst Cheery auch, wann der Pro-Bildschirm erscheint und wann ein Kauf begonnen oder abgeschlossen wird, nur mit dem Namen des Abos."
+       ]
+      ]
      }
     ]
    ],
@@ -1977,6 +2889,10 @@ const L = {
        [
         "Datenschutz-Auswahl",
         "Ob du Absturzberichte und Nutzungsstatistiken sendest."
+       ],
+       [
+        "Werbe-Einwilligung",
+        "Deine Antwort im Einwilligungsformular für Werbung, gespeichert auf deinem Handy durch das Einwilligungstool von Google."
        ]
       ]
      },
@@ -2012,11 +2928,15 @@ const L = {
        [
         "Google Firebase",
         "Empfängt die oben beschriebenen Absturzberichte und Nutzungsstatistiken. Siehe die <a href=\"{fb}\">Datenschutzinformationen von Firebase</a> und die <a href=\"{gp}\">Datenschutzerklärung von Google</a>."
+       ],
+       [
+        "Google AdMob",
+        "Zeigt Anzeigen in der Gratisversion, wie in Abschnitt 4 beschrieben. Siehe <a href=\"{ads}\">wie Google Daten von Apps nutzt, die Google-Dienste verwenden</a>, und die <a href=\"{gp}\">Datenschutzerklärung von Google</a>."
        ]
       ]
      },
      {
-      "n": "Cheery zeigt keine Werbung und nutzt kein Werbe-Tracking. Sollte sich das in einer künftigen Version ändern, aktualisieren wir diese Erklärung, bevor die Änderung wirksam wird."
+      "n": "Cheery nutzt keine weiteren Analyse-, Werbe- oder Tracking-Dienste. Sollte sich das in einer künftigen Version ändern, aktualisieren wir diese Erklärung, bevor die Änderung wirksam wird."
      }
     ]
    ],
@@ -2024,7 +2944,7 @@ const L = {
     "Weitergabe und Verkauf",
     [
      {
-      "p": "Wir verkaufen oder vermieten deine persönlichen Daten nicht. Cheery hat keine eigenen Server: Absturzberichte und Nutzungsstatistiken gehen an Google Firebase, das sie in unserem Auftrag verarbeitet, und wir nutzen sie nur, um Fehler zu beheben und Cheery zu verbessern. Deine Fotos und Videos werden nie erfasst."
+      "p": "Wir verkaufen niemals deine Fotos oder persönlichen Daten. Absturzberichte und Nutzungsstatistiken gehen an Google Firebase, das sie nur in unserem Auftrag verarbeitet. In der Gratisversion erhält Google AdMob die in Abschnitt 4 beschriebenen Werbedaten und nutzt sie nach den eigenen Richtlinien von Google. Das sind die einzigen Daten, die Cheery an Dritte weitergibt, und mit dem Kauf von Cheery Pro endet das. Deine Fotos und Videos werden nie erfasst oder weitergegeben."
      }
     ]
    ],
@@ -2032,7 +2952,7 @@ const L = {
     "Datenschutz für Kinder",
     [
      {
-      "p": "Cheery richtet sich nicht an Kinder unter 13 Jahren, und wir erfassen nicht wissentlich persönliche Daten von Kindern."
+      "p": "Cheery richtet sich nicht an Kinder unter 13 Jahren, und wir erfassen nicht wissentlich persönliche Daten von Kindern. Werbung in Cheery richtet sich nicht an Kinder."
      }
     ]
    ],
@@ -2052,6 +2972,18 @@ const L = {
        [
         "Nutzungsstatistiken senden",
         "Schalte sie unter <b>Einstellungen › Daten &amp; Datenschutz</b> ein oder aus. Ohne deine Zustimmung bleiben sie aus."
+       ],
+       [
+        "Personalisierte Werbung",
+        "Ändere deine Einwilligung in den Einstellungen von Cheery, oder setze deine Werbe-ID zurück, lösche sie und schalte personalisierte Anzeigen in den Einstellungen deines Handys unter <b>Google › Anzeigen</b> ab."
+       ],
+       [
+        "Werbung entfernen",
+        "Kaufe Cheery Pro, um alle Anzeigen und die damit verbundenen Werbedaten zu stoppen."
+       ],
+       [
+        "Deine Daten löschen",
+        "Schreib uns, und wir löschen innerhalb von 30 Tagen die Absturzberichte und Nutzungsstatistiken zu deiner Installation. Werbedaten liegen bei Google: Nutze die Werbeeinstellungen deines Handys oder die <a href=\"{myad}\">Werbeeinstellungen von Google</a>."
        ],
        [
         "Tägliche Erinnerung",
@@ -2080,15 +3012,56 @@ const L = {
   ],
   "contactTitle": "Kontakt",
   "contactBody": "Fragen zu dieser Erklärung oder zu deinem Datenschutz? Wir freuen uns auf deine Nachricht.",
-  "contactButton": "Schreib uns"
+  "contactButton": "Schreib uns",
+  "glance": {
+   "title": "Alles, was dein Handy verlässt",
+   "intro": "Deine Fotos und Videos bleiben auf deinem Handy. Hier ist die vollständige Liste dessen, was Cheery sendet, wer es erhält und wie du es steuerst.",
+   "labels": [
+    "Geht an",
+    "Wozu",
+    "Deine Kontrolle"
+   ],
+   "rows": [
+    [
+     "Absturzberichte",
+     "Google Firebase",
+     "Abstürze finden und beheben",
+     "Standardmäßig an. Ausschalten unter Einstellungen › Daten &amp; Datenschutz"
+    ],
+    [
+     "Nutzungsstatistiken",
+     "Google Firebase",
+     "Erfahren, welche Funktionen helfen",
+     "Aus, außer du stimmst zu. Jederzeit ausschaltbar"
+    ],
+    [
+     "ML Kit-Diagnosedaten",
+     "Google",
+     "Damit die Fotoanalyse auf dem Gerät funktioniert",
+     "Nicht abschaltbar. Enthalten nie Fotos"
+    ],
+    [
+     "Werbedaten (nur Gratisversion)",
+     "Google AdMob",
+     "Anzeigen zeigen und messen, personalisiert nur mit deiner Zustimmung",
+     "Mit Cheery Pro verschwindet die Werbung. Personalisierung steuerst du in den Werbeeinstellungen deines Handys"
+    ],
+    [
+     "Kaufbestätigung",
+     "Google Play",
+     "Zahlungen für Cheery Pro abwickeln",
+     "Nur wenn du kaufst"
+    ]
+   ]
+  }
  },
  "pt": {
   "native": "Português",
   "english": "Portuguese",
   "title": "Política de Privacidade",
-  "effective": "Em vigor desde 29 de outubro de 2026",
+  "effective": "Em vigor desde 30 de outubro de 2026",
   "promiseTitle": "Suas fotos nunca saem deste celular",
-  "promiseBody": "O Cheery faz tudo no próprio celular. Não há conta nem login, e suas fotos e vídeos nunca são enviados para nós nem para nenhum servidor. Não vendemos seus dados.",
+  "promiseBody": "O Cheery organiza suas fotos no seu aparelho. Não há conta nem login, e suas fotos e vídeos nunca são enviados para nós nem para mais ninguém. Nunca vendemos suas fotos nem suas informações pessoais.",
   "chips": [
    "Sem conta",
    "Sem nuvem",
@@ -2159,7 +3132,63 @@ const L = {
       ]
      },
      {
-      "n": "O Cheery não coleta seu ID de publicidade e não usa esses dados para anúncios. O Firebase guarda os relatórios de erro por até 90 dias e as estatísticas de uso por um período limitado. Esses dados são tratados pelo Google em nosso nome e podem ser armazenados em servidores fora do seu país."
+      "n": "Os relatórios de erro e as estatísticas de uso nunca incluem seu ID de publicidade e nunca são usados para anúncios. O Firebase guarda os relatórios de erro por até 90 dias e as estatísticas de uso por um período limitado. Esses dados são tratados pelo Google em nosso nome e podem ser armazenados em servidores fora do seu país."
+     }
+    ]
+   ],
+   [
+    "Anúncios na versão gratuita",
+    [
+     {
+      "p": "A versão gratuita do Cheery mostra anúncios veiculados pelo Google AdMob. O Cheery Pro remove todos os anúncios."
+     },
+     {
+      "items": [
+       [
+        "Onde os anúncios aparecem",
+        "Um anúncio em tela cheia pode aparecer depois que você termina uma pilha de fotos, no máximo uma vez a cada poucos minutos. Os anúncios nunca aparecem enquanto você desliza, ao abrir o Cheery nem ao fechá-lo."
+       ],
+       [
+        "O que o AdMob recebe",
+        "O ID de publicidade do aparelho, seu endereço IP (que o Google usa para estimar sua localização aproximada, como cidade ou país), informações básicas do aparelho e do app, e como você interage com os anúncios, como visualizações e toques. O AdMob nunca recebe suas fotos, vídeos, nomes de arquivos nem os locais salvos nas suas fotos."
+       ],
+       [
+        "Como o Google usa",
+        "Para mostrar anúncios, limitar quantas vezes você os vê, medi-los, evitar fraudes e, só se você concordar, personalizá-los. O Google usa esses dados de acordo com a própria política de privacidade, então, pelas regras do Google Play, isso conta como compartilhamento de dados com terceiros."
+       ],
+       [
+        "Seu consentimento",
+        "No Espaço Econômico Europeu, no Reino Unido e na Suíça, o Cheery mostra o formulário de consentimento do Google antes de qualquer anúncio personalizado, e você pode mudar sua resposta depois nos ajustes do Cheery. Em qualquer lugar, você pode redefinir ou excluir seu ID de publicidade, ou desativar anúncios personalizados, nas configurações do celular em <b>Google › Anúncios</b>."
+       ]
+      ]
+     },
+     {
+      "n": "Não escolhemos anúncios individuais e nunca recebemos seu ID de publicidade nem sua localização. Os anúncios do Cheery não são direcionados a crianças."
+     }
+    ]
+   ],
+   [
+    "Cheery Pro e pagamentos",
+    [
+     {
+      "items": [
+       [
+        "Pagamentos",
+        "O Cheery Pro é vendido pelo Google Play, que processa o pagamento. Nunca vemos os dados do seu cartão ou banco. Só recebemos a confirmação de que a compra foi concluída e qual é o plano."
+       ],
+       [
+        "Assinaturas",
+        "O Cheery Pro está disponível como assinatura anual, mensal ou semanal, ou como passe de um mês. As assinaturas são renovadas automaticamente até você cancelar; o passe de um mês é pago uma única vez e não é renovado. Novos assinantes do plano anual ganham um teste grátis de 3 dias: a cobrança é feita quando o teste termina, a menos que você cancele antes e, se as notificações estiverem ativadas, o Cheery avisa no seu celular um dia antes do fim do teste. Os preços aparecem no app e no Google Play antes da compra. Você pode cancelar quando quiser em <b>Google Play › Pagamentos e assinaturas</b>. Os reembolsos seguem a política de reembolso do Google Play."
+       ],
+       [
+        "No seu celular",
+        "Seu status Pro fica salvo no celular e é conferido com o Google Play, por exemplo quando você restaura uma compra em um celular novo."
+       ],
+       [
+        "Estatísticas de uso",
+        "Se você concordou em enviar estatísticas de uso, o Cheery também registra quando a tela do Pro aparece e quando uma compra é iniciada ou concluída, só com o nome do plano."
+       ]
+      ]
      }
     ]
    ],
@@ -2190,6 +3219,10 @@ const L = {
        [
         "Escolhas de privacidade",
         "Se você envia relatórios de erro e estatísticas de uso."
+       ],
+       [
+        "Consentimento de anúncios",
+        "Sua resposta ao formulário de consentimento de anúncios, salva no celular pela ferramenta de consentimento do Google."
        ]
       ]
      },
@@ -2225,11 +3258,15 @@ const L = {
        [
         "Google Firebase",
         "Recebe os relatórios de erro e as estatísticas de uso descritos acima. Veja as <a href=\"{fb}\">informações de privacidade do Firebase</a> e a <a href=\"{gp}\">Política de Privacidade do Google</a>."
+       ],
+       [
+        "Google AdMob",
+        "Mostra anúncios na versão gratuita, como descrito na seção 4. Veja <a href=\"{ads}\">como o Google usa informações de apps que usam os serviços dele</a> e a <a href=\"{gp}\">Política de Privacidade do Google</a>."
        ]
       ]
      },
      {
-      "n": "O Cheery não mostra anúncios e não usa rastreamento de anúncios. Se isso mudar em uma versão futura, atualizaremos esta política antes que a mudança entre em vigor."
+      "n": "O Cheery não usa nenhum outro serviço de análise, publicidade ou rastreamento. Se isso mudar em uma versão futura, atualizaremos esta política antes que a mudança entre em vigor."
      }
     ]
    ],
@@ -2237,7 +3274,7 @@ const L = {
     "Compartilhamento e venda",
     [
      {
-      "p": "Não vendemos nem alugamos suas informações pessoais. O Cheery não tem servidores próprios: os relatórios de erro e as estatísticas de uso vão para o Google Firebase, que os trata em nosso nome, e só os usamos para corrigir problemas e melhorar o Cheery. Suas fotos e vídeos nunca são coletados."
+      "p": "Nunca vendemos suas fotos nem suas informações pessoais. Os relatórios de erro e as estatísticas de uso vão para o Google Firebase, que os trata somente em nosso nome. Na versão gratuita, o Google AdMob recebe os dados de anúncios descritos na seção 4 e os usa de acordo com as políticas do próprio Google. Esses são os únicos dados que o Cheery compartilha com terceiros, e comprar o Cheery Pro interrompe isso. Suas fotos e vídeos nunca são coletados nem compartilhados."
      }
     ]
    ],
@@ -2245,7 +3282,7 @@ const L = {
     "Privacidade de crianças",
     [
      {
-      "p": "O Cheery não é destinado a crianças menores de 13 anos, e não coletamos intencionalmente informações pessoais de crianças."
+      "p": "O Cheery não é destinado a crianças menores de 13 anos, e não coletamos intencionalmente informações pessoais de crianças. Os anúncios do Cheery não são direcionados a crianças."
      }
     ]
    ],
@@ -2265,6 +3302,18 @@ const L = {
        [
         "Enviar estatísticas de uso",
         "Ative ou desative em <b>Ajustes › Dados e privacidade</b>. Elas ficam desativadas a menos que você concorde."
+       ],
+       [
+        "Personalização de anúncios",
+        "Mude seu consentimento nos ajustes do Cheery, ou redefina ou exclua seu ID de publicidade e desative anúncios personalizados nas configurações do celular em <b>Google › Anúncios</b>."
+       ],
+       [
+        "Remover anúncios",
+        "Compre o Cheery Pro para parar todos os anúncios e os dados de anúncios que vêm com eles."
+       ],
+       [
+        "Excluir seus dados",
+        "Envie um e-mail e excluiremos em até 30 dias os relatórios de erro e as estatísticas de uso ligados à sua instalação. Os dados de anúncios ficam com o Google: use as configurações de anúncios do celular ou os <a href=\"{myad}\">controles de anúncios do Google</a>."
        ],
        [
         "Lembrete diário",
@@ -2293,7 +3342,48 @@ const L = {
   ],
   "contactTitle": "Fale conosco",
   "contactBody": "Tem dúvidas sobre esta política ou sobre sua privacidade? Vamos adorar ouvir você.",
-  "contactButton": "Enviar e-mail"
+  "contactButton": "Enviar e-mail",
+  "glance": {
+   "title": "Tudo o que sai do seu celular",
+   "intro": "Suas fotos e vídeos ficam no seu celular. Esta é a lista completa do que o Cheery envia, quem recebe e como você controla.",
+   "labels": [
+    "Enviado para",
+    "Para quê",
+    "Seu controle"
+   ],
+   "rows": [
+    [
+     "Relatórios de erro",
+     "Google Firebase",
+     "Encontrar e corrigir erros",
+     "Ativados por padrão. Desative em Ajustes › Dados e privacidade"
+    ],
+    [
+     "Estatísticas de uso",
+     "Google Firebase",
+     "Saber quais recursos ajudam as pessoas",
+     "Desativadas a menos que você concorde. Desative quando quiser"
+    ],
+    [
+     "Diagnósticos do ML Kit",
+     "Google",
+     "Manter a análise de fotos no aparelho funcionando",
+     "Não podem ser desativados. Nunca incluem fotos"
+    ],
+    [
+     "Dados de anúncios (só na versão gratuita)",
+     "Google AdMob",
+     "Mostrar e medir anúncios, e personalizá-los só se você concordar",
+     "Compre o Cheery Pro para remover os anúncios. Controle a personalização nas configurações de anúncios do celular"
+    ],
+    [
+     "Confirmação de compra",
+     "Google Play",
+     "Processar pagamentos do Cheery Pro",
+     "Só quando você compra"
+    ]
+   ]
+  }
  }
 };
 const ORDER = ["en","vi","zh","ja","ko","es","fr","de","pt"];
@@ -2302,7 +3392,7 @@ const HTML_LANG = {"en":"en","vi":"vi","zh":"zh-Hans","ja":"ja","ko":"ko","es":"
 (function () {
   const EMAIL = "thanhphamsilent@gmail.com";
   const svg = (id, w) => `<svg fill="none" stroke="currentColor" stroke-width="${w || 1.75}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#${id}"/></svg>`;
-  const link = (s) => s.replace(/\{(mlkit|gp|play|fb)\}/g, (_, k) => LINKS[k]);
+  const link = (s) => s.replace(/\{(mlkit|gp|play|fb|ads|myad)\}/g, (_, k) => LINKS[k]);
 
   function blocks(list) {
     return list.map((b) => {
@@ -2332,6 +3422,12 @@ const HTML_LANG = {"en":"en","vi":"vi","zh":"zh-Hans","ja":"ja","ko":"ko","es":"
     <p>${t.promiseBody}</p>
     <div class="chips">${t.chips.map((c) => `<span class="chip">${svg("i-check", 2.2)}${c}</span>`).join("")}</div>
   </div>
+
+  <section class="glance" id="glance" aria-labelledby="glanceTitle">
+    <div class="head"><span class="well">${svg("i-upload")}</span><h2 id="glanceTitle">${t.glance.title}</h2></div>
+    <p class="muted">${t.glance.intro}</p>
+    <ul class="glance-rows">${t.glance.rows.map(([what, to, why, ctrl]) => `<li><strong>${what}</strong><dl><div><dt>${t.glance.labels[0]}</dt><dd>${to}</dd></div><div><dt>${t.glance.labels[1]}</dt><dd>${why}</dd></div><div><dt>${t.glance.labels[2]}</dt><dd>${ctrl}</dd></div></dl></li>`).join("")}</ul>
+  </section>
 
   <p class="group-label">${t.toc}</p>
   <nav class="toc" aria-label="${t.toc}">
@@ -2393,7 +3489,7 @@ const HTML_LANG = {"en":"en","vi":"vi","zh":"zh-Hans","ja":"ja","ko":"ko","es":"
     btn.setAttribute("aria-label", `${t.lang}: ${t.native}`);
     document.getElementById("sheetTitle").textContent = t.choose;
     closeBtn.setAttribute("aria-label", t.close);
-    list.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === code)));
+    list.querySelectorAll("button").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.lang === code)));
     if (opts.remember) {
       store.set(code);
       try {
@@ -2404,7 +3500,7 @@ const HTML_LANG = {"en":"en","vi":"vi","zh":"zh-Hans","ja":"ja","ko":"ko","es":"
     }
   }
 
-  list.innerHTML = ORDER.map((c) => `<li><button type="button" data-lang="${c}" aria-pressed="false"><span class="names"><span class="native" lang="${HTML_LANG[c]}">${L[c].native}</span><span class="eng">${L[c].english}</span></span><svg class="tick" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"/></svg></button></li>`).join("");
+  list.innerHTML = ORDER.map((c) => `<li><button type="button" role="menuitemradio" data-lang="${c}" aria-checked="false"><span class="names"><span class="native" lang="${HTML_LANG[c]}">${L[c].native}</span><span class="eng">${L[c].english}</span></span><svg class="tick" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"/></svg></button></li>`).join("");
 
   function jumpTop() { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
   // Smooth only for the contents links, so switching language never animates the page.
@@ -2422,7 +3518,7 @@ const HTML_LANG = {"en":"en","vi":"vi","zh":"zh-Hans","ja":"ja","ko":"ko","es":"
     document.documentElement.classList.add("locked");
     requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("sheet-open")));
     btn.setAttribute("aria-expanded", "true");
-    const chosen = list.querySelector('[aria-pressed="true"]');
+    const chosen = list.querySelector('[aria-checked="true"]');
     setTimeout(() => (chosen || closeBtn).focus({ preventScroll: true }), 60);
   }
   function closeSheet() {
