@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Help &amp; Support · Cheery</title>
+<meta name="description" content="Help with Cheery: photo access, the Trash, restoring and cancelling Cheery Pro, refunds, privacy and how to contact us.">
+<meta name="theme-color" content="#FFF7F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#140D0F" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+  /* Cheery · Cherry Milk tokens */
+  :root {
+    --canvas: #FFF7F2; --card: #FFFFFF; --inset: #F6EBE6;
+    --ink: #241417; --ink-muted: #6E5559; --on-ink: #FFF7F2;
+    --keep: #C8223C; --keep-soft: #FFE3E6; --brand: #C8223C;
+    --hairline: #2414172E; --scrim: #24141733;
+    --shadow-card: 0 1px 2px rgba(36,20,23,0.06), 0 10px 30px rgba(36,20,23,0.08);
+    --shadow-float: 0 14px 34px rgba(36,20,23,0.24);
+    --radius-well: 14px; --radius-media: 16px; --radius-card: 24px; --radius-hero: 32px; --radius-pill: 999px;
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px;
+    --display: Literata, Georgia, serif;
+    --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --ease-emph: cubic-bezier(.2, 0, 0, 1);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --canvas: #140D0F; --card: #201719; --inset: #2D2225;
+      --ink: #FBF0EB; --ink-muted: #C4AEB2; --on-ink: #140D0F;
+      --keep: #FF6479; --keep-soft: #3D1D24; --brand: #FBF0EB;
+      --hairline: #FBF0EB33; --scrim: #140D0F99;
+      --shadow-card: none; --shadow-float: 0 14px 34px rgba(0,0,0,0.55);
+    }
+  }
+  /* Scripts Literata and DM Sans do not cover */
+  :lang(zh) { --display: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif; --sans: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif; }
+  :lang(ja) { --display: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif; --sans: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", "Meiryo", system-ui, sans-serif; }
+  :lang(ko) { --display: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif; --sans: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif; }
+  html:lang(zh) h1, html:lang(ja) h1, html:lang(ko) h1,
+  html:lang(zh) h2, html:lang(ja) h2, html:lang(ko) h2 { font-weight: 700 !important; letter-spacing: 0 !important; }
+  html:lang(zh) h1, html:lang(ja) h1, html:lang(ko) h1, html:lang(zh) h2, html:lang(ja) h2, html:lang(ko) h2 { text-wrap: wrap; }
+  html:lang(ko) body { word-break: keep-all; }
+  html:lang(zh) .block h2, html:lang(ja) .block h2, html:lang(ko) .block h2 { font-size: 20px; }
+  html:lang(ja) body, html:lang(zh) body { line-break: strict; }
+  html:lang(zh) .ui-latin, html:lang(ja) .ui-latin, html:lang(ko) .ui-latin { font-family: "DM Sans", system-ui, sans-serif; }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+  html.smooth { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html.smooth { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--canvas); color: var(--ink);
+    font: 400 16px/1.55 var(--sans);
+    -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+  }
+  a { color: inherit; text-decoration-color: var(--hairline); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-color: currentColor; }
+  b { font-weight: 600; color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--keep); outline-offset: 3px; border-radius: 8px; }
+  button { font: inherit; color: inherit; }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 var(--space-4); }
+  @media (min-width: 560px) { .wrap { padding: 0 var(--space-6); } }
+
+  /* Top bar */
+  .top {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--canvas);
+    padding-top: env(safe-area-inset-top);
+    transition: box-shadow 200ms;
+  }
+  .top.scrolled { box-shadow: 0 1px 0 var(--hairline); }
+  .top .wrap { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--brand); text-decoration: none; min-height: 44px; }
+  .brand .symbol { width: 20px; height: 24px; }
+  .brand .wordmark { width: 83px; height: 36px; }
+  .lang-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 40px; padding: 0 12px 0 10px; margin: 2px 0;
+    background: var(--inset); color: var(--ink);
+    border: 0; border-radius: var(--radius-pill); cursor: pointer;
+    font: 600 14px/1 var(--sans);
+    position: relative;
+  }
+  .lang-btn::after { content: ""; position: absolute; inset: -2px 0; }
+  .lang-btn svg { width: 18px; height: 18px; flex: none; }
+  .lang-btn .chev { width: 16px; height: 16px; color: var(--ink-muted); }
+
+  /* Hero */
+  .hero { padding: 28px 0 var(--space-5); }
+  h1 { font: 500 clamp(32px, 8.5vw, 44px)/1.1 var(--display); letter-spacing: -0.8px; margin: 0 0 10px; text-wrap: balance; }
+  .meta { font: 500 14px/1.45 var(--sans); color: var(--ink-muted); margin: 0; }
+  .tnote {
+    margin: var(--space-4) 0 0; padding: 12px 14px;
+    background: var(--inset); border-radius: var(--radius-media);
+    font: 500 14px/1.45 var(--sans); color: var(--ink-muted);
+  }
+  .tnote button { all: unset; cursor: pointer; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: var(--hairline); text-underline-offset: 3px; }
+
+  /* Promise card (the one hero surface) */
+  .promise {
+    background: var(--card); border-radius: var(--radius-hero); box-shadow: var(--shadow-card);
+    padding: var(--space-6) var(--space-5) var(--space-5); margin: 0 0 var(--space-3);
+  }
+  .promise .well { background: var(--keep-soft); color: var(--keep); margin-bottom: var(--space-4); }
+  .promise h2 { font: 500 24px/1.18 var(--display); letter-spacing: -0.4px; margin: 0 0 8px; text-wrap: balance; }
+  .promise p { margin: 0; color: var(--ink-muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--inset); border-radius: var(--radius-pill);
+    padding: 8px 12px 8px 10px; font: 600 14px/1.2 var(--sans);
+  }
+  .chip svg { width: 16px; height: 16px; flex: none; }
+  @media (min-width: 560px) { .promise { padding: 28px var(--space-6) var(--space-6); } }
+
+  .group-label { font: italic 400 16px/1.3 var(--display); color: var(--ink-muted); margin: 32px 4px var(--space-3); }
+  html:lang(zh) .group-label, html:lang(ja) .group-label, html:lang(ko) .group-label { font-style: normal; font-size: 14px; font-weight: 600; }
+
+  /* Everything that leaves your phone */
+  .glance {
+    background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+    padding: var(--space-5); margin: var(--space-3) 0 0;
+  }
+  @media (min-width: 560px) { .glance { padding: var(--space-6); } }
+  .glance h2 { font: 500 22px/1.2 var(--display); letter-spacing: -0.3px; margin: 0; text-wrap: balance; }
+  html:lang(zh) .glance h2, html:lang(ja) .glance h2, html:lang(ko) .glance h2 { font-size: 20px; }
+  .glance > p { margin: 0 0 var(--space-4); }
+  .glance-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+  .glance-rows li { background: var(--inset); border-radius: var(--radius-media); padding: 14px var(--space-4); }
+  .glance-rows strong { display: block; font: 600 16px/1.3 var(--sans); margin-bottom: 8px; }
+  .glance-rows dl { margin: 0; display: grid; gap: 6px; }
+  .glance-rows dl > div { display: grid; grid-template-columns: 7.5em 1fr; gap: var(--space-3); }
+  .glance-rows dt { font: 500 13px/1.45 var(--sans); color: var(--ink-muted); }
+  .glance-rows dd { margin: 0; font: 400 14px/1.45 var(--sans); }
+  @media (max-width: 359px) { .glance-rows dl > div { grid-template-columns: 1fr; gap: 0; } }
+
+  /* Contents */
+  .toc { background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 6px; }
+  .toc ol { list-style: none; margin: 0; padding: 0; }
+  .toc li + li { border-top: 1px solid var(--hairline); margin: 0 12px; }
+  .toc li + li a { margin: 0 -12px; }
+  .toc a {
+    display: flex; align-items: center; gap: var(--space-3);
+    min-height: 52px; padding: 12px; border-radius: 18px;
+    text-decoration: none; font: 600 16px/1.3 var(--sans);
+  }
+  .toc a:active { background: var(--inset); }
+  @media (hover: hover) { .toc a:hover { background: var(--inset); } }
+  .toc .n { flex: none; width: 22px; font: 500 14px/1 var(--sans); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  .toc .chev { margin-left: auto; flex: none; width: 18px; height: 18px; color: var(--ink-muted); }
+
+  /* Sections */
+  .block {
+    background: var(--card); border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+    padding: var(--space-5); margin: 0 0 var(--space-3);
+    scroll-margin-top: 80px;
+  }
+  @media (min-width: 560px) { .block { padding: var(--space-6); } }
+  .head { display: flex; align-items: center; gap: 14px; margin-bottom: var(--space-4); }
+  .well {
+    flex: none; width: 40px; height: 40px; border-radius: var(--radius-well);
+    background: var(--inset); color: var(--ink); display: grid; place-items: center;
+  }
+  .well svg { width: 22px; height: 22px; }
+  .block h2 { font: 500 22px/1.2 var(--display); letter-spacing: -0.3px; margin: 0; text-wrap: balance; }
+  .block p { margin: 0 0 var(--space-3); }
+  .block > :last-child { margin-bottom: 0; }
+  .muted { color: var(--ink-muted); }
+  .items { list-style: none; margin: 0 0 var(--space-3); padding: 0; }
+  .items li { padding: 14px 0; border-top: 1px solid var(--hairline); }
+  .items li:first-child { border-top: 0; padding-top: 2px; }
+  .items li:last-child { padding-bottom: 0; }
+  .items strong { display: block; font: 600 16px/1.3 var(--sans); margin-bottom: 4px; }
+  .items span { display: block; color: var(--ink-muted); }
+  .note {
+    background: var(--inset); border-radius: var(--radius-media);
+    padding: 14px var(--space-4); font: 500 14px/1.5 var(--sans); color: var(--ink-muted);
+  }
+
+  /* Contact */
+  .contact { text-align: center; padding: 28px var(--space-5) var(--space-6); }
+  .contact .well { margin: 0 auto 14px; }
+  .contact h2 { margin-bottom: 8px; }
+  .contact p { color: var(--ink-muted); margin: 0 auto; max-width: 30em; }
+  .button {
+    display: flex; align-items: center; justify-content: center;
+    height: 56px; padding: 0 28px; margin: var(--space-5) auto 0; width: 100%; max-width: 320px;
+    background: var(--ink); color: var(--on-ink); border-radius: var(--radius-pill);
+    font: 700 16px/1.2 var(--sans); letter-spacing: -0.1px; text-decoration: none;
+    transition: transform 160ms cubic-bezier(.34,1.56,.64,1);
+  }
+  .button:active { transform: scale(.96); }
+  .email { display: block; margin-top: var(--space-3); font: 500 14px/1.45 "DM Sans", system-ui, sans-serif; color: var(--ink-muted); overflow-wrap: anywhere; }
+
+  footer { padding: 32px 0 calc(40px + env(safe-area-inset-bottom)); text-align: center; }
+  footer .wordmark { width: 96px; height: 42px; color: var(--brand); }
+  footer .tag { font: italic 400 16px/1.3 Literata, Georgia, serif; color: var(--ink-muted); margin: 6px 0 4px; }
+  footer small { font: 500 13px/1.45 "DM Sans", system-ui, sans-serif; color: var(--ink-muted); }
+
+  /* Language sheet */
+  .scrim {
+    position: fixed; inset: 0; z-index: 20; background: var(--scrim);
+    opacity: 0; transition: opacity 200ms;
+  }
+  .sheet {
+    position: fixed; z-index: 21; left: 0; right: 0; bottom: 0;
+    max-height: min(88vh, 720px); display: flex; flex-direction: column;
+    background: var(--card); color: var(--ink);
+    border-radius: var(--radius-hero) var(--radius-hero) 0 0;
+    box-shadow: var(--shadow-float);
+    padding: 8px var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom));
+    transform: translateY(100%); transition: transform 320ms var(--ease-emph);
+  }
+  .sheet .grab { width: 36px; height: 4px; border-radius: 2px; background: var(--hairline); margin: 0 auto 8px; }
+  .sheet-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: 4px 4px 12px; }
+  .sheet-head h2 { font: 500 24px/1.15 var(--display); letter-spacing: -0.4px; margin: 0; }
+  .circle {
+    flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+    background: var(--inset); color: var(--ink); display: grid; place-items: center;
+  }
+  .circle svg { width: 20px; height: 20px; }
+  .langs { list-style: none; margin: 0; padding: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .langs button {
+    width: 100%; min-height: 56px; display: flex; align-items: center; gap: var(--space-3);
+    padding: 8px 14px; border: 0; border-radius: 18px; background: none; cursor: pointer; text-align: left;
+  }
+  .langs button[aria-checked="true"] { background: var(--inset); }
+  @media (hover: hover) { .langs button:hover { background: var(--inset); } }
+  .langs .names { flex: 1; min-width: 0; }
+  .langs .native { display: block; font: 600 16px/1.3 var(--sans); }
+  .langs .eng { display: block; font: 500 14px/1.4 "DM Sans", system-ui, sans-serif; color: var(--ink-muted); }
+  .langs .tick { width: 20px; height: 20px; flex: none; visibility: hidden; }
+  .langs button[aria-checked="true"] .tick { visibility: visible; }
+  html.locked, html.locked body { overflow: hidden; }
+  body.sheet-open .scrim { opacity: 1; }
+  body.sheet-open .sheet { transform: translateY(0); }
+  @media (min-width: 640px) {
+    .sheet {
+      left: 50%; right: auto; bottom: auto; top: 50%; width: 420px;
+      border-radius: var(--radius-hero); padding: var(--space-4);
+      transform: translate(-50%, -46%); opacity: 0; transition: transform 320ms var(--ease-emph), opacity 200ms;
+    }
+    .sheet .grab { display: none; }
+    body.sheet-open .sheet { transform: translate(-50%, -50%); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sheet, .scrim, .button { transition: opacity 150ms !important; }
+    .sheet { transform: none !important; opacity: 0; }
+    @media (min-width: 640px) { .sheet { transform: translate(-50%, -50%) !important; } }
+    body.sheet-open .sheet { opacity: 1; }
+  }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-images" viewBox="0 0 24 24"><path d="m22 11-1.296-1.296a2.4 2.4 0 0 0-3.408 0L11 16"/><path d="M4 8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2"/><circle cx="13" cy="7" r="1" fill="currentColor"/><rect x="8" y="2" width="14" height="14" rx="2"/></symbol>
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3"/><path d="M16 2v3"/><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/><path d="M16 17h.01"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="i-layout" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+    <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+    <symbol id="wm" viewBox="0 0 150 65"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.6"><path d="M 29 17 C 34 2 18 9 11 20 C 3 32 2 49 12 50 Q 20 51 29 43"/><path d="M 44 9 L 38 48 C 46 28 57 26 55 38 Q 53 50 60 47"/><path d="M 67 38 C 90 36 81 20 73 31 C 59 50 77 53 85 44"/><path d="M 91 38 C 114 36 105 20 97 31 C 83 50 101 53 109 44"/><path d="M 117 31 L 114 48 C 117 38 121 31 128 31"/><path d="M 134 31 C 131 44 142 49 147 31 L 142 57 C 140 63 134 63 132 59"/></g></symbol>
+  </defs>
+</svg>
+
+<header class="top" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Cheery">
+      <svg class="symbol" viewBox="410 208 440 530" aria-hidden="true" fill="currentColor">
+        <path d="M538 465 C495 448 422 440 425 373 C428 307 562 232 683 215 C766 204 827 234 840 283 C856 346 829 425 784 439 C712 463 616 385 534 373 C494 367 470 380 470 399 C467 430 516 446 538 465 Z"/>
+        <path d="M725 477 C775 489 837 506 840 563 C843 637 724 697 609 724 C530 743 464 731 434 688 C402 643 412 580 438 543 C468 498 516 482 562 494 C626 506 704 568 757 568 C791 568 805 554 792 531 C781 510 747 492 725 477 Z"/>
+      </svg>
+      <svg class="wordmark" aria-hidden="true"><use href="#wm"/></svg>
+    </a>
+    <button class="lang-btn" id="langBtn" type="button" aria-haspopup="dialog" aria-controls="sheet">
+      <svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-globe"/></svg>
+      <span id="langBtnText">English</span>
+      <svg class="chev" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-down"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="content">
+  <div class="hero">
+    <h1>Help &amp; Support</h1>
+    <p class="meta">Answers to common questions about Cheery, and how to reach us.</p>
+  </div>
+
+  <div class="promise">
+    <span class="well" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-info"></use></svg></span>
+    <h2>Need a hand?</h2>
+    <p>Most answers are below. If you can't find yours, write to us and a real person will reply.</p>
+    <div class="chips"><a class="chip" href="mailto:thanhphamsilent@gmail.com?subject=Cheery%20support"><svg fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg>thanhphamsilent@gmail.com</a></div>
+  </div>
+
+  <p class="group-label">on this page</p>
+  <nav class="toc" aria-label="on this page">
+    <ol><li><a href="#start"><span class="n">1</span><span>Getting started</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#trash"><span class="n">2</span><span>Deleting and restoring photos</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#pro"><span class="n">3</span><span>Cheery Pro and purchases</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#privacy"><span class="n">4</span><span>Privacy and ads</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li><li><a href="#contact"><span class="n">5</span><span>Still need help?</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"></use></svg></a></li></ol>
+  </nav>
+
+  <p class="group-label">questions</p>
+  
+  <section class="block" id="start">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-images"></use></svg></span><h2>1. Getting started</h2></div>
+    <ul class="items"><li><strong>Why does Cheery need access to my photos?</strong><span>Cheery sorts and cleans your photo library right on your phone, so it needs to see your photos and videos. They are never uploaded to us or anyone else.</span></li><li><strong>Cheery only shows some of my photos.</strong><span>You may have allowed access to selected photos only. On iPhone, go to <b>Settings › Apps › Cheery › Photos</b> and choose <b>Full Access</b>. On Android, go to <b>Settings › Apps › Cheery › Permissions › Photos and videos</b> and choose <b>Allow all</b>.</span></li><li><strong>My daily reminder doesn't appear.</strong><span>Check that notifications for Cheery are turned on in your phone's settings, then pick a reminder time in Cheery's Settings.</span></li></ul>
+  </section>
+  <section class="block" id="trash">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trash"></use></svg></span><h2>2. Deleting and restoring photos</h2></div>
+    <ul class="items"><li><strong>Where do removed photos go?</strong><span>Into Cheery's Trash. Nothing is deleted from your phone until you empty the Trash and confirm. Tap any photo in the Trash to keep it.</span></li><li><strong>I emptied the Trash by mistake.</strong><span>Your phone usually keeps deleted photos for about 30 days. On iPhone, open <b>Photos › Albums › Recently Deleted</b>. On Android, open Google Photos or your Gallery app and look in <b>Trash</b> or <b>Bin</b>.</span></li><li><strong>I emptied the Trash but my storage barely changed.</strong><span>Your phone keeps deleted photos for a while before freeing the space. To free it now, also empty <b>Recently Deleted</b> in Photos on iPhone, or the <b>Trash</b> in Google Photos or Gallery on Android.</span></li></ul>
+  </section>
+  <section class="block" id="pro">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-card"></use></svg></span><h2>3. Cheery Pro and purchases</h2></div>
+    <ul class="items"><li><strong>What does Cheery Pro include?</strong><span>Large media, Custom clean, every year in Journal, and no ads. Choose a yearly plan with a 3-day free trial for new subscribers, a monthly plan, or a 1-week or 1-month pass that never renews.</span></li><li><strong>How do I restore Pro on a new phone?</strong><span>Open the Cheery Pro screen and tap <b>Restore Purchases</b>. Make sure you are signed in with the same Apple Account or Google account you used to buy Pro.</span></li><li><strong>How do I cancel my subscription?</strong><span>On iPhone, go to <b>Settings › your name › Subscriptions › Cheery</b>. On Android, open <b>Google Play › your profile › Payments &amp; subscriptions › Subscriptions</b>. Cancel at least 24 hours before it renews. You keep Pro until the end of the period you paid for. Passes don't renew, so there is nothing to cancel.</span></li><li><strong>How do I get a refund?</strong><span>Apple and Google handle payments, so they also handle refunds. On iPhone, request one at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. On Android, open your <a href="https://play.google.com/store/account/orderhistory">Google Play order history</a> and choose <b>Request a refund</b>.</span></li></ul>
+  </section>
+  <section class="block" id="privacy">
+    <div class="head"><span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shield"></use></svg></span><h2>4. Privacy and ads</h2></div>
+    <ul class="items"><li><strong>Are my photos uploaded?</strong><span>No. Cheery works on your phone, with no account and no cloud. Read the details in our <a href="privacy.html">Privacy Policy</a>.</span></li><li><strong>How do I turn off usage stats or crash reports?</strong><span>Open Cheery and go to <b>Settings › Data &amp; privacy</b>. You can change these anytime.</span></li><li><strong>Ads in the free version</strong><span>After you finish a pile, the free version may show one full-screen ad, at most once every few minutes. Ads never appear while you swipe. Cheery Pro removes all ads. To limit ad personalization, go to <b>Settings › Privacy &amp; Security › Tracking</b> on iPhone, or <b>Settings › Google › Ads</b> on Android.</span></li></ul>
+  </section>
+
+  <section class="block contact" id="contact">
+    <span class="well"><svg fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-info"></use></svg></span>
+    <h2>5. Still need help?</h2>
+    <p>Write to us. Telling us your phone model and Cheery version helps us help you faster.</p>
+    <a class="button" href="mailto:thanhphamsilent@gmail.com?subject=Cheery%20support">Email us</a>
+    <span class="email">thanhphamsilent@gmail.com</span>
+  </section></main>
+
+<footer>
+  <svg class="wordmark" role="img" aria-label="Cheery"><use href="#wm"/></svg>
+  <p class="tag">Keep what you love.</p>
+  <small>&copy; 2026 Cheery</small>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+  <div class="grab" aria-hidden="true"></div>
+  <div class="sheet-head">
+    <h2 id="sheetTitle">Choose your language</h2>
+    <button class="circle" id="sheetClose" type="button" aria-label="Close">
+      <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-x"/></svg>
+    </button>
+  </div>
+  <ul class="langs" id="langList"></ul>
+</div>
+
+<script>
+const L = {"en":{"native":"English","english":"English","lang":"Language","choose":"Choose your language","close":"Close","note":"","title":"Help & Support","sub":"Answers to common questions about Cheery, and how to reach us.","helloTitle":"Need a hand?","helloBody":"Most answers are below. If you can't find yours, write to us and a real person will reply.","toc":"on this page","details":"questions","contactTitle":"Still need help?","contactBody":"Write to us. Telling us your phone model and Cheery version helps us help you faster.","contactButton":"Email us","s":[["Getting started",[["Why does Cheery need access to my photos?","Cheery sorts and cleans your photo library right on your phone, so it needs to see your photos and videos. They are never uploaded to us or anyone else."],["Cheery only shows some of my photos.","You may have allowed access to selected photos only. On iPhone, go to <b>Settings › Apps › Cheery › Photos</b> and choose <b>Full Access</b>. On Android, go to <b>Settings › Apps › Cheery › Permissions › Photos and videos</b> and choose <b>Allow all</b>."],["My daily reminder doesn't appear.","Check that notifications for Cheery are turned on in your phone's settings, then pick a reminder time in Cheery's Settings."]]],["Deleting and restoring photos",[["Where do removed photos go?","Into Cheery's Trash. Nothing is deleted from your phone until you empty the Trash and confirm. Tap any photo in the Trash to keep it."],["I emptied the Trash by mistake.","Your phone usually keeps deleted photos for about 30 days. On iPhone, open <b>Photos › Albums › Recently Deleted</b>. On Android, open Google Photos or your Gallery app and look in <b>Trash</b> or <b>Bin</b>."],["I emptied the Trash but my storage barely changed.","Your phone keeps deleted photos for a while before freeing the space. To free it now, also empty <b>Recently Deleted</b> in Photos on iPhone, or the <b>Trash</b> in Google Photos or Gallery on Android."]]],["Cheery Pro and purchases",[["What does Cheery Pro include?","Large media, Custom clean, every year in Journal, and no ads. Choose a yearly plan with a 3-day free trial for new subscribers, a monthly plan, or a 1-week or 1-month pass that never renews."],["How do I restore Pro on a new phone?","Open the Cheery Pro screen and tap <b>Restore Purchases</b>. Make sure you are signed in with the same Apple Account or Google account you used to buy Pro."],["How do I cancel my subscription?","On iPhone, go to <b>Settings › your name › Subscriptions › Cheery</b>. On Android, open <b>Google Play › your profile › Payments &amp; subscriptions › Subscriptions</b>. Cancel at least 24 hours before it renews. You keep Pro until the end of the period you paid for. Passes don't renew, so there is nothing to cancel."],["How do I get a refund?","Apple and Google handle payments, so they also handle refunds. On iPhone, request one at <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>. On Android, open your <a href=\"https://play.google.com/store/account/orderhistory\">Google Play order history</a> and choose <b>Request a refund</b>."]]],["Privacy and ads",[["Are my photos uploaded?","No. Cheery works on your phone, with no account and no cloud. Read the details in our <a href=\"privacy.html{lq}\">Privacy Policy</a>."],["How do I turn off usage stats or crash reports?","Open Cheery and go to <b>Settings › Data &amp; privacy</b>. You can change these anytime."],["Ads in the free version","After you finish a pile, the free version may show one full-screen ad, at most once every few minutes. Ads never appear while you swipe. Cheery Pro removes all ads. To limit ad personalization, go to <b>Settings › Privacy &amp; Security › Tracking</b> on iPhone, or <b>Settings › Google › Ads</b> on Android."]]]]},"vi":{"native":"Tiếng Việt","english":"Vietnamese","lang":"Ngôn ngữ","choose":"Chọn ngôn ngữ","close":"Đóng","note":null,"title":"Trợ giúp & Hỗ trợ","sub":"Giải đáp các câu hỏi thường gặp về Cheery và cách liên hệ với chúng tôi.","helloTitle":"Bạn cần giúp đỡ?","helloBody":"Hầu hết câu trả lời đều có ở bên dưới. Nếu không tìm thấy, hãy viết cho chúng tôi, sẽ có người thật trả lời bạn.","toc":"trên trang này","details":"câu hỏi","contactTitle":"Vẫn cần hỗ trợ?","contactBody":"Hãy viết cho chúng tôi. Cho biết dòng điện thoại và phiên bản Cheery sẽ giúp chúng tôi hỗ trợ bạn nhanh hơn.","contactButton":"Gửi email","s":[["Bắt đầu",[["Vì sao Cheery cần quyền truy cập ảnh?","Cheery sắp xếp và dọn dẹp thư viện ảnh ngay trên điện thoại của bạn, nên cần xem được ảnh và video. Ảnh của bạn không bao giờ được tải lên cho chúng tôi hay bất kỳ ai."],["Cheery chỉ hiện một phần ảnh của tôi.","Có thể bạn chỉ cho phép truy cập một số ảnh. Trên iPhone, vào <b>Cài đặt › Ứng dụng › Cheery › Ảnh</b> và chọn <b>Toàn quyền truy cập</b>. Trên Android, vào <b>Cài đặt › Ứng dụng › Cheery › Quyền › Ảnh và video</b> và chọn <b>Cho phép tất cả</b>."],["Nhắc nhở hằng ngày không hiện.","Kiểm tra thông báo của Cheery đã được bật trong cài đặt điện thoại, rồi chọn giờ nhắc trong phần Cài đặt của Cheery."]]],["Xóa và khôi phục ảnh",[["Ảnh đã bỏ đi đâu?","Vào Thùng rác của Cheery. Không có gì bị xóa khỏi điện thoại cho đến khi bạn dọn Thùng rác và xác nhận. Chạm vào ảnh bất kỳ trong Thùng rác để giữ lại."],["Tôi lỡ dọn Thùng rác.","Điện thoại thường giữ ảnh đã xóa khoảng 30 ngày. Trên iPhone, mở <b>Ảnh › Album › Đã xóa gần đây</b>. Trên Android, mở Google Photos hoặc ứng dụng Thư viện và tìm mục <b>Thùng rác</b>."],["Tôi đã dọn Thùng rác nhưng dung lượng gần như không đổi.","Điện thoại giữ ảnh đã xóa một thời gian rồi mới giải phóng dung lượng. Muốn giải phóng ngay, hãy dọn thêm <b>Đã xóa gần đây</b> trong ứng dụng Ảnh trên iPhone, hoặc <b>Thùng rác</b> trong Google Photos hay Thư viện trên Android."]]],["Cheery Pro và thanh toán",[["Cheery Pro gồm những gì?","Large media, Custom clean, xem mọi năm trong Journal và không quảng cáo. Bạn có thể chọn gói năm (dùng thử miễn phí 3 ngày cho người đăng ký mới), gói tháng, hoặc gói 1 tuần hay 1 tháng trả một lần, không tự gia hạn."],["Làm sao khôi phục Pro trên điện thoại mới?","Mở màn hình Cheery Pro và chạm <b>Khôi phục giao dịch mua</b>. Đảm bảo bạn đăng nhập đúng tài khoản Apple hoặc tài khoản Google đã dùng để mua Pro."],["Làm sao hủy gói thuê bao?","Trên iPhone, vào <b>Cài đặt › tên của bạn › Đăng ký › Cheery</b>. Trên Android, mở <b>Google Play › hồ sơ › Thanh toán và gói thuê bao › Gói thuê bao</b>. Hãy hủy ít nhất 24 giờ trước khi gia hạn. Bạn vẫn dùng Pro đến hết kỳ đã thanh toán. Gói 1 tuần và 1 tháng không tự gia hạn nên không cần hủy."],["Làm sao để được hoàn tiền?","Apple và Google xử lý thanh toán nên cũng xử lý hoàn tiền. Trên iPhone, gửi yêu cầu tại <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>. Trên Android, mở <a href=\"https://play.google.com/store/account/orderhistory\">lịch sử đơn hàng Google Play</a> và chọn <b>Yêu cầu hoàn tiền</b>."]]],["Quyền riêng tư và quảng cáo",[["Ảnh của tôi có bị tải lên không?","Không. Cheery hoạt động ngay trên điện thoại, không cần tài khoản, không dùng đám mây. Xem chi tiết trong <a href=\"privacy.html{lq}\">Chính sách quyền riêng tư</a>."],["Làm sao tắt thống kê sử dụng hoặc báo cáo sự cố?","Mở Cheery và vào <b>Cài đặt › Dữ liệu và quyền riêng tư</b>. Bạn có thể thay đổi bất cứ lúc nào."],["Quảng cáo trong bản miễn phí","Sau khi bạn xem xong một chồng ảnh, bản miễn phí có thể hiện một quảng cáo toàn màn hình, tối đa một lần trong vài phút. Quảng cáo không bao giờ hiện khi bạn đang vuốt. Cheery Pro gỡ bỏ toàn bộ quảng cáo. Để hạn chế quảng cáo cá nhân hóa, vào <b>Cài đặt › Quyền riêng tư & Bảo mật › Theo dõi</b> trên iPhone, hoặc <b>Cài đặt › Google › Quảng cáo</b> trên Android."]]]]},"zh":{"native":"简体中文","english":"Chinese","lang":"语言","choose":"选择语言","close":"关闭","note":null,"title":"帮助与支持","sub":"关于 Cheery 的常见问题解答，以及联系我们的方式。","helloTitle":"需要帮助？","helloBody":"大多数答案都在下面。如果没有找到，请写信给我们，会有真人回复你。","toc":"本页内容","details":"问题","contactTitle":"仍需要帮助？","contactBody":"请写信给我们。告诉我们你的手机型号和 Cheery 版本，可以帮我们更快地帮助你。","contactButton":"发送邮件","s":[["入门",[["Cheery 为什么需要访问我的照片？","Cheery 直接在你的手机上整理和清理照片图库，因此需要查看你的照片和视频。它们绝不会上传给我们或任何人。"],["Cheery 只显示了部分照片。","你可能只允许访问部分照片。在 iPhone 上，前往 <b>设置 › App › Cheery › 照片</b>，选择 <b>完全访问</b>。在 Android 上，前往 <b>设置 › 应用 › Cheery › 权限 › 照片和视频</b>，选择 <b>全部允许</b>。"],["每日提醒没有出现。","请确认手机设置中已开启 Cheery 的通知，然后在 Cheery 的设置中选择提醒时间。"]]],["删除与恢复照片",[["移除的照片去哪了？","进入 Cheery 的废纸篓。在你清空废纸篓并确认之前，不会从手机中删除任何内容。点按废纸篓中的照片即可保留。"],["我不小心清空了废纸篓。","手机通常会将已删除的照片保留约 30 天。在 iPhone 上，打开 <b>照片 › 相簿 › 最近删除</b>。在 Android 上，打开 Google 相册或图库应用，查看 <b>回收站</b>。"],["清空废纸篓后，存储空间几乎没变。","手机会先保留已删除的照片一段时间再释放空间。如需立即释放，请在 iPhone 的照片中清空 <b>最近删除</b>，或在 Android 的 Google 相册或图库中清空 <b>回收站</b>。"]]],["Cheery Pro 与购买",[["Cheery Pro 包含什么？","Large media、Custom clean、在 Journal 中查看所有年份，以及无广告。可选择年度方案（新订阅者享 3 天免费试用）、月度方案，或不会续订的 1 周或 1 个月通行证。"],["如何在新手机上恢复 Pro？","打开 Cheery Pro 页面，点按 <b>恢复购买</b>。请确认登录的是购买 Pro 时使用的 Apple 账户或 Google 账号。"],["如何取消订阅？","在 iPhone 上，前往 <b>设置 › 你的名字 › 订阅 › Cheery</b>。在 Android 上，打开 <b>Google Play › 个人资料 › 付款和订阅 › 订阅</b>。请至少在续订前 24 小时取消。你可以使用 Pro 直到已付费周期结束。通行证不会续订，无需取消。"],["如何申请退款？","付款由 Apple 和 Google 处理，退款也由他们处理。在 iPhone 上，请前往 <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a> 申请。在 Android 上，打开 <a href=\"https://play.google.com/store/account/orderhistory\">Google Play 订单记录</a>，选择 <b>申请退款</b>。"]]],["隐私与广告",[["我的照片会被上传吗？","不会。Cheery 在你的手机上运行，无需账号，也不使用云端。详情请参阅我们的<a href=\"privacy.html{lq}\">隐私政策</a>。"],["如何关闭使用统计或崩溃报告？","打开 Cheery，前往 <b>设置 › 数据与隐私</b>。你可以随时更改。"],["免费版中的广告","在你整理完一组照片后，免费版可能会显示一次全屏广告，每隔几分钟最多一次。滑动照片时绝不会出现广告。Cheery Pro 会移除所有广告。如需限制个性化广告，请在 iPhone 上前往 <b>设置 › 隐私与安全性 › 跟踪</b>，或在 Android 上前往 <b>设置 › Google › 广告</b>。"]]]]},"ja":{"native":"日本語","english":"Japanese","lang":"言語","choose":"言語を選択","close":"閉じる","note":null,"title":"ヘルプとサポート","sub":"Cheery についてのよくある質問と、お問い合わせ方法です。","helloTitle":"お困りですか？","helloBody":"ほとんどの答えは下にあります。見つからない場合はメールでお知らせください。スタッフが直接お返事します。","toc":"このページの内容","details":"質問","contactTitle":"まだ解決しませんか？","contactBody":"メールでお知らせください。お使いの機種と Cheery のバージョンを添えていただくと、より早くお手伝いできます。","contactButton":"メールを送る","s":[["はじめに",[["Cheery が写真へのアクセスを必要とするのはなぜですか？","Cheery はスマートフォン上で写真ライブラリを整理・お掃除するため、写真やビデオを見る必要があります。写真が私たちや他の誰かにアップロードされることはありません。"],["一部の写真しか表示されません。","選択した写真のみへのアクセスを許可している可能性があります。iPhone では <b>設定 › アプリ › Cheery › 写真</b> で <b>フルアクセス</b> を選んでください。Android では <b>設定 › アプリ › Cheery › 権限 › 写真と動画</b> で <b>すべて許可</b> を選んでください。"],["毎日のリマインダーが届きません。","スマートフォンの設定で Cheery の通知がオンになっているか確認し、Cheery の設定でリマインダーの時間を選んでください。"]]],["写真の削除と復元",[["削除した写真はどこに行きますか？","Cheery のゴミ箱に入ります。ゴミ箱を空にして確認するまで、スマートフォンから何も削除されません。ゴミ箱の写真をタップすると残せます。"],["間違えてゴミ箱を空にしました。","スマートフォンは通常、削除した写真を約 30 日間保管します。iPhone では <b>写真 › アルバム › 最近削除した項目</b> を開いてください。Android では Google フォトまたはギャラリーアプリを開き、<b>ゴミ箱</b> を確認してください。"],["ゴミ箱を空にしても空き容量がほとんど増えません。","スマートフォンは削除した写真をしばらく保管してから容量を解放します。すぐに解放するには、iPhone の写真で <b>最近削除した項目</b> を、Android では Google フォトやギャラリーの <b>ゴミ箱</b> も空にしてください。"]]],["Cheery Pro と購入",[["Cheery Pro には何が含まれますか？","Large media、Custom clean、Journal ですべての年を見られる機能、そして広告なし。年額プラン（新規の方は 3 日間無料トライアル）、月額プラン、または自動更新されない 1 週間・1 か月パスから選べます。"],["新しいスマートフォンで Pro を復元するには？","Cheery Pro の画面を開き、<b>購入を復元</b> をタップしてください。Pro を購入したときと同じ Apple アカウントまたは Google アカウントでサインインしていることを確認してください。"],["定期購入を解約するには？","iPhone では <b>設定 › ユーザ名 › サブスクリプション › Cheery</b> へ。Android では <b>Google Play › プロフィール › お支払いと定期購入 › 定期購入</b> を開きます。更新の 24 時間以上前に解約してください。お支払い済みの期間が終わるまで Pro を使えます。パスは自動更新されないため、解約は不要です。"],["返金を受けるには？","お支払いは Apple と Google が処理するため、返金もそれぞれが対応します。iPhone では <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a> からリクエストしてください。Android では <a href=\"https://play.google.com/store/account/orderhistory\">Google Play の注文履歴</a> を開き、<b>払い戻しをリクエスト</b> を選んでください。"]]],["プライバシーと広告",[["写真はアップロードされますか？","いいえ。Cheery はスマートフォン上で動作し、アカウントもクラウドも使いません。詳しくは<a href=\"privacy.html{lq}\">プライバシーポリシー</a>をご覧ください。"],["利用統計やクラッシュレポートをオフにするには？","Cheery を開き、<b>設定 › データとプライバシー</b> へ進んでください。いつでも変更できます。"],["無料版の広告","写真の山を一つ整理し終えた後、無料版では全画面広告が 1 回表示されることがあります（数分に 1 回まで）。スワイプ中に広告が表示されることはありません。Cheery Pro ではすべての広告がなくなります。広告のパーソナライズを制限するには、iPhone では <b>設定 › プライバシーとセキュリティ › トラッキング</b>、Android では <b>設定 › Google › 広告</b> へ進んでください。"]]]]},"ko":{"native":"한국어","english":"Korean","lang":"언어","choose":"언어를 선택하세요","close":"닫기","note":null,"title":"도움말 및 지원","sub":"Cheery에 대한 자주 묻는 질문과 연락 방법입니다.","helloTitle":"도움이 필요하신가요?","helloBody":"대부분의 답은 아래에 있습니다. 찾지 못하셨다면 메일을 보내 주세요. 실제 사람이 답장해 드립니다.","toc":"이 페이지의 내용","details":"질문","contactTitle":"아직 도움이 필요하신가요?","contactBody":"메일을 보내 주세요. 사용하시는 휴대전화 모델과 Cheery 버전을 알려 주시면 더 빨리 도와드릴 수 있습니다.","contactButton":"이메일 보내기","s":[["시작하기",[["Cheery가 사진 접근 권한이 필요한 이유는 무엇인가요?","Cheery는 휴대전화에서 직접 사진 보관함을 정리하므로 사진과 동영상을 볼 수 있어야 합니다. 사진은 저희나 다른 누구에게도 업로드되지 않습니다."],["Cheery에 사진이 일부만 보여요.","선택한 사진에만 접근을 허용했을 수 있습니다. iPhone에서는 <b>설정 › 앱 › Cheery › 사진</b>에서 <b>전체 접근</b>을 선택하세요. Android에서는 <b>설정 › 앱 › Cheery › 권한 › 사진 및 동영상</b>에서 <b>모두 허용</b>을 선택하세요."],["매일 알림이 오지 않아요.","휴대전화 설정에서 Cheery 알림이 켜져 있는지 확인한 다음, Cheery 설정에서 알림 시간을 선택하세요."]]],["사진 삭제와 복원",[["삭제한 사진은 어디로 가나요?","Cheery 휴지통으로 이동합니다. 휴지통을 비우고 확인하기 전까지는 휴대전화에서 아무것도 삭제되지 않습니다. 휴지통의 사진을 탭하면 남길 수 있습니다."],["실수로 휴지통을 비웠어요.","휴대전화는 보통 삭제한 사진을 약 30일 동안 보관합니다. iPhone에서는 <b>사진 › 앨범 › 최근 삭제된 항목</b>을 여세요. Android에서는 Google 포토나 갤러리 앱을 열고 <b>휴지통</b>을 확인하세요."],["휴지통을 비웠는데 저장 공간이 거의 그대로예요.","휴대전화는 삭제한 사진을 한동안 보관한 후 공간을 비웁니다. 바로 비우려면 iPhone 사진 앱의 <b>최근 삭제된 항목</b>이나 Android의 Google 포토 또는 갤러리 <b>휴지통</b>도 비우세요."]]],["Cheery Pro 및 구매",[["Cheery Pro에는 무엇이 포함되나요?","Large media, Custom clean, Journal에서 모든 연도 보기, 그리고 광고 없음. 연간 플랜(신규 구독자 3일 무료 체험), 월간 플랜, 또는 갱신되지 않는 1주·1개월 이용권 중에서 선택할 수 있습니다."],["새 휴대전화에서 Pro를 복원하려면?","Cheery Pro 화면을 열고 <b>구매 복원</b>을 탭하세요. Pro를 구매할 때 사용한 Apple 계정 또는 Google 계정으로 로그인되어 있는지 확인하세요."],["구독을 해지하려면?","iPhone에서는 <b>설정 › 사용자 이름 › 구독 › Cheery</b>로 이동하세요. Android에서는 <b>Google Play › 프로필 › 결제 및 정기 결제 › 정기 결제</b>를 여세요. 갱신 최소 24시간 전에 해지하세요. 결제한 기간이 끝날 때까지 Pro를 이용할 수 있습니다. 이용권은 갱신되지 않으므로 해지할 필요가 없습니다."],["환불을 받으려면?","결제는 Apple과 Google이 처리하므로 환불도 각각 처리합니다. iPhone에서는 <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>에서 요청하세요. Android에서는 <a href=\"https://play.google.com/store/account/orderhistory\">Google Play 주문 내역</a>을 열고 <b>환불 요청</b>을 선택하세요."]]],["개인정보 보호 및 광고",[["제 사진이 업로드되나요?","아니요. Cheery는 휴대전화에서 작동하며 계정도 클라우드도 사용하지 않습니다. 자세한 내용은 <a href=\"privacy.html{lq}\">개인정보 처리방침</a>을 확인하세요."],["사용 통계나 오류 보고를 끄려면?","Cheery를 열고 <b>설정 › 데이터 및 개인정보</b>로 이동하세요. 언제든지 변경할 수 있습니다."],["무료 버전의 광고","사진 한 묶음을 다 정리하면 무료 버전에서 전체 화면 광고가 한 번 표시될 수 있으며, 몇 분에 한 번을 넘지 않습니다. 사진을 넘기는 동안에는 광고가 표시되지 않습니다. Cheery Pro는 모든 광고를 없앱니다. 맞춤 광고를 제한하려면 iPhone에서는 <b>설정 › 개인정보 보호 및 보안 › 추적</b>, Android에서는 <b>설정 › Google › 광고</b>로 이동하세요."]]]]},"es":{"native":"Español","english":"Spanish","lang":"Idioma","choose":"Elige tu idioma","close":"Cerrar","note":null,"title":"Ayuda y soporte","sub":"Respuestas a preguntas frecuentes sobre Cheery y cómo contactarnos.","helloTitle":"¿Necesitas ayuda?","helloBody":"La mayoría de las respuestas están abajo. Si no encuentras la tuya, escríbenos y te responderá una persona real.","toc":"en esta página","details":"preguntas","contactTitle":"¿Aún necesitas ayuda?","contactBody":"Escríbenos. Si nos dices el modelo de tu teléfono y la versión de Cheery, podremos ayudarte más rápido.","contactButton":"Enviar correo","s":[["Primeros pasos",[["¿Por qué Cheery necesita acceso a mis fotos?","Cheery ordena y limpia tu fototeca directamente en tu teléfono, así que necesita ver tus fotos y videos. Nunca se suben a nuestros servidores ni a los de nadie."],["Cheery solo muestra algunas de mis fotos.","Puede que solo hayas permitido el acceso a fotos seleccionadas. En iPhone, ve a <b>Ajustes › Apps › Cheery › Fotos</b> y elige <b>Acceso total</b>. En Android, ve a <b>Ajustes › Aplicaciones › Cheery › Permisos › Fotos y videos</b> y elige <b>Permitir todo</b>."],["No me llega el recordatorio diario.","Comprueba que las notificaciones de Cheery estén activadas en los ajustes del teléfono y elige una hora de recordatorio en los Ajustes de Cheery."]]],["Eliminar y recuperar fotos",[["¿Adónde van las fotos que quito?","A la Papelera de Cheery. No se elimina nada del teléfono hasta que vacías la Papelera y lo confirmas. Toca cualquier foto de la Papelera para conservarla."],["Vacié la Papelera por error.","Tu teléfono suele guardar las fotos eliminadas unos 30 días. En iPhone, abre <b>Fotos › Álbumes › Eliminado</b>. En Android, abre Google Fotos o tu app de Galería y busca la <b>Papelera</b>."],["Vacié la Papelera, pero casi no gané espacio.","Tu teléfono guarda las fotos eliminadas un tiempo antes de liberar el espacio. Para liberarlo ya, vacía también <b>Eliminado</b> en Fotos en iPhone, o la <b>Papelera</b> de Google Fotos o la Galería en Android."]]],["Cheery Pro y compras",[["¿Qué incluye Cheery Pro?","Large media, Custom clean, todos los años en Journal y sin anuncios. Elige un plan anual con prueba gratuita de 3 días para nuevos suscriptores, un plan mensual o un pase de 1 semana o 1 mes que nunca se renueva."],["¿Cómo recupero Pro en un teléfono nuevo?","Abre la pantalla de Cheery Pro y toca <b>Restaurar compras</b>. Asegúrate de haber iniciado sesión con la misma cuenta de Apple o de Google con la que compraste Pro."],["¿Cómo cancelo mi suscripción?","En iPhone, ve a <b>Ajustes › tu nombre › Suscripciones › Cheery</b>. En Android, abre <b>Google Play › tu perfil › Pagos y suscripciones › Suscripciones</b>. Cancela al menos 24 horas antes de la renovación. Conservas Pro hasta el final del periodo pagado. Los pases no se renuevan, así que no hay nada que cancelar."],["¿Cómo obtengo un reembolso?","Apple y Google gestionan los pagos, así que también los reembolsos. En iPhone, solicítalo en <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>. En Android, abre tu <a href=\"https://play.google.com/store/account/orderhistory\">historial de pedidos de Google Play</a> y elige <b>Solicitar un reembolso</b>."]]],["Privacidad y anuncios",[["¿Se suben mis fotos?","No. Cheery funciona en tu teléfono, sin cuenta y sin nube. Lee los detalles en nuestra <a href=\"privacy.html{lq}\">Política de privacidad</a>."],["¿Cómo desactivo las estadísticas de uso o los informes de fallos?","Abre Cheery y ve a <b>Ajustes › Datos y privacidad</b>. Puedes cambiarlo cuando quieras."],["Anuncios en la versión gratuita","Al terminar un montón de fotos, la versión gratuita puede mostrar un anuncio a pantalla completa, como máximo una vez cada pocos minutos. Nunca aparecen anuncios mientras deslizas. Cheery Pro elimina todos los anuncios. Para limitar la personalización de anuncios, ve a <b>Ajustes › Privacidad y seguridad › Rastreo</b> en iPhone, o a <b>Ajustes › Google › Anuncios</b> en Android."]]]]},"fr":{"native":"Français","english":"French","lang":"Langue","choose":"Choisis ta langue","close":"Fermer","note":null,"title":"Aide et assistance","sub":"Réponses aux questions fréquentes sur Cheery, et comment nous joindre.","helloTitle":"Besoin d’un coup de main ?","helloBody":"La plupart des réponses sont ci-dessous. Si vous ne trouvez pas la vôtre, écrivez-nous : une vraie personne vous répondra.","toc":"sur cette page","details":"questions","contactTitle":"Toujours besoin d’aide ?","contactBody":"Écrivez-nous. Indiquer le modèle de votre téléphone et la version de Cheery nous aide à vous répondre plus vite.","contactButton":"Nous écrire","s":[["Pour commencer",[["Pourquoi Cheery a-t-il besoin d’accéder à mes photos ?","Cheery trie et nettoie votre photothèque directement sur votre téléphone : il doit donc voir vos photos et vidéos. Elles ne sont jamais envoyées à nous ni à personne."],["Cheery n’affiche qu’une partie de mes photos.","Vous avez peut-être autorisé l’accès à certaines photos seulement. Sur iPhone, allez dans <b>Réglages › Apps › Cheery › Photos</b> et choisissez <b>Accès complet</b>. Sur Android, allez dans <b>Paramètres › Applications › Cheery › Autorisations › Photos et vidéos</b> et choisissez <b>Tout autoriser</b>."],["Le rappel quotidien n’apparaît pas.","Vérifiez que les notifications de Cheery sont activées dans les réglages du téléphone, puis choisissez une heure de rappel dans les Réglages de Cheery."]]],["Supprimer et récupérer des photos",[["Où vont les photos retirées ?","Dans la Corbeille de Cheery. Rien n’est supprimé du téléphone tant que vous n’avez pas vidé la Corbeille et confirmé. Touchez une photo de la Corbeille pour la garder."],["J’ai vidé la Corbeille par erreur.","Votre téléphone conserve généralement les photos supprimées environ 30 jours. Sur iPhone, ouvrez <b>Photos › Albums › Supprimés récemment</b>. Sur Android, ouvrez Google Photos ou votre app Galerie et regardez dans la <b>Corbeille</b>."],["J’ai vidé la Corbeille, mais l’espace a à peine changé.","Votre téléphone garde les photos supprimées quelque temps avant de libérer l’espace. Pour le libérer tout de suite, videz aussi <b>Supprimés récemment</b> dans Photos sur iPhone, ou la <b>Corbeille</b> de Google Photos ou de la Galerie sur Android."]]],["Cheery Pro et achats",[["Que comprend Cheery Pro ?","Large media, Custom clean, toutes les années dans Journal, et aucune publicité. Choisissez un forfait annuel avec essai gratuit de 3 jours pour les nouveaux abonnés, un forfait mensuel, ou un pass 1 semaine ou 1 mois qui ne se renouvelle jamais."],["Comment restaurer Pro sur un nouveau téléphone ?","Ouvrez l’écran Cheery Pro et touchez <b>Restaurer les achats</b>. Vérifiez que vous êtes connecté avec le même compte Apple ou Google que lors de l’achat."],["Comment résilier mon abonnement ?","Sur iPhone, allez dans <b>Réglages › votre nom › Abonnements › Cheery</b>. Sur Android, ouvrez <b>Google Play › votre profil › Paiements et abonnements › Abonnements</b>. Résiliez au moins 24 heures avant le renouvellement. Vous gardez Pro jusqu’à la fin de la période payée. Les pass ne se renouvellent pas : rien à résilier."],["Comment obtenir un remboursement ?","Apple et Google gèrent les paiements, donc aussi les remboursements. Sur iPhone, faites une demande sur <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>. Sur Android, ouvrez votre <a href=\"https://play.google.com/store/account/orderhistory\">historique des commandes Google Play</a> et choisissez <b>Demander un remboursement</b>."]]],["Confidentialité et publicité",[["Mes photos sont-elles envoyées en ligne ?","Non. Cheery fonctionne sur votre téléphone, sans compte et sans cloud. Tous les détails sont dans notre <a href=\"privacy.html{lq}\">Politique de confidentialité</a>."],["Comment désactiver les statistiques d’utilisation ou les rapports de plantage ?","Ouvrez Cheery et allez dans <b>Réglages › Données et confidentialité</b>. Vous pouvez changer cela à tout moment."],["Publicités dans la version gratuite","Quand vous terminez une pile de photos, la version gratuite peut afficher une publicité plein écran, au plus une fois toutes les quelques minutes. Aucune publicité pendant que vous faites glisser vos photos. Cheery Pro supprime toutes les publicités. Pour limiter la personnalisation des publicités, allez dans <b>Réglages › Confidentialité et sécurité › Suivi</b> sur iPhone, ou <b>Paramètres › Google › Annonces</b> sur Android."]]]]},"de":{"native":"Deutsch","english":"German","lang":"Sprache","choose":"Wähle deine Sprache","close":"Schließen","note":null,"title":"Hilfe & Support","sub":"Antworten auf häufige Fragen zu Cheery und so erreichst du uns.","helloTitle":"Brauchst du Hilfe?","helloBody":"Die meisten Antworten findest du unten. Wenn nicht, schreib uns – ein echter Mensch antwortet dir.","toc":"auf dieser Seite","details":"Fragen","contactTitle":"Brauchst du noch Hilfe?","contactBody":"Schreib uns. Wenn du dein Handymodell und die Cheery-Version nennst, können wir dir schneller helfen.","contactButton":"E-Mail schreiben","s":[["Erste Schritte",[["Warum braucht Cheery Zugriff auf meine Fotos?","Cheery sortiert und räumt deine Mediathek direkt auf deinem Handy auf und muss deine Fotos und Videos deshalb sehen. Sie werden nie zu uns oder anderen hochgeladen."],["Cheery zeigt nur einen Teil meiner Fotos.","Vielleicht hast du nur den Zugriff auf ausgewählte Fotos erlaubt. Auf dem iPhone gehst du zu <b>Einstellungen › Apps › Cheery › Fotos</b> und wählst <b>Voller Zugriff</b>. Auf Android gehst du zu <b>Einstellungen › Apps › Cheery › Berechtigungen › Fotos und Videos</b> und wählst <b>Alle zulassen</b>."],["Die tägliche Erinnerung erscheint nicht.","Prüfe, ob Mitteilungen für Cheery in den Handy-Einstellungen aktiviert sind, und wähle dann in den Cheery-Einstellungen eine Uhrzeit."]]],["Fotos löschen und wiederherstellen",[["Wohin kommen entfernte Fotos?","In den Papierkorb von Cheery. Nichts wird von deinem Handy gelöscht, bis du den Papierkorb leerst und bestätigst. Tippe auf ein Foto im Papierkorb, um es zu behalten."],["Ich habe den Papierkorb aus Versehen geleert.","Dein Handy behält gelöschte Fotos meist etwa 30 Tage. Auf dem iPhone öffnest du <b>Fotos › Alben › Zuletzt gelöscht</b>. Auf Android öffnest du Google Fotos oder deine Galerie-App und schaust in den <b>Papierkorb</b>."],["Ich habe den Papierkorb geleert, aber kaum Speicher gewonnen.","Dein Handy behält gelöschte Fotos eine Weile, bevor es den Speicher freigibt. Um ihn sofort freizugeben, leere auch <b>Zuletzt gelöscht</b> in Fotos auf dem iPhone oder den <b>Papierkorb</b> in Google Fotos oder der Galerie auf Android."]]],["Cheery Pro und Käufe",[["Was gehört zu Cheery Pro?","Large media, Custom clean, alle Jahre im Journal und keine Werbung. Wähle ein Jahresabo mit 3 Tagen Gratis-Test für Neukunden, ein Monatsabo oder einen 1-Wochen- oder 1-Monats-Pass, der sich nie verlängert."],["Wie stelle ich Pro auf einem neuen Handy wieder her?","Öffne den Cheery-Pro-Bildschirm und tippe auf <b>Käufe wiederherstellen</b>. Achte darauf, mit demselben Apple-Account oder Google-Konto angemeldet zu sein, mit dem du Pro gekauft hast."],["Wie kündige ich mein Abo?","Auf dem iPhone gehst du zu <b>Einstellungen › dein Name › Abonnements › Cheery</b>. Auf Android öffnest du <b>Google Play › dein Profil › Zahlungen und Abos › Abos</b>. Kündige mindestens 24 Stunden vor der Verlängerung. Pro bleibt bis zum Ende des bezahlten Zeitraums aktiv. Pässe verlängern sich nicht, du musst nichts kündigen."],["Wie bekomme ich eine Erstattung?","Apple und Google wickeln die Zahlungen ab und damit auch Erstattungen. Auf dem iPhone beantragst du sie unter <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>. Auf Android öffnest du deinen <a href=\"https://play.google.com/store/account/orderhistory\">Google-Play-Bestellverlauf</a> und wählst <b>Erstattung anfordern</b>."]]],["Datenschutz und Werbung",[["Werden meine Fotos hochgeladen?","Nein. Cheery funktioniert auf deinem Handy, ohne Konto und ohne Cloud. Details findest du in unserer <a href=\"privacy.html{lq}\">Datenschutzerklärung</a>."],["Wie schalte ich Nutzungsstatistiken oder Absturzberichte aus?","Öffne Cheery und gehe zu <b>Einstellungen › Daten und Datenschutz</b>. Du kannst das jederzeit ändern."],["Werbung in der kostenlosen Version","Nachdem du einen Stapel fertig sortiert hast, kann die kostenlose Version eine Vollbildanzeige zeigen, höchstens einmal alle paar Minuten. Während du wischst, erscheint nie Werbung. Cheery Pro entfernt alle Anzeigen. Um personalisierte Werbung einzuschränken, gehe auf dem iPhone zu <b>Einstellungen › Datenschutz &amp; Sicherheit › Tracking</b> oder auf Android zu <b>Einstellungen › Google › Anzeigen</b>."]]]]},"pt":{"native":"Português","english":"Portuguese","lang":"Idioma","choose":"Escolha seu idioma","close":"Fechar","note":null,"title":"Ajuda e suporte","sub":"Respostas para dúvidas comuns sobre o Cheery e como falar com a gente.","helloTitle":"Precisa de ajuda?","helloBody":"A maioria das respostas está abaixo. Se não encontrar a sua, escreva para nós e uma pessoa de verdade vai responder.","toc":"nesta página","details":"perguntas","contactTitle":"Ainda precisa de ajuda?","contactBody":"Escreva para nós. Informar o modelo do seu celular e a versão do Cheery ajuda a gente a ajudar você mais rápido.","contactButton":"Enviar e-mail","s":[["Primeiros passos",[["Por que o Cheery precisa de acesso às minhas fotos?","O Cheery organiza e limpa sua biblioteca de fotos direto no seu celular, então precisa ver suas fotos e vídeos. Eles nunca são enviados para nós nem para ninguém."],["O Cheery mostra só algumas das minhas fotos.","Talvez você tenha permitido acesso apenas a fotos selecionadas. No iPhone, vá em <b>Ajustes › Apps › Cheery › Fotos</b> e escolha <b>Acesso Total</b>. No Android, vá em <b>Configurações › Apps › Cheery › Permissões › Fotos e vídeos</b> e escolha <b>Permitir tudo</b>."],["O lembrete diário não aparece.","Confira se as notificações do Cheery estão ativadas nos ajustes do celular e escolha um horário de lembrete nos Ajustes do Cheery."]]],["Apagar e recuperar fotos",[["Para onde vão as fotos removidas?","Para a Lixeira do Cheery. Nada é apagado do celular até você esvaziar a Lixeira e confirmar. Toque em qualquer foto da Lixeira para mantê-la."],["Esvaziei a Lixeira sem querer.","Seu celular costuma guardar as fotos apagadas por cerca de 30 dias. No iPhone, abra <b>Fotos › Álbuns › Apagados</b>. No Android, abra o Google Fotos ou o app Galeria e procure a <b>Lixeira</b>."],["Esvaziei a Lixeira, mas o espaço quase não mudou.","Seu celular guarda as fotos apagadas por um tempo antes de liberar o espaço. Para liberar agora, esvazie também <b>Apagados</b> no app Fotos do iPhone, ou a <b>Lixeira</b> do Google Fotos ou da Galeria no Android."]]],["Cheery Pro e compras",[["O que o Cheery Pro inclui?","Large media, Custom clean, todos os anos no Journal e nada de anúncios. Escolha um plano anual com teste grátis de 3 dias para novos assinantes, um plano mensal ou um passe de 1 semana ou 1 mês que nunca é renovado."],["Como recupero o Pro em um celular novo?","Abra a tela do Cheery Pro e toque em <b>Restaurar compras</b>. Verifique se você está conectado com a mesma conta Apple ou Google usada na compra."],["Como cancelo minha assinatura?","No iPhone, vá em <b>Ajustes › seu nome › Assinaturas › Cheery</b>. No Android, abra <b>Google Play › seu perfil › Pagamentos e assinaturas › Assinaturas</b>. Cancele pelo menos 24 horas antes da renovação. O Pro continua até o fim do período pago. Os passes não são renovados, então não há nada para cancelar."],["Como peço reembolso?","A Apple e o Google cuidam dos pagamentos e, por isso, também dos reembolsos. No iPhone, peça em <a href=\"https://reportaproblem.apple.com\">reportaproblem.apple.com</a>. No Android, abra seu <a href=\"https://play.google.com/store/account/orderhistory\">histórico de pedidos do Google Play</a> e escolha <b>Solicitar reembolso</b>."]]],["Privacidade e anúncios",[["Minhas fotos são enviadas para a internet?","Não. O Cheery funciona no seu celular, sem conta e sem nuvem. Veja os detalhes na nossa <a href=\"privacy.html{lq}\">Política de Privacidade</a>."],["Como desativo as estatísticas de uso ou os relatórios de falhas?","Abra o Cheery e vá em <b>Ajustes › Dados e privacidade</b>. Você pode mudar quando quiser."],["Anúncios na versão gratuita","Depois que você termina uma pilha de fotos, a versão gratuita pode mostrar um anúncio em tela cheia, no máximo uma vez a cada poucos minutos. Os anúncios nunca aparecem enquanto você desliza. O Cheery Pro remove todos os anúncios. Para limitar a personalização de anúncios, vá em <b>Ajustes › Privacidade e Segurança › Rastreamento</b> no iPhone, ou <b>Configurações › Google › Anúncios</b> no Android."]]]]}};
+const ORDER = ["en","vi","zh","ja","ko","es","fr","de","pt"];
+const HTML_LANG = {"en":"en","vi":"vi","zh":"zh-Hans","ja":"ja","ko":"ko","es":"es","fr":"fr","de":"de","pt":"pt-BR"};
+const ICONS = ["i-images","i-trash","i-card","i-shield"];
+const IDS = ["start","trash","pro","privacy"];
+const LINKS = {};
+
+(function () {
+  const EMAIL = "thanhphamsilent@gmail.com";
+  const svg = (id, w) => `<svg fill="none" stroke="currentColor" stroke-width="${w || 1.75}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#${id}"/></svg>`;
+  const link = (s) => s.replace(/\{(mlkit|gp|play|fb|ads|myad)\}/g, (_, k) => LINKS[k]);
+
+  function blocks(list) {
+    return list.map((b) => {
+      if (b.p) return `<p>${link(b.p)}</p>`;
+      if (b.m) return `<p class="muted">${link(b.m)}</p>`;
+      if (b.n) return `<div class="note">${link(b.n)}</div>`;
+      if (b.items) return `<ul class="items">${b.items.map(([t, d]) => `<li><strong>${t}</strong><span>${link(d)}</span></li>`).join("")}</ul>`;
+      return "";
+    }).join("");
+  }
+
+  function render(code) {
+    const t = L[code];
+    const lq = code === "en" ? "" : "?lang=" + code;
+    const fix = (s) => s.split("{lq}").join(lq);
+    const titles = t.s.map((s) => s[0]).concat(t.contactTitle);
+    const ids = IDS.concat("contact");
+    return `
+  <div class="hero">
+    <h1>${t.title}</h1>
+    <p class="meta">${t.sub}</p>
+  </div>
+
+  <div class="promise">
+    <span class="well" aria-hidden="true">${svg("i-info")}</span>
+    <h2>${t.helloTitle}</h2>
+    <p>${t.helloBody}</p>
+    <div class="chips"><a class="chip" href="mailto:${EMAIL}?subject=Cheery%20support">${svg("i-check", 2.2)}${EMAIL}</a></div>
+  </div>
+
+  <p class="group-label">${t.toc}</p>
+  <nav class="toc" aria-label="${t.toc}">
+    <ol>${titles.map((x, i) => `<li><a href="#${ids[i]}"><span class="n">${i + 1}</span><span>${x}</span><svg class="chev" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev"/></svg></a></li>`).join("")}</ol>
+  </nav>
+
+  <p class="group-label">${t.details}</p>
+  ${t.s.map((s, i) => `
+  <section class="block" id="${IDS[i]}">
+    <div class="head"><span class="well">${svg(ICONS[i])}</span><h2>${i + 1}. ${s[0]}</h2></div>
+    <ul class="items">${s[1].map(([q, ans]) => `<li><strong>${q}</strong><span>${fix(ans)}</span></li>`).join("")}</ul>
+  </section>`).join("")}
+
+  <section class="block contact" id="contact">
+    <span class="well">${svg("i-info")}</span>
+    <h2>${t.s.length + 1}. ${t.contactTitle}</h2>
+    <p>${t.contactBody}</p>
+    <a class="button" href="mailto:${EMAIL}?subject=Cheery%20support">${t.contactButton}</a>
+    <span class="email">${EMAIL}</span>
+  </section>`;
+  }
+
+  const store = {
+    get() { try { return localStorage.getItem("cheery.policy.lang"); } catch (e) { return null; } },
+    set(v) { try { localStorage.setItem("cheery.policy.lang", v); } catch (e) {} }
+  };
+
+  function detect() {
+    let q = null;
+    try { q = new URLSearchParams(location.search).get("lang"); } catch (e) {}
+    if (q && L[q]) return q;
+    const saved = store.get();
+    if (saved && L[saved]) return saved;
+    const prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"]);
+    for (const p of prefs) {
+      const base = String(p).toLowerCase().split("-")[0];
+      if (L[base]) return base;
+    }
+    return "en";
+  }
+
+  const content = document.getElementById("content");
+  const btnText = document.getElementById("langBtnText");
+  const btn = document.getElementById("langBtn");
+  const list = document.getElementById("langList");
+  const sheet = document.getElementById("sheet");
+  const scrim = document.getElementById("scrim");
+  const closeBtn = document.getElementById("sheetClose");
+  let current = "en";
+
+  function apply(code, opts) {
+    opts = opts || {};
+    current = code;
+    const t = L[code];
+    document.documentElement.lang = HTML_LANG[code];
+    document.title = `${t.title} · Cheery`;
+    content.innerHTML = render(code);
+    btnText.textContent = t.native;
+    btn.setAttribute("aria-label", `${t.lang}: ${t.native}`);
+    document.getElementById("sheetTitle").textContent = t.choose;
+    closeBtn.setAttribute("aria-label", t.close);
+    list.querySelectorAll("button").forEach((b) => b.setAttribute("aria-checked", String(b.dataset.lang === code)));
+    if (opts.remember) {
+      store.set(code);
+      try {
+        const u = new URL(location.href);
+        if (code === "en") u.searchParams.delete("lang"); else u.searchParams.set("lang", code);
+        history.replaceState(null, "", u.pathname + u.search + u.hash);
+      } catch (e) {}
+    }
+  }
+
+  list.innerHTML = ORDER.map((c) => `<li><button type="button" role="menuitemradio" data-lang="${c}" aria-checked="false"><span class="names"><span class="native" lang="${HTML_LANG[c]}">${L[c].native}</span><span class="eng">${L[c].english}</span></span><svg class="tick" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"/></svg></button></li>`).join("");
+
+  function jumpTop() { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
+  // Smooth only for the contents links, so switching language never animates the page.
+  content.addEventListener("click", (e) => {
+    if (e.target.closest('a[href^="#"]')) {
+      document.documentElement.classList.add("smooth");
+      setTimeout(() => document.documentElement.classList.remove("smooth"), 900);
+    }
+  });
+
+  let lastFocus = null;
+  function openSheet() {
+    lastFocus = document.activeElement;
+    scrim.hidden = false; sheet.hidden = false;
+    document.documentElement.classList.add("locked");
+    requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("sheet-open")));
+    btn.setAttribute("aria-expanded", "true");
+    const chosen = list.querySelector('[aria-checked="true"]');
+    setTimeout(() => (chosen || closeBtn).focus({ preventScroll: true }), 60);
+  }
+  function closeSheet() {
+    document.body.classList.remove("sheet-open");
+    btn.setAttribute("aria-expanded", "false");
+    setTimeout(() => { scrim.hidden = true; sheet.hidden = true; document.documentElement.classList.remove("locked"); }, 330);
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+
+  btn.addEventListener("click", openSheet);
+  scrim.addEventListener("click", closeSheet);
+  closeBtn.addEventListener("click", closeSheet);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !sheet.hidden) closeSheet(); });
+  list.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-lang]");
+    if (!b) return;
+    jumpTop();
+    apply(b.dataset.lang, { remember: true });
+    closeSheet();
+  });
+  content.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-lang]");
+    if (b) { jumpTop(); apply(b.dataset.lang, { remember: true }); }
+  });
+
+  const top = document.getElementById("topbar");
+  const onScroll = () => top.classList.toggle("scrolled", window.scrollY > 4);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  apply(detect());
+})();
+</script>
+</body>
+</html>
